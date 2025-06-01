@@ -13,7 +13,7 @@ import ConfirmModal from '@/components/ConfirmModal'
 import ShareModal from '@/components/ShareModal'
 
 import connect from '@/connect'
-import { MindMapItem } from '@/models/list'
+import { MindMapItem, MindMapList } from '@/models/list'
 import Link from 'next/link'
 
 export default function MapListPage() {
@@ -28,6 +28,8 @@ export default function MapListPage() {
     pageSize: 20,
     total: 0,
   })
+  const [shareModalOpen, setShareModalOpen] = useState(false)
+  const [currentShareItem, setCurrentShareItem] = useState<MindMapItem | null>(null)
 
   const type = params.type as string
   const isPublic = type === 'public'
@@ -36,33 +38,32 @@ export default function MapListPage() {
     setLoading(true)
     try {
       const endpoint = isPublic ? '/api/public' : '/api/map'
-      const res = await connect.get(endpoint, {
+      const res = await connect.get<
+        never,
+        MindMapList
+      >(endpoint, {
         params: {
           page: pagination.page,
           pageSize: pagination.pageSize,
           keyword,
         },
       })
-      console.log('API Response:', res.data)
-      console.log('Map List:', res.data.list)
+      console.log('API Response:', res)
+      console.log('Map List:', res.data)
 
-      // 检查API返回的数据结构
-      if (res.data && Array.isArray(res.data.list)) {
-        setMapList(res.data.list)
-        setPagination((prev) => ({
-          ...prev,
-          total: res.data.total || 0,
-        }))
-      } else if (res.data && Array.isArray(res.data)) {
-        // 如果API直接返回数组
+      if (res && Array.isArray(res.data)) {
         setMapList(res.data)
         setPagination((prev) => ({
           ...prev,
-          total: res.data.length,
+          total: res.total || 0,
         }))
       } else {
-        console.warn('Unexpected API response structure:', res.data)
+        console.warn('Unexpected API response structure:', res)
         setMapList([])
+        setPagination((prev) => ({
+          ...prev,
+          total: 0,
+        }))
       }
     } catch (error) {
       console.error('Failed to fetch maps:', error)
@@ -108,8 +109,8 @@ export default function MapListPage() {
   }
 
   const share = (item: MindMapItem) => {
-    // TODO: Implement share modal
-    console.log('Share:', item)
+    setCurrentShareItem(item)
+    setShareModalOpen(true)
   }
 
   const download = (item: MindMapItem, type: string) => {
@@ -119,7 +120,19 @@ export default function MapListPage() {
 
   const content = (
     <div className="mt-28">
-      <SearchBar onSearch={handleSearch} />
+      {/* Search bar and create button container */}
+      <div className="max-w-6xl mx-auto mb-8 px-4">
+        <div className="flex items-center gap-4">
+          <div className="flex-1">
+            <SearchBar onSearch={handleSearch} className="max-w-none mx-0 mb-0" />
+          </div>
+          {!isPublic && (
+            <div className="flex-shrink-0">
+              <CreateButton className="h-10 w-auto px-4" />
+            </div>
+          )}
+        </div>
+      </div>
 
       {loading ? (
         <LoadingMask className="pt-20" />
@@ -132,7 +145,6 @@ export default function MapListPage() {
           </div> */}
 
           <div className="mx-20 grid gap-4 grid-cols-1 auto-rows-[208px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {!isPublic && <CreateButton className="h-full" />}
             {mapList.map((map) => (
               <Link
                 key={map._id}
@@ -166,5 +178,19 @@ export default function MapListPage() {
     </div>
   )
 
-  return content
+  const shareUrl = currentShareItem
+    ? `${typeof window !== 'undefined' ? window.location.origin : ''}/${params.locale}/share/${currentShareItem._id}`
+    : ''
+
+  return (
+    <>
+      {content}
+      <ShareModal
+        open={shareModalOpen}
+        onOpenChange={setShareModalOpen}
+        shareUrl={shareUrl}
+        title={currentShareItem?.name ? `Share "${currentShareItem.name}"` : 'Share Mind Map'}
+      />
+    </>
+  )
 }

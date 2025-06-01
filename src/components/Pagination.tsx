@@ -16,7 +16,14 @@ export default function Pagination({
 }: PaginationProps) {
   const totalPages = Math.ceil(total / pageSize)
 
-  if (totalPages <= 1) return null
+  // 显示分页信息，即使只有一页
+  if (totalPages <= 1) {
+    return (
+      <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+        <span>Total: {total} items</span>
+      </div>
+    )
+  }
 
   const getVisiblePages = () => {
     const delta = 2
@@ -49,37 +56,43 @@ export default function Pagination({
   }
 
   return (
-    <div className="flex items-center justify-center gap-1">
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={() => onPageChange(page - 1)}
-        disabled={page <= 1}
-      >
-        <ChevronLeft className="w-4 h-4" />
-      </Button>
-
-      {getVisiblePages().map((pageNum, index) => (
+    <div className="flex flex-col items-center gap-2">
+      <div className="flex items-center justify-center gap-1">
         <Button
-          key={index}
-          variant={pageNum === page ? "default" : "ghost"}
+          variant="ghost"
           size="sm"
-          onClick={() => typeof pageNum === 'number' && onPageChange(pageNum)}
-          disabled={pageNum === '...'}
-          className={pageNum === '...' ? 'cursor-default' : ''}
+          onClick={() => onPageChange(page - 1)}
+          disabled={page <= 1}
         >
-          {pageNum}
+          <ChevronLeft className="w-4 h-4" />
         </Button>
-      ))}
 
-      <Button
-        variant="ghost"
-        size="sm"
-        onClick={() => onPageChange(page + 1)}
-        disabled={page >= totalPages}
-      >
-        <ChevronRight className="w-4 h-4" />
-      </Button>
+        {getVisiblePages().map((pageNum, index) => (
+          <Button
+            key={index}
+            variant={pageNum === page ? "default" : "ghost"}
+            size="sm"
+            onClick={() => typeof pageNum === 'number' && onPageChange(pageNum)}
+            disabled={pageNum === '...'}
+            className={pageNum === '...' ? 'cursor-default' : ''}
+          >
+            {pageNum}
+          </Button>
+        ))}
+
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => onPageChange(page + 1)}
+          disabled={page >= totalPages}
+        >
+          <ChevronRight className="w-4 h-4" />
+        </Button>
+      </div>
+
+      <div className="text-sm text-gray-500">
+        Page {page} of {totalPages} • Total: {total} items
+      </div>
     </div>
   )
 }

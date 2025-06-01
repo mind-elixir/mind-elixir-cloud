@@ -8,7 +8,8 @@
     "cancel": "Cancel",
     "login": "Login",
     "share": "Share",
-    "loggingIn": "Logging in..."
+    "loggingIn": "Logging in...",
+    "create": "Create"
   },
   "menu": {
     "public": "Public",

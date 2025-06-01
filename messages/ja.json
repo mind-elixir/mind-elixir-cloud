@@ -8,7 +8,8 @@
     "cancel": "キャンセル",
     "login": "ログイン",
     "share": "共有",
-    "loggingIn": "ログイン中..."
+    "loggingIn": "ログイン中...",
+    "create": "作成"
   },
   "menu": {
     "public": "公開",

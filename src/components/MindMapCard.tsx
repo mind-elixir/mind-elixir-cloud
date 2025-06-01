@@ -71,71 +71,73 @@ export default function MindMapCard({
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-        {type === 'private' && (
-          <div className="absolute right-3 top-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="secondary"
-                  size="icon"
-                  className="h-8 w-8 bg-background/80 backdrop-blur-sm hover:bg-background border shadow-sm"
-                  onClick={(e) => {
-                    e.preventDefault()
-                    e.stopPropagation()
-                  }}
-                >
-                  <MoreVertical className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-52">
+        <div className="absolute right-3 top-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="secondary"
+                size="icon"
+                className="h-8 w-8 bg-background/80 backdrop-blur-sm hover:bg-background border shadow-sm"
+                onClick={(e) => {
+                  e.preventDefault()
+                  e.stopPropagation()
+                }}
+              >
+                <MoreVertical className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-52">
+              {type === 'private' && (
                 <DropdownMenuItem onClick={(e) => {
                   e.stopPropagation()
                   onMakePublic()
                 }}>
                   {map.public ? 'Make Private' : 'Make Public'}
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={(e) => {
-                  e.stopPropagation()
-                  onShare()
-                }}>
-                  Share
-                </DropdownMenuItem>
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>
-                    <Download className="mr-2 h-4 w-4" />
-                    Download
-                  </DropdownMenuSubTrigger>
-                  <DropdownMenuSubContent>
-                    <DropdownMenuItem onClick={(e) => {
-                      e.stopPropagation()
-                      onDownload('json')
-                    }}>
-                      JSON
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={(e) => {
-                      e.stopPropagation()
-                      onDownload('html')
-                    }}>
-                      HTML
-                    </DropdownMenuItem>
-                    <DropdownMenuItem onClick={(e) => {
-                      e.stopPropagation()
-                      onDownload('xmind')
-                    }}>
-                      XMind
-                    </DropdownMenuItem>
-                  </DropdownMenuSubContent>
-                </DropdownMenuSub>
+              )}
+              <DropdownMenuItem onClick={(e) => {
+                e.stopPropagation()
+                onShare()
+              }}>
+                Share
+              </DropdownMenuItem>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>
+                  <Download className="mr-2 h-4 w-4" />
+                  Download
+                </DropdownMenuSubTrigger>
+                <DropdownMenuSubContent>
+                  <DropdownMenuItem onClick={(e) => {
+                    e.stopPropagation()
+                    onDownload('json')
+                  }}>
+                    JSON
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={(e) => {
+                    e.stopPropagation()
+                    onDownload('html')
+                  }}>
+                    HTML
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={(e) => {
+                    e.stopPropagation()
+                    onDownload('xmind')
+                  }}>
+                    XMind
+                  </DropdownMenuItem>
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+              {type === 'private' && (
                 <DropdownMenuItem onClick={(e) => {
                   e.stopPropagation()
                   onDelete()
                 }} className="text-destructive">
                   Delete
                 </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-        )}
+              )}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </div>
 
       <CardContent className="p-4">

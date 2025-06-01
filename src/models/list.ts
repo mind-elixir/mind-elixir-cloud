@@ -15,4 +15,9 @@ export interface MindMapItem {
   clone?: MindMapItem
 }
 
-export type MindMapList = MindMapItem[] | null
+export type MindMapList = {
+  data: MindMapItem[]
+  page: number
+  pageSize: number
+  total: number
+}

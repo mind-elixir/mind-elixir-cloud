@@ -8,7 +8,8 @@
     "cancel": "取消",
     "login": "登陆",
     "share": "分享",
-    "loggingIn": "正在唤起登录……"
+    "loggingIn": "正在唤起登录……",
+    "create": "创建"
   },
   "menu": {
     "public": "公开",
