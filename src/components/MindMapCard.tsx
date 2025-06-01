@@ -79,16 +79,25 @@ export default function MindMapCard({
                   variant="secondary"
                   size="icon"
                   className="h-8 w-8 bg-background/80 backdrop-blur-sm hover:bg-background border shadow-sm"
-                  onClick={(e) => e.preventDefault()}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    e.stopPropagation()
+                  }}
                 >
                   <MoreVertical className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end" className="w-52">
-                <DropdownMenuItem onClick={onMakePublic}>
+                <DropdownMenuItem onClick={(e) => {
+                  e.stopPropagation()
+                  onMakePublic()
+                }}>
                   {map.public ? 'Make Private' : 'Make Public'}
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={onShare}>
+                <DropdownMenuItem onClick={(e) => {
+                  e.stopPropagation()
+                  onShare()
+                }}>
                   Share
                 </DropdownMenuItem>
                 <DropdownMenuSub>
@@ -97,18 +106,30 @@ export default function MindMapCard({
                     Download
                   </DropdownMenuSubTrigger>
                   <DropdownMenuSubContent>
-                    <DropdownMenuItem onClick={() => onDownload('json')}>
+                    <DropdownMenuItem onClick={(e) => {
+                      e.stopPropagation()
+                      onDownload('json')
+                    }}>
                       JSON
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => onDownload('html')}>
+                    <DropdownMenuItem onClick={(e) => {
+                      e.stopPropagation()
+                      onDownload('html')
+                    }}>
                       HTML
                     </DropdownMenuItem>
-                    <DropdownMenuItem onClick={() => onDownload('xmind')}>
+                    <DropdownMenuItem onClick={(e) => {
+                      e.stopPropagation()
+                      onDownload('xmind')
+                    }}>
                       XMind
                     </DropdownMenuItem>
                   </DropdownMenuSubContent>
                 </DropdownMenuSub>
-                <DropdownMenuItem onClick={onDelete} className="text-destructive">
+                <DropdownMenuItem onClick={(e) => {
+                  e.stopPropagation()
+                  onDelete()
+                }} className="text-destructive">
                   Delete
                 </DropdownMenuItem>
               </DropdownMenuContent>
