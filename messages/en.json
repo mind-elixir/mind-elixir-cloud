@@ -9,7 +9,18 @@
     "login": "Login",
     "share": "Share",
     "loggingIn": "Logging in...",
-    "create": "Create"
+    "create": "Create",
+    "connectingDesktop": "Connecting to desktop application",
+    "ensureDesktopRunning": "Please ensure the desktop application is running and ready to connect",
+    "secureConnection": "Secure connection",
+    "autoRedirect": "Auto redirect",
+    "gettingToken": "Getting authentication token...",
+    "connectingApp": "Connecting to desktop application...",
+    "verifyingIdentity": "Verifying identity...",
+    "loginSuccess": "Login successful! Redirecting...",
+    "completed": "Login completed",
+    "connectionFailed": "Connection failed, please try again",
+    "checkDesktopApp": "Login failed, please check network connection or try again later"
   },
   "menu": {
     "public": "Public",

@@ -9,7 +9,18 @@
     "login": "登陆",
     "share": "分享",
     "loggingIn": "正在唤起登录……",
-    "create": "创建"
+    "create": "创建",
+    "connectingDesktop": "正在连接桌面应用",
+    "ensureDesktopRunning": "请确保桌面应用已启动并处于可连接状态",
+    "secureConnection": "安全连接",
+    "autoRedirect": "自动跳转",
+    "gettingToken": "正在获取认证令牌...",
+    "connectingApp": "正在连接桌面应用...",
+    "verifyingIdentity": "正在验证身份...",
+    "loginSuccess": "登录成功！正在跳转...",
+    "completed": "登录已完成",
+    "connectionFailed": "连接失败，请重试",
+    "checkDesktopApp": "登录失败，请检查网络连接或稍后重试"
   },
   "menu": {
     "public": "公开",
