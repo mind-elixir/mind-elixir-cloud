@@ -1,0 +1,36 @@
+{
+  "misc": {
+    "pleaseLogin": "Please login first",
+    "networkError": "Network error",
+    "formatSelect": "Choose format",
+    "title": "Title",
+    "ok": "OK",
+    "cancel": "Cancel",
+    "login": "Login",
+    "share": "Share",
+    "loggingIn": "Logging in..."
+  },
+  "menu": {
+    "public": "Public",
+    "folder": "Folder",
+    "about": "About",
+    "language": "language"
+  },
+  "button": {
+    "signin": "Sign in",
+    "signinWithWeibo": "Sign in with Weibo",
+    "signinWithGitHub": "Sign in with GitHub",
+    "logout": "Sign out",
+    "new": "New",
+    "save": "Save"
+  },
+  "title": {
+    "signinWith": "Sign in with"
+  },
+  "about": {
+    "title": "About Mind Elixir Cloud",
+    "1": "Thank you for the free service provided by Netify and Fly.io.",
+    "2": "Regularly Data Backup is recommended.",
+    "3": "Should you require customization features, please reach out to ssshooterx@gmail.com."
+  }
+}

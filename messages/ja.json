@@ -1,0 +1,36 @@
+{
+  "misc": {
+    "pleaseLogin": "ログインが必要です",
+    "networkError": "ネットワークエラー",
+    "formatSelect": "ファイル形式",
+    "title": "タイトル",
+    "ok": "OK",
+    "cancel": "キャンセル",
+    "login": "ログイン",
+    "share": "共有",
+    "loggingIn": "ログイン中..."
+  },
+  "menu": {
+    "public": "公開",
+    "folder": "フォルダ",
+    "about": "基本情報",
+    "language": "言語"
+  },
+  "button": {
+    "signin": "ログイン",
+    "logout": "ログアウト",
+    "signinWithWeibo": "Weibo でログイン",
+    "signinWithGitHub": "GitHub でログイン",
+    "new": "新規",
+    "save": "保存"
+  },
+  "title": {
+    "signinWith": "ログイン方法"
+  },
+  "about": {
+    "title": "Mind Elixir Cloud について",
+    "1": "Thank you for the free service provided by Netify and Fly.io.",
+    "2": "Regularly Data Backup is recommended.",
+    "3": "Should you require customization features, please reach out to ssshooterx@gmail.com."
+  }
+}

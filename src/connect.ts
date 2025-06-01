@@ -1,10 +1,8 @@
 import axios from 'axios'
-// import { Message } from 'element-ui'
-import i18n from './i18n'
 import toast from './utils/toast'
 
 const relink = axios.create({
-  baseURL: import.meta.env.VITE_API_BASEURL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   withCredentials: true,
 })
 
@@ -14,7 +12,7 @@ relink.interceptors.response.use(
   },
   function (error) {
     if (error.response.status !== 401) {
-      toast.error(i18n.global.t('misc.networkError'))
+      toast.error('Network error')
     }
     return Promise.reject(error)
   }

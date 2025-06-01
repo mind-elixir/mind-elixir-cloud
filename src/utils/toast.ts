@@ -1,21 +1,46 @@
-import { createApp, reactive } from 'vue'
-import Toast from '@/components/Toast.vue'
+// Simple toast implementation for React
+let toastContainer: HTMLDivElement | null = null
 
-const toast = createApp(Toast)
-const toastProps = reactive({
-  type: 'success',
-  text: '',
-  show: false,
-})
-toast.provide('props', toastProps)
-const toastDom = toast.mount(document.createElement('div'))
-document.body.appendChild(toastDom.$el)
+const createToastContainer = () => {
+  if (!toastContainer) {
+    toastContainer = document.createElement('div')
+    toastContainer.className = 'fixed top-4 right-4 z-50 space-y-2'
+    document.body.appendChild(toastContainer)
+  }
+  return toastContainer
+}
+
 const showToast = (type: string, text: string, duration: number) => {
-  toastProps.type = type
-  toastProps.text = text
-  toastProps.show = true
+  const container = createToastContainer()
+
+  const toastElement = document.createElement('div')
+  toastElement.className = `alert alert-${type} shadow-lg max-w-sm`
+  toastElement.innerHTML = `
+    <div>
+      <span>${text}</span>
+    </div>
+  `
+
+  container.appendChild(toastElement)
+
+  // Animate in
+  toastElement.style.opacity = '0'
+  toastElement.style.transform = 'translateX(100%)'
   setTimeout(() => {
-    toastProps.show = false
+    toastElement.style.transition = 'all 0.3s ease'
+    toastElement.style.opacity = '1'
+    toastElement.style.transform = 'translateX(0)'
+  }, 10)
+
+  // Remove after duration
+  setTimeout(() => {
+    toastElement.style.opacity = '0'
+    toastElement.style.transform = 'translateX(100%)'
+    setTimeout(() => {
+      if (container.contains(toastElement)) {
+        container.removeChild(toastElement)
+      }
+    }, 300)
   }, duration)
 }
 
