@@ -15,7 +15,8 @@
     "public": "Public",
     "folder": "Folder",
     "about": "About",
-    "language": "language"
+    "language": "language",
+    "profile": "Profile"
   },
   "button": {
     "signin": "Sign in",
@@ -33,5 +34,20 @@
     "1": "Thank you for the free service provided by Netify and Fly.io.",
     "2": "Regularly Data Backup is recommended.",
     "3": "Should you require customization features, please reach out to ssshooterx@gmail.com."
+  },
+  "profile": {
+    "title": "Profile Settings",
+    "socialMedia": "Social Media Accounts",
+    "bilibili": "Bilibili",
+    "xiaohongshu": "Xiaohongshu",
+    "weibo": "Weibo",
+    "placeholder": {
+      "bilibili": "Enter your Bilibili username or URL",
+      "xiaohongshu": "Enter your Xiaohongshu username or URL",
+      "weibo": "Enter your Weibo username or URL"
+    },
+    "save": "Save Changes",
+    "saved": "Profile saved successfully",
+    "error": "Failed to save profile"
   }
 }

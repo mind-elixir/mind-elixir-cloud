@@ -15,7 +15,8 @@
     "public": "公开",
     "folder": "文件夹",
     "about": "关于",
-    "language": "语言"
+    "language": "语言",
+    "profile": "个人设置"
   },
   "button": {
     "signin": "登录",
@@ -33,5 +34,20 @@
     "1": "感谢 netify 和 fly.io 提供的免费服务",
     "2": "请注意数据备份，编辑好的思维导图请下载归档",
     "3": "接受定制功能，联系邮箱 ssshooterx@gmail.com"
+  },
+  "profile": {
+    "title": "个人设置",
+    "socialMedia": "社交媒体账号",
+    "bilibili": "哔哩哔哩",
+    "xiaohongshu": "小红书",
+    "weibo": "微博",
+    "placeholder": {
+      "bilibili": "请输入您的哔哩哔哩用户名或链接",
+      "xiaohongshu": "请输入您的小红书用户名或链接",
+      "weibo": "请输入您的微博用户名或链接"
+    },
+    "save": "保存更改",
+    "saved": "个人设置保存成功",
+    "error": "保存个人设置失败"
   }
 }

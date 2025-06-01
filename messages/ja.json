@@ -15,7 +15,8 @@
     "public": "公開",
     "folder": "フォルダ",
     "about": "基本情報",
-    "language": "言語"
+    "language": "言語",
+    "profile": "プロフィール"
   },
   "button": {
     "signin": "ログイン",
@@ -33,5 +34,20 @@
     "1": "Thank you for the free service provided by Netify and Fly.io.",
     "2": "Regularly Data Backup is recommended.",
     "3": "Should you require customization features, please reach out to ssshooterx@gmail.com."
+  },
+  "profile": {
+    "title": "プロフィール設定",
+    "socialMedia": "ソーシャルメディアアカウント",
+    "bilibili": "ビリビリ",
+    "xiaohongshu": "小紅書",
+    "weibo": "微博",
+    "placeholder": {
+      "bilibili": "ビリビリのユーザー名またはURLを入力してください",
+      "xiaohongshu": "小紅書のユーザー名またはURLを入力してください",
+      "weibo": "微博のユーザー名またはURLを入力してください"
+    },
+    "save": "変更を保存",
+    "saved": "プロフィールが正常に保存されました",
+    "error": "プロフィールの保存に失敗しました"
   }
 }

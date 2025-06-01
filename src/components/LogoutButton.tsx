@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { LogOut } from 'lucide-react'
+import { LogOut, Settings } from 'lucide-react'
 import { useUser } from '@/providers/UserProvider'
 import { Button } from '@/components/ui/button'
 import {
@@ -9,10 +9,13 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu'
+import Link from 'next/link'
 
 export default function LogoutButton() {
   const t = useTranslations('button')
+  const tMenu = useTranslations('menu')
   const { userData, logout } = useUser()
 
   const handleLogout = async () => {
@@ -35,6 +38,13 @@ export default function LogoutButton() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-52" sideOffset={5}>
+        <DropdownMenuItem asChild>
+          <Link href="/profile" className="cursor-pointer">
+            <Settings className="mr-2 h-4 w-4" />
+            {tMenu('profile')}
+          </Link>
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
         <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-destructive focus:text-destructive">
           <LogOut className="mr-2 h-4 w-4" />
           {t('logout')}
