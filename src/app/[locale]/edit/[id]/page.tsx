@@ -3,9 +3,8 @@
 import { useEffect, useState, useRef, forwardRef } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import connect from '@/connect'
+import { api } from '@/services/api'
 import { MindElixirData, Options } from 'mind-elixir'
-import { MindMapItem } from '@/models/list'
 import { MindElixirReactRef } from '@/components/MindElixirReact'
 import toast from '@/utils/toast'
 // @ts-ignore
@@ -50,7 +49,7 @@ export default function MapEditPage() {
   useEffect(() => {
     const fetchMap = async () => {
       try {
-        const res = await connect.get<never, { data: MindMapItem }>(`/api/map/${mapId}`)
+        const res = await api.mindMap.getMap(mapId)
         setMapData(res.data.content)
       } catch (error) {
         console.error('Failed to fetch map:', error)
@@ -98,7 +97,7 @@ export default function MapEditPage() {
       const newData = meRef.current.instance.getData() as MindElixirData
       newData.theme = undefined
 
-      await connect.patch(`/api/map/${mapId}`, {
+      await api.mindMap.updateMap(mapId, {
         name: newData.nodeData.topic,
         content: newData,
       })

@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Info } from 'lucide-react'
-import connect from '@/connect'
+import { api } from '@/services/api'
 
 export default function DesktopLoginPage() {
   const t = useTranslations('misc')
@@ -27,7 +27,7 @@ export default function DesktopLoginPage() {
       try {
         updateProgress(20, t('gettingToken'))
 
-        const { token } = await connect.get<never, { token: string }>('token')
+        const { token } = await api.user.getDesktopToken()
         console.log(token)
 
         updateProgress(50, t('connectingApp'))

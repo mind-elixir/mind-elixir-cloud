@@ -15,7 +15,7 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
-import connect from '@/connect'
+import { api } from '@/services/api'
 import toast from '@/utils/toast'
 import MindElixir from 'mind-elixir'
 interface CreateButtonProps {
@@ -34,7 +34,7 @@ export default function CreateButton({ className }: CreateButtonProps) {
 
     setCreating(true)
     try {
-      const res = await connect.post('/api/map', {
+      const res = await api.mindMap.createMap({
         name: title,
         content: MindElixir.new(title),
       })

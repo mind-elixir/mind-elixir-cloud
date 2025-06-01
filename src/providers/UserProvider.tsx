@@ -2,8 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import { User } from '@/models/user'
-import { Response } from '@/models/response'
-import connect from '@/connect'
+import { api } from '@/services/api'
 
 interface UserContextType {
   userData: User | undefined
@@ -21,7 +20,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const refreshUser = async () => {
     try {
-      const res = await connect.get<never, Response<User>>('/api/user')
+      const res = await api.user.getCurrentUser()
       if (res.data && res.data.providerAccountId) {
         setUserData(res.data)
       } else {
@@ -37,7 +36,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const logout = async () => {
     try {
-      await connect.post('/api/auth/logout')
+      await api.user.logout()
       setUserData(undefined)
     } catch (error) {
       console.error('Logout failed:', error)

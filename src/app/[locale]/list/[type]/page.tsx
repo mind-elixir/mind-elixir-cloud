@@ -2,24 +2,19 @@
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
-import { useTranslations } from 'next-intl'
-import { useUser } from '@/providers/UserProvider'
 import SearchBar from '@/components/SearchBar'
 import LoadingMask from '@/components/LoadingMask'
 import CreateButton from '@/components/CreateButton'
 import MindMapCard from '@/components/MindMapCard'
 import Pagination from '@/components/Pagination'
-import ConfirmModal from '@/components/ConfirmModal'
 import ShareModal from '@/components/ShareModal'
 
-import connect from '@/connect'
-import { MindMapItem, MindMapList } from '@/models/list'
+import { api } from '@/services/api'
+import { MindMapItem } from '@/models/list'
 import Link from 'next/link'
 
 export default function MapListPage() {
   const params = useParams()
-  const t = useTranslations()
-  const { userData } = useUser()
   const [mapList, setMapList] = useState<MindMapItem[]>([])
   const [loading, setLoading] = useState(true)
   const [keyword, setKeyword] = useState('')
@@ -37,17 +32,16 @@ export default function MapListPage() {
   const fetchList = async () => {
     setLoading(true)
     try {
-      const endpoint = isPublic ? '/api/public' : '/api/map'
-      const res = await connect.get<
-        never,
-        MindMapList
-      >(endpoint, {
-        params: {
-          page: pagination.page,
-          pageSize: pagination.pageSize,
-          keyword,
-        },
-      })
+      const params = {
+        page: pagination.page,
+        pageSize: pagination.pageSize,
+        keyword,
+      }
+
+      const res = isPublic
+        ? await api.public.getPublicMapList(params)
+        : await api.mindMap.getMapList(params)
+
       console.log('API Response:', res)
       console.log('Map List:', res.data)
 
@@ -88,7 +82,7 @@ export default function MapListPage() {
   const deleteMap = async (item: MindMapItem) => {
     if (window.confirm('Are you sure to delete this map?')) {
       try {
-        await connect.delete(`/api/map/${item._id}`)
+        await api.mindMap.deleteMap(item._id)
         fetchList()
       } catch (error) {
         console.error('Failed to delete map:', error)
@@ -98,7 +92,7 @@ export default function MapListPage() {
 
   const makePublic = async (item: MindMapItem) => {
     try {
-      await connect.patch(`/api/map/${item._id}`, {
+      await api.mindMap.updateMap(item._id, {
         public: !item.public,
       })
       item.public = !item.public

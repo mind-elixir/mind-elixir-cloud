@@ -7,17 +7,9 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import connect from '@/connect'
+import { api } from '@/services/api'
+import { ProfileData } from '@/services/types'
 import toast from '@/utils/toast'
-import { User } from '@/models/user'
-
-interface ProfileData {
-  socialMedia: {
-    bilibili: string
-    xiaohongshu: string
-    weibo: string
-  }
-}
 
 export default function ProfilePage() {
   const t = useTranslations('profile')
@@ -36,9 +28,9 @@ export default function ProfilePage() {
   useEffect(() => {
     const loadProfile = async () => {
       if (!userData) return
-      
+
       try {
-        const response = await connect.get('/api/user/profile')
+        const response = await api.user.getProfile()
         if (response.success && response.data) {
           setProfileData(response.data)
         }
@@ -69,7 +61,7 @@ export default function ProfilePage() {
 
     setSaving(true)
     try {
-      const response = await connect.put('/api/user/profile', profileData)
+      const response = await api.user.updateProfile(profileData)
       if (response.success) {
         toast.success(t('saved'))
         // 刷新用户数据

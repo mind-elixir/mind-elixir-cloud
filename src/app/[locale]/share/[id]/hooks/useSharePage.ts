@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
-import connect from '@/connect'
+import { api } from '@/services/api'
 import { MindElixirData, Options } from 'mind-elixir'
 import { MindMapItem } from '@/models/list'
 // @ts-ignore
@@ -34,9 +34,7 @@ export function useSharePage() {
     const fetchMap = async () => {
       try {
         setLoading(true)
-        const res = await connect.get<never, { data: MindMapItem }>(
-          `/api/public/${mapId}`
-        )
+        const res = await api.public.getPublicMap(mapId)
         setMapItem(res.data)
         setMapData(res.data.content)
       } catch (error) {

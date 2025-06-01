@@ -1,0 +1,53 @@
+import { User } from '@/models/user'
+import { MindMapItem } from '@/models/list'
+import { Response } from '@/models/response'
+
+// API 请求参数类型
+export interface PaginationParams {
+  page: number
+  pageSize: number
+  keyword?: string
+}
+
+export interface CreateMapParams {
+  name: string
+  content?: any
+}
+
+export interface UpdateMapParams {
+  name?: string
+  content?: any
+  public?: boolean
+}
+
+export interface ProfileData {
+  socialMedia: {
+    bilibili: string
+    xiaohongshu: string
+    weibo: string
+  }
+}
+
+// API 响应类型
+export interface MindMapListResponse {
+  data: MindMapItem[]
+  total: number
+  page: number
+  pageSize: number
+}
+
+export interface TokenResponse {
+  token: string
+}
+
+export interface MapResponse {
+  data: MindMapItem
+}
+
+export interface UserResponse extends Response<User> {}
+
+export interface ProfileResponse {
+  success: boolean
+  data?: ProfileData
+  message?: string
+}
