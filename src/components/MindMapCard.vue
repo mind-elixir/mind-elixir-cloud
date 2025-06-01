@@ -62,8 +62,7 @@ const emit = defineEmits<{
   (e: 'share'): void
 }>()
 
-const options: Options = {
-  el: '',
+const options: Partial<Options> = {
   direction: 2,
   draggable: false,
   editable: false,

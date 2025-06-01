@@ -17,7 +17,7 @@ import {
 import { cn } from '@/lib/utils'
 import connect from '@/connect'
 import toast from '@/utils/toast'
-
+import MindElixir from 'mind-elixir'
 interface CreateButtonProps {
   className?: string
 }
@@ -36,6 +36,7 @@ export default function CreateButton({ className }: CreateButtonProps) {
     try {
       const res = await connect.post('/api/map', {
         name: title,
+        content: MindElixir.new(title),
       })
       setIsModalOpen(false)
       setTitle('')
@@ -58,7 +59,7 @@ export default function CreateButton({ className }: CreateButtonProps) {
     <>
       <Card
         className={cn(
-          "border-2 border-dashed border-border hover:border-primary/50 bg-gradient-to-br from-muted/50 to-muted/30 hover:from-muted/70 hover:to-muted/50 cursor-pointer transition-all duration-300 group",
+          'border-2 border-dashed border-border hover:border-primary/50 bg-gradient-to-br from-muted/50 to-muted/30 hover:from-muted/70 hover:to-muted/50 cursor-pointer transition-all duration-300 group',
           className
         )}
         onClick={() => setIsModalOpen(true)}
@@ -96,11 +97,10 @@ export default function CreateButton({ className }: CreateButtonProps) {
             >
               {t('misc.cancel')}
             </Button>
-            <Button
-              onClick={handleCreate}
-              disabled={!title.trim() || creating}
-            >
-              {creating && <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />}
+            <Button onClick={handleCreate} disabled={!title.trim() || creating}>
+              {creating && (
+                <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
+              )}
               {t('misc.ok')}
             </Button>
           </DialogFooter>

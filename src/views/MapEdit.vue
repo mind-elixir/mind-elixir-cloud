@@ -40,8 +40,7 @@ const isUnsaved = ref(false)
 const saving = ref(false)
 const meEl = ref<InstanceType<typeof MindElixirVue> | null>(null)
 const mapData = ref<MindElixirData | undefined>(undefined)
-const options: Options = {
-  el: '',
+const options: Partial<Options> = {
   direction: 2,
   allowUndo: true,
 }

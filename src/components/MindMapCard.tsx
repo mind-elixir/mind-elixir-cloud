@@ -45,8 +45,7 @@ export default function MindMapCard({
 }: MindMapCardProps) {
   const [showDropdown, setShowDropdown] = useState(false)
 
-  const options: Options = {
-    el: '',
+  const options: Partial<Options> = {
     direction: 2,
     draggable: false,
     editable: false,

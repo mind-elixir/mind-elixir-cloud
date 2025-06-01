@@ -40,8 +40,7 @@ export default function MapEditPage() {
   const meRef = useRef<MindElixirReactRef>(null)
 
   const plugins = [nodeMenu]
-  const options: Options = {
-    el: '',
+  const options: Partial<Options> = {
     direction: 2,
     allowUndo: true,
   }
