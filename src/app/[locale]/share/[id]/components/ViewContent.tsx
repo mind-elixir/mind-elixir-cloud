@@ -97,7 +97,7 @@ export function ViewContent({ viewMode, mapData, plugins, options }: ViewContent
           </CardHeader>
           <CardContent className="p-0">
             <div className="h-[calc(100vh-430px)] min-h-[450px] overflow-auto custom-scrollbar">
-              <Outliner data={mapData.nodeData.children!} />
+              <Outliner data={mapData.nodeData.children!} readonly />
             </div>
           </CardContent>
         </Card>

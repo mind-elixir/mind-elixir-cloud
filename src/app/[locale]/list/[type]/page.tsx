@@ -138,7 +138,7 @@ export default function MapListPage() {
             <p>Map List Length: {mapList.length}</p>
           </div> */}
 
-          <div className="mx-20 grid gap-4 grid-cols-1 auto-rows-[208px] sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          <div className="mx-20 grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {mapList.map((map) => (
               <Link
                 key={map._id}

@@ -33,6 +33,7 @@
     "signin": "Sign in",
     "signinWithWeibo": "Sign in with Weibo",
     "signinWithGitHub": "Sign in with GitHub",
+    "signinWithGoogle": "Sign in with Google",
     "logout": "Sign out",
     "new": "New",
     "save": "Save"

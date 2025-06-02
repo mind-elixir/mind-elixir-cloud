@@ -23,6 +23,7 @@
     "logout": "ログアウト",
     "signinWithWeibo": "Weibo でログイン",
     "signinWithGitHub": "GitHub でログイン",
+    "signinWithGoogle": "Google でログイン",
     "new": "新規",
     "save": "保存"
   },

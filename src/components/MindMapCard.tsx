@@ -140,7 +140,7 @@ export default function MindMapCard({
         </div>
       </div>
 
-      <CardContent className="p-4">
+      <CardContent className="p-2">
         <div className="flex items-center justify-between mb-2">
           <CardTitle className="text-base font-semibold overflow-hidden whitespace-nowrap text-ellipsis flex-1 group-hover:text-primary transition-colors duration-200">
             {map.name}

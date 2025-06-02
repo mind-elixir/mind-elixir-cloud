@@ -33,6 +33,7 @@
     "signin": "登录",
     "signinWithWeibo": "使用微博登陆",
     "signinWithGitHub": "使用 GitHub 登陆",
+    "signinWithGoogle": "使用 Google 登陆",
     "logout": "退出登录",
     "new": "新建",
     "save": "保存"
