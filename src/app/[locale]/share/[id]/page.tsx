@@ -10,6 +10,7 @@ import { ErrorState } from './components/ErrorState'
 import { ShareHeader } from './components/ShareHeader'
 import { ViewContent } from './components/ViewContent'
 import { ShareFooter } from './components/ShareFooter'
+import { AuthorInfo } from './components/AuthorInfo'
 
 // Hooks
 import { useSharePage } from './hooks/useSharePage'
@@ -18,6 +19,7 @@ export default function MapSharePage() {
   const {
     mapData,
     mapItem,
+    authorProfile,
     viewMode,
     setViewMode,
     isFullscreen,
@@ -57,12 +59,26 @@ export default function MapSharePage() {
 
       {/* 主要内容区域 */}
       <div className="container mx-auto px-6 py-8">
-        <ViewContent
-          viewMode={viewMode}
-          mapData={mapData}
-          plugins={plugins}
-          options={options}
-        />
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+          {/* 思维导图内容 */}
+          <div className="lg:col-span-3">
+            <ViewContent
+              viewMode={viewMode}
+              mapData={mapData}
+              plugins={plugins}
+              options={options}
+            />
+          </div>
+
+          {/* 作者信息侧边栏 */}
+          <div className="lg:col-span-1">
+            {authorProfile && (
+              <div className="sticky top-24">
+                <AuthorInfo className='w-64' author={authorProfile} />
+              </div>
+            )}
+          </div>
+        </div>
       </div>
 
       <ShareFooter onCopyLink={handleCopyLink} />

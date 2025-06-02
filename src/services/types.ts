@@ -54,7 +54,23 @@ export interface MapResponse {
 export interface UserResponse extends Response<User> {}
 
 export interface ProfileResponse {
-  success: boolean
   data?: ProfileData
+  message?: string
+}
+
+// Public user profile represents public user information
+export interface PublicUserProfile {
+  _id: string
+  id: string
+  name: string
+  image?: string
+  bio?: string
+  location?: string
+  website?: string
+  socialLinks?: SocialLink[]
+}
+
+export interface PublicUserResponse {
+  data?: PublicUserProfile
   message?: string
 }

@@ -8,7 +8,8 @@ import {
   TokenResponse,
   MapResponse,
   UserResponse,
-  ProfileResponse
+  ProfileResponse,
+  PublicUserResponse
 } from './types'
 
 /**
@@ -111,6 +112,13 @@ export const publicApi = {
    */
   getPublicMap: async (id: string): Promise<MapResponse> => {
     return await connect.get<never, MapResponse>(`/api/public/${id}`)
+  },
+
+  /**
+   * 获取公共用户资料
+   */
+  getPublicUserProfile: async (userId: string): Promise<PublicUserResponse> => {
+    return await connect.get<never, PublicUserResponse>(`/api/public/profile?uuid=${userId}`)
   }
 }
 
