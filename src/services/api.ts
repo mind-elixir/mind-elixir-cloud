@@ -26,7 +26,7 @@ export const userApi = {
    * 用户登出
    */
   logout: async (): Promise<void> => {
-    return await connect.post('/api/auth/logout')
+    return await connect.post('/logout')
   },
 
   /**
