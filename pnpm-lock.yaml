@@ -47,6 +47,9 @@ importers:
       dompurify:
         specifier: ^3.0.8
         version: 3.1.7
+      eslint-plugin-react-hooks:
+        specifier: ^5.2.0
+        version: 5.2.0(eslint@9.28.0(jiti@1.21.6))
       file-saver:
         specifier: ^2.0.5
         version: 2.0.5
