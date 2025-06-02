@@ -6,9 +6,4 @@ export interface User {
   name: string
   providerAccountId: string
   _id: string
-  socialMedia?: {
-    bilibili?: string
-    xiaohongshu?: string
-    weibo?: string
-  }
 }

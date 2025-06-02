@@ -20,12 +20,19 @@ export interface UpdateMapParams {
   public?: boolean
 }
 
+// Social link represents a social media or custom link
+export interface SocialLink {
+  platform: string // e.g., "twitter", "github", "linkedin", "custom"
+  url: string
+  label?: string // For custom links
+}
+
+// User profile represents user's profile information
 export interface ProfileData {
-  socialMedia: {
-    bilibili: string
-    xiaohongshu: string
-    weibo: string
-  }
+  bio?: string
+  location?: string
+  website?: string
+  socialLinks?: SocialLink[]
 }
 
 // API 响应类型

@@ -5,23 +5,109 @@ import { useTranslations } from 'next-intl'
 import { useUser } from '@/providers/UserProvider'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import {
+  Plus,
+  Trash2,
+  User,
+  MapPin,
+  Globe,
+  Link,
+  GitBranch,
+  X,
+  Share2,
+  Camera,
+  Play,
+  Building2,
+} from 'lucide-react'
 import { api } from '@/services/api'
-import { ProfileData } from '@/services/types'
+import { ProfileData, SocialLink } from '@/services/types'
 import toast from '@/utils/toast'
+
+// 社交平台配置
+const SOCIAL_PLATFORMS = [
+  { id: 'twitter', name: 'X (Twitter)', icon: X, color: '#000000' },
+  { id: 'facebook', name: 'Facebook', icon: Share2, color: '#1877F2' },
+  { id: 'github', name: 'GitHub', icon: GitBranch, color: '#181717' },
+  { id: 'linkedin', name: 'LinkedIn', icon: Building2, color: '#0A66C2' },
+  { id: 'instagram', name: 'Instagram', icon: Camera, color: '#E4405F' },
+  { id: 'youtube', name: 'YouTube', icon: Play, color: '#FF0000' },
+  { id: 'bilibili', name: '哔哩哔哩', icon: null, color: '#00A1D6' },
+  { id: 'xiaohongshu', name: '小红书', icon: null, color: '#FF2442' },
+  { id: 'weibo', name: '微博', icon: null, color: '#E6162D' },
+  { id: 'tiktok', name: 'TikTok', icon: null, color: '#000000' },
+  { id: 'custom', name: '自定义', icon: Link, color: '#6B7280' },
+]
+
+// 平台图标组件
+const PlatformIcon = ({
+  platform,
+  className = 'w-4 h-4',
+}: {
+  platform: string
+  className?: string
+}) => {
+  const platformConfig = SOCIAL_PLATFORMS.find((p) => p.id === platform)
+
+  if (!platformConfig) {
+    return <Link className={className} />
+  }
+
+  if (platformConfig.icon) {
+    const IconComponent = platformConfig.icon
+    return (
+      <IconComponent
+        className={className}
+        style={{ color: platformConfig.color }}
+      />
+    )
+  }
+
+  // 对于没有 Lucide 图标的平台，使用文字缩写
+  const getAbbreviation = (id: string) => {
+    switch (id) {
+      case 'bilibili':
+        return 'B'
+      case 'xiaohongshu':
+        return '小'
+      case 'weibo':
+        return '微'
+      case 'tiktok':
+        return 'T'
+      default:
+        return '?'
+    }
+  }
+
+  return (
+    <div
+      className={`${className} rounded-full flex items-center justify-center text-white font-bold text-xs`}
+      style={{ backgroundColor: platformConfig.color }}
+    >
+      {getAbbreviation(platform)}
+    </div>
+  )
+}
 
 export default function ProfilePage() {
   const t = useTranslations('profile')
   const { userData, refreshUser } = useUser()
   const [loading, setLoading] = useState(true)
   const [saving, setSaving] = useState(false)
+  const [error, setError] = useState<string | null>(null)
   const [profileData, setProfileData] = useState<ProfileData>({
-    socialMedia: {
-      bilibili: '',
-      xiaohongshu: '',
-      weibo: ''
-    }
+    bio: '',
+    location: '',
+    website: '',
+    socialLinks: [],
   })
 
   // 加载用户配置数据
@@ -30,12 +116,16 @@ export default function ProfilePage() {
       if (!userData) return
 
       try {
+        setError(null)
         const response = await api.user.getProfile()
-        if (response.success && response.data) {
+        if (response.data) {
           setProfileData(response.data)
+        } else {
+          setError('无法加载用户配置信息')
         }
       } catch (error) {
         console.error('Failed to load profile:', error)
+        setError('加载用户配置信息时发生错误')
       } finally {
         setLoading(false)
       }
@@ -44,14 +134,50 @@ export default function ProfilePage() {
     loadProfile()
   }, [userData])
 
-  // 处理输入变化
-  const handleInputChange = (platform: keyof ProfileData['socialMedia'], value: string) => {
-    setProfileData(prev => ({
+  // 处理基本信息输入变化
+  const handleBasicInfoChange = (
+    field: keyof Pick<ProfileData, 'bio' | 'location' | 'website'>,
+    value: string
+  ) => {
+    setProfileData((prev) => ({
       ...prev,
-      socialMedia: {
-        ...prev.socialMedia,
-        [platform]: value
-      }
+      [field]: value,
+    }))
+  }
+
+  // 添加社交链接
+  const addSocialLink = (platformId?: string) => {
+    const platform = platformId || 'custom'
+    const platformConfig = SOCIAL_PLATFORMS.find((p) => p.id === platform)
+    const label =
+      platformConfig && platform !== 'custom' ? platformConfig.name : ''
+
+    setProfileData((prev) => ({
+      ...prev,
+      socialLinks: [...(prev.socialLinks || []), { platform, url: '', label }],
+    }))
+  }
+
+  // 更新社交链接
+  const updateSocialLink = (
+    index: number,
+    field: keyof SocialLink,
+    value: string
+  ) => {
+    setProfileData((prev) => ({
+      ...prev,
+      socialLinks:
+        prev.socialLinks?.map((link, i) =>
+          i === index ? { ...link, [field]: value } : link
+        ) || [],
+    }))
+  }
+
+  // 删除社交链接
+  const removeSocialLink = (index: number) => {
+    setProfileData((prev) => ({
+      ...prev,
+      socialLinks: prev.socialLinks?.filter((_, i) => i !== index) || [],
     }))
   }
 
@@ -61,14 +187,8 @@ export default function ProfilePage() {
 
     setSaving(true)
     try {
-      const response = await api.user.updateProfile(profileData)
-      if (response.success) {
-        toast.success(t('saved'))
-        // 刷新用户数据
-        await refreshUser()
-      } else {
-        toast.error(t('error'))
-      }
+      await api.user.updateProfile(profileData)
+      toast.success(t('saved'))
     } catch (error) {
       console.error('Failed to save profile:', error)
       toast.error(t('error'))
@@ -90,16 +210,20 @@ export default function ProfilePage() {
   }
 
   return (
-    <div className="min-h-screen pt-28 px-8">
-      <div className="max-w-2xl mx-auto">
+    <div className="min-h-screen pt-28 pb-4 px-8">
+      <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-8">{t('title')}</h1>
-        
+
         {/* 用户基本信息 */}
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-slate-200">
-                <img src={userData.image} alt="Avatar" className="w-full h-full object-cover" />
+                <img
+                  src={userData.image}
+                  alt="Avatar"
+                  className="w-full h-full object-cover"
+                />
               </div>
               <div>
                 <h2 className="text-xl font-semibold">{userData.name}</h2>
@@ -109,88 +233,236 @@ export default function ProfilePage() {
           </CardHeader>
         </Card>
 
-        {/* 社交媒体配置 */}
-        <Card>
-          <CardHeader>
-            <CardTitle>{t('socialMedia')}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {loading ? (
-              <div className="text-center py-8">
-                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
-                <p className="mt-2 text-gray-600">加载中...</p>
-              </div>
-            ) : (
-              <>
-                {/* 哔哩哔哩 */}
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
+            <p className="mt-2 text-gray-600">加载中...</p>
+          </div>
+        ) : error ? (
+          <div className="text-center py-12">
+            <div className="text-red-500 mb-4">
+              <svg
+                className="w-12 h-12 mx-auto mb-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.732-.833-2.5 0L4.268 19.5c-.77.833.192 2.5 1.732 2.5z"
+                />
+              </svg>
+              <p className="text-lg font-medium">{error}</p>
+            </div>
+            <Button
+              onClick={() => window.location.reload()}
+              variant="outline"
+              className="mt-4"
+            >
+              重新加载
+            </Button>
+          </div>
+        ) : (
+          <div className="grid gap-8 md:grid-cols-2">
+            {/* 基本信息 */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <User className="w-5 h-5" />
+                  {t('basicInfo')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* 个人简介 */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">
-                    {t('bilibili')}
+                    {t('bio')}
                   </label>
-                  <Input
-                    type="text"
-                    placeholder={t('placeholder.bilibili')}
-                    value={profileData.socialMedia.bilibili}
-                    onChange={(e) => handleInputChange('bilibili', e.target.value)}
-                    className="w-full"
+                  <Textarea
+                    placeholder={t('placeholder.bio')}
+                    value={profileData.bio || ''}
+                    onChange={(e) =>
+                      handleBasicInfoChange('bio', e.target.value)
+                    }
+                    className="min-h-[100px] resize-none"
                   />
                 </div>
 
-                <Separator />
-
-                {/* 小红书 */}
+                {/* 所在地 */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">
-                    {t('xiaohongshu')}
+                  <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                    <MapPin className="w-4 h-4" />
+                    {t('location')}
                   </label>
                   <Input
                     type="text"
-                    placeholder={t('placeholder.xiaohongshu')}
-                    value={profileData.socialMedia.xiaohongshu}
-                    onChange={(e) => handleInputChange('xiaohongshu', e.target.value)}
-                    className="w-full"
+                    placeholder={t('placeholder.location')}
+                    value={profileData.location || ''}
+                    onChange={(e) =>
+                      handleBasicInfoChange('location', e.target.value)
+                    }
                   />
                 </div>
 
-                <Separator />
-
-                {/* 微博 */}
+                {/* 个人网站 */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700">
-                    {t('weibo')}
+                  <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                    <Globe className="w-4 h-4" />
+                    {t('website')}
                   </label>
                   <Input
-                    type="text"
-                    placeholder={t('placeholder.weibo')}
-                    value={profileData.socialMedia.weibo}
-                    onChange={(e) => handleInputChange('weibo', e.target.value)}
-                    className="w-full"
+                    type="url"
+                    placeholder={t('placeholder.website')}
+                    value={profileData.website || ''}
+                    onChange={(e) =>
+                      handleBasicInfoChange('website', e.target.value)
+                    }
                   />
                 </div>
+              </CardContent>
+            </Card>
 
-                <Separator />
-
-                {/* 保存按钮 */}
-                <div className="pt-4">
-                  <Button 
-                    onClick={handleSave} 
-                    disabled={saving}
-                    className="w-full bg-slate-900 hover:bg-slate-800 text-white"
-                  >
-                    {saving ? (
-                      <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                        保存中...
-                      </>
-                    ) : (
-                      t('save')
+            {/* 社交链接 */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Link className="w-5 h-5" />
+                  {t('socialLinks')}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                {/* 预设平台快速添加 */}
+                <div className="space-y-3">
+                  <label className="text-sm font-medium text-gray-700">
+                    {t('popularPlatforms')}
+                  </label>
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {SOCIAL_PLATFORMS.filter((p) => p.id !== 'custom').map(
+                      (platform) => (
+                        <Button
+                          key={platform.id}
+                          variant="outline"
+                          size="sm"
+                          onClick={() => addSocialLink(platform.id)}
+                          className="flex items-center gap-2 justify-start h-9"
+                          disabled={profileData.socialLinks?.some(
+                            (link) => link.platform === platform.id
+                          )}
+                        >
+                          <PlatformIcon
+                            platform={platform.id}
+                            className="w-4 h-4"
+                          />
+                          <span className="text-xs truncate">
+                            {platform.name}
+                          </span>
+                        </Button>
+                      )
                     )}
+                  </div>
+                </div>
+
+                {/* 自定义链接添加 */}
+                <div className="flex items-center justify-between pt-2 border-t">
+                  <span className="text-sm font-medium text-gray-700">
+                    {t('customLinks')}
+                  </span>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => addSocialLink('custom')}
+                    className="flex items-center gap-2"
+                  >
+                    <Plus className="w-4 h-4" />
+                    {t('addCustomLink')}
                   </Button>
                 </div>
-              </>
-            )}
-          </CardContent>
-        </Card>
+
+                {/* 已添加的社交链接 */}
+                {profileData.socialLinks &&
+                profileData.socialLinks.length > 0 ? (
+                  <div className="space-y-3">
+                    {profileData.socialLinks.map((link, index) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-3 p-3 border rounded-lg"
+                      >
+                        <PlatformIcon
+                          platform={link.platform}
+                          className="w-5 h-5 flex-shrink-0"
+                        />
+
+                        <div className="flex-1 space-y-2">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            {/* 标签 */}
+                            <Input
+                              type="text"
+                              placeholder={t('placeholder.label')}
+                              value={link.label || ''}
+                              onChange={(e) =>
+                                updateSocialLink(index, 'label', e.target.value)
+                              }
+                              disabled={link.platform !== 'custom'}
+                              className="text-sm h-8"
+                            />
+
+                            {/* URL */}
+                            <Input
+                              type="url"
+                              placeholder={t('placeholder.url')}
+                              value={link.url}
+                              onChange={(e) =>
+                                updateSocialLink(index, 'url', e.target.value)
+                              }
+                              className="text-sm h-8"
+                            />
+                          </div>
+                        </div>
+
+                        <Button
+                          variant="ghost"
+                          size="sm"
+                          onClick={() => removeSocialLink(index)}
+                          className="text-red-600 hover:text-red-700 hover:bg-red-50 flex-shrink-0"
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-6 text-gray-500">
+                    <Link className="w-6 h-6 mx-auto mb-2 opacity-50" />
+                    <p className="text-sm">{t('noLinksYet')}</p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+        )}
+
+        {/* 保存按钮 */}
+        {!loading && !error && (
+          <div className="mt-8">
+            <Button
+              onClick={handleSave}
+              disabled={saving}
+              className="w-full bg-slate-900 hover:bg-slate-800 text-white"
+              size="lg"
+            >
+              {saving ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                  保存中...
+                </>
+              ) : (
+                t('save')
+              )}
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   )
