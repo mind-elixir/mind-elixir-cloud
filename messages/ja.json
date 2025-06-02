@@ -61,5 +61,10 @@
     "save": "変更を保存",
     "saved": "プロフィールが正常に保存されました",
     "error": "プロフィールの保存に失敗しました"
+  },
+  "create": {
+    "desktopRecommendation": "マインドマップの作成には Mind Elixir Desktop の使用をお勧めします。",
+    "desktopApp": "Mind Elixir Desktop",
+    "titlePlaceholder": "マインドマップのタイトルを入力..."
   }
 }

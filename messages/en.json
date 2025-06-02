@@ -72,5 +72,10 @@
     "save": "Save Changes",
     "saved": "Profile saved successfully",
     "error": "Failed to save profile"
+  },
+  "create": {
+    "desktopRecommendation": "We recommend using Mind Elixir Desktop to create mind maps.",
+    "desktopApp": "Mind Elixir Desktop",
+    "titlePlaceholder": "Enter mind map title..."
   }
 }
