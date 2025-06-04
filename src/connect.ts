@@ -11,7 +11,8 @@ relink.interceptors.response.use(
     return res.data
   },
   function (error) {
-    if (error.response.status !== 401) {
+    console.log('API Error:', error)
+    if (error.response?.status !== 401) {
       toast.error('Network error')
     }
     return Promise.reject(error)
