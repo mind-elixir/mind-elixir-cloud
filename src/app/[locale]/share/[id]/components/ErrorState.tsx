@@ -9,7 +9,7 @@ export function ErrorState({
 }: ErrorStateProps) {
   return (
     <div className="min-h-screen flex items-center justify-center gradient-bg">
-      <div className="text-center glass-effect p-8 rounded-2xl shadow-strong">
+      <div className="text-center border-gray-200/20 dark:border-gray-800/20 p-8 rounded-2xl shadow-strong">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 gradient-text">
           {title}
         </h1>

@@ -3,7 +3,7 @@ export function PageSkeleton() {
   return (
     <div className="min-h-screen gradient-bg">
       {/* 固定头部骨架 */}
-      <div className="fixed-header border-b border-gray-200/20 dark:border-gray-800/20 glass-effect">
+      <div className="fixed-header border-b border-gray-200/20 dark:border-gray-800/20">
         <div className="container mx-auto px-6 py-4">
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
             <div className="flex-1">
