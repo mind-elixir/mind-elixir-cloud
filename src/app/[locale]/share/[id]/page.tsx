@@ -41,7 +41,7 @@ async function getSharePageData(id: string) {
 }
 
 // 主页面组件
-export default async function MapSharePage({ params }: { params: { id: string } }) {
+export default async function MapSharePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params
   const { mapItem, mapData, authorProfile, error } = await getSharePageData(id)
 
