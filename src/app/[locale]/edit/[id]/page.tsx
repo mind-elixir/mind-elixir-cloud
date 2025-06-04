@@ -7,9 +7,9 @@ import { api } from '@/services/api'
 import { MindElixirData, MindElixirInstance, Options } from 'mind-elixir'
 import MindElixir from 'mind-elixir'
 import DOMPurify from 'dompurify'
-import toast from '@/utils/toast'
 // @ts-ignore
 import nodeMenu from '@mind-elixir/node-menu-neo'
+import { toast } from 'sonner'
 
 const sanitizeNodeData = (nodeData: MindElixirData['nodeData']) => {
   if (!nodeData) return

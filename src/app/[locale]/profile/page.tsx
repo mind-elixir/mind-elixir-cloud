@@ -23,7 +23,7 @@ import {
 } from 'lucide-react'
 import { api } from '@/services/api'
 import { ProfileData, SocialLink } from '@/services/types'
-import toast from '@/utils/toast'
+import { toast } from 'sonner'
 
 // 社交平台配置
 const SOCIAL_PLATFORMS = [

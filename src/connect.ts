@@ -1,5 +1,5 @@
 import axios from 'axios'
-import toast from './utils/toast'
+import { toast } from 'sonner'
 
 const relink = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,

@@ -16,8 +16,8 @@ import {
 } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
 import { api } from '@/services/api'
-import toast from '@/utils/toast'
 import MindElixir from 'mind-elixir'
+import { toast } from 'sonner'
 interface CreateButtonProps {
   className?: string
 }
