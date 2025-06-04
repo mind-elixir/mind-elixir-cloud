@@ -176,7 +176,7 @@ export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
             variant="outline"
             size="sm"
             onClick={handleWebsiteClick}
-            className="h-8 px-3 text-xs bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 btn-hover shadow-soft"
+            className="h-8 px-3 text-xs bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 shadow-soft"
           >
             <Globe className="w-3.5 h-3.5 mr-1.5" />
             访问网站

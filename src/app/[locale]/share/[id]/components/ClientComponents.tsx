@@ -87,7 +87,7 @@ export function ClientWrapper({
           {/* 作者信息侧边栏 */}
           <div className="lg:col-span-1">
             {authorProfile && (
-              <div className="sticky top-24">
+              <div className="sticky top-32">
                 <AuthorInfo className='w-64' author={authorProfile} />
               </div>
             )}

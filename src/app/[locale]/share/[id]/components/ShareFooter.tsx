@@ -18,7 +18,7 @@ export function ShareFooter({ onCopyLink }: ShareFooterProps) {
               variant="ghost"
               size="sm"
               onClick={onCopyLink}
-              className="h-7 px-3 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 btn-hover"
+              className="h-7 px-3 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
             >
               <Share2 className="w-3.5 h-3.5 mr-1.5" />
               分享此思维导图
