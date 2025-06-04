@@ -1,3 +1,5 @@
+'use client'
+
 import dynamic from 'next/dynamic'
 import { Brain, List } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -5,10 +7,14 @@ import { MindElixirData, Options } from 'mind-elixir'
 import { Outliner } from 'react-outliner-neo'
 import { MindMapSkeleton } from './MindMapSkeleton'
 
-const MindElixirReact = dynamic(() => import('@/components/MindElixirReact'), {
-  ssr: false,
-  loading: () => <MindMapSkeleton />,
-})
+// 确保MindElixirReact组件完全在客户端渲染
+const MindElixirReact = dynamic(
+  () => import('@/components/MindElixirReact'),
+  {
+    ssr: false,
+    loading: () => <MindMapSkeleton />,
+  }
+)
 
 type ViewMode = 'mindmap' | 'outline' | 'split'
 

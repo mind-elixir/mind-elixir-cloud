@@ -1,27 +1,27 @@
-import type { Metadata } from 'next'
-import '../globals.css'
-import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
-import NavBar from '@/components/NavBar'
-import { UserProvider } from '@/providers/UserProvider'
+import type { Metadata } from "next";
+import "../globals.css";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import NavBar from "@/components/NavBar";
+import { UserProvider } from "@/providers/UserProvider";
 
 export const metadata: Metadata = {
-  title: 'Mind Elixir Cloud',
-  description: 'A powerful mind mapping application',
-}
+  title: "Mind Elixir Cloud",
+  description: "A powerful mind mapping application",
+};
 
 export default async function RootLayout({
   children,
   params,
 }: {
-  children: React.ReactNode
-  params: { locale: string }
+  children: React.ReactNode;
+  params: { locale: string };
 }) {
-  const { locale } = await params
-  const messages = await getMessages()
+  const { locale } = await params;
+  const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body className="font-sans">
         <NextIntlClientProvider messages={messages}>
           <UserProvider>
@@ -33,5 +33,5 @@ export default async function RootLayout({
         </NextIntlClientProvider>
       </body>
     </html>
-  )
+  );
 }
