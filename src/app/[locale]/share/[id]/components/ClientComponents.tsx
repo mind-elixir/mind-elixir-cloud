@@ -11,9 +11,9 @@ import { ShareFooter } from './ShareFooter'
 import { AuthorInfo } from './AuthorInfo'
 
 // Types
-import { MindMapItem } from '@/models/list'
-import { PublicUserProfile } from '@/services/types'
-import { MindElixirData, Options } from 'mind-elixir'
+import type { MindMapItem } from '@/models/list'
+import type { PublicUserProfile } from '@/services/types'
+import type { MindElixirData, Options } from 'mind-elixir'
 // @ts-ignore
 import nodeMenu from '@mind-elixir/node-menu-neo'
 
@@ -28,7 +28,6 @@ export function ClientWrapper({
   mapItem: MindMapItem, 
   authorProfile?: PublicUserProfile 
 }) {
-  const router = useRouter()
   const [viewMode, setViewMode] = useState<ViewMode>('split')
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [copied, setCopied] = useState(false)

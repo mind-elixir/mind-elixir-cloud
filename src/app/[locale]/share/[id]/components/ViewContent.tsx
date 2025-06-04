@@ -3,9 +3,9 @@
 import dynamic from 'next/dynamic'
 import { Brain, List } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { MindElixirData, Options } from 'mind-elixir'
 import { Outliner } from 'react-outliner-neo'
 import { MindMapSkeleton } from './MindMapSkeleton'
+import type { MindElixirData, Options } from 'mind-elixir'
 
 // 确保MindElixirReact组件完全在客户端渲染
 const MindElixirReact = dynamic(
