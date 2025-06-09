@@ -29,9 +29,9 @@ export interface SocialLink {
 
 // User profile represents user's profile information
 export interface ProfileData {
+  displayName?: string
   bio?: string
   location?: string
-  website?: string
   socialLinks?: SocialLink[]
 }
 
@@ -63,10 +63,10 @@ export interface PublicUserProfile {
   _id: string
   id: string
   name: string
+  displayName?: string
   image?: string
   bio?: string
   location?: string
-  website?: string
   socialLinks?: SocialLink[]
 }
 

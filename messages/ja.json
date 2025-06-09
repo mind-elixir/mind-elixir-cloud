@@ -39,9 +39,9 @@
   "profile": {
     "title": "プロフィール設定",
     "basicInfo": "基本情報",
+    "displayName": "表示名",
     "bio": "自己紹介",
     "location": "所在地",
-    "website": "ウェブサイト",
     "socialLinks": "ソーシャルリンク",
     "addSocialLink": "リンクを追加",
     "popularPlatforms": "人気プラットフォーム",
@@ -52,9 +52,9 @@
     "label": "ラベル",
     "remove": "削除",
     "placeholder": {
+      "displayName": "公開表示名を設定してください...",
       "bio": "自己紹介を入力してください...",
       "location": "お住まいの場所は？",
-      "website": "ウェブサイトのURL",
       "url": "https://example.com",
       "label": "リンク名"
     },

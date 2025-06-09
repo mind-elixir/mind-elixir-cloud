@@ -50,9 +50,9 @@
   "profile": {
     "title": "Profile Settings",
     "basicInfo": "Basic Information",
+    "displayName": "Display Name",
     "bio": "Bio",
     "location": "Location",
-    "website": "Website",
     "socialLinks": "Social Links",
     "addSocialLink": "Add Link",
     "popularPlatforms": "Popular Platforms",
@@ -63,9 +63,9 @@
     "label": "Label",
     "remove": "Remove",
     "placeholder": {
+      "displayName": "Set your public display name...",
       "bio": "Tell us about yourself...",
       "location": "Where are you located?",
-      "website": "Your website URL",
       "url": "https://example.com",
       "label": "Link name"
     },

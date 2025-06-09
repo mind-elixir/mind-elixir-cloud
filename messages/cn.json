@@ -50,9 +50,9 @@
   "profile": {
     "title": "个人设置",
     "basicInfo": "基本信息",
+    "displayName": "显示名称",
     "bio": "个人简介",
     "location": "所在地",
-    "website": "个人网站",
     "socialLinks": "社交链接",
     "addSocialLink": "添加链接",
     "popularPlatforms": "热门平台",
@@ -63,9 +63,9 @@
     "label": "标签",
     "remove": "删除",
     "placeholder": {
+      "displayName": "设置您的对外显示名称...",
       "bio": "介绍一下自己...",
       "location": "您在哪里？",
-      "website": "您的网站地址",
       "url": "https://example.com",
       "label": "链接名称"
     },

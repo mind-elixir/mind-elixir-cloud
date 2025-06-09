@@ -69,9 +69,9 @@ export default function ProfilePage() {
   const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [profileData, setProfileData] = useState<ProfileData>({
+    displayName: '',
     bio: '',
     location: '',
-    website: '',
     socialLinks: [],
   })
 
@@ -101,7 +101,7 @@ export default function ProfilePage() {
 
   // 处理基本信息输入变化
   const handleBasicInfoChange = (
-    field: keyof Pick<ProfileData, 'bio' | 'location' | 'website'>,
+    field: keyof Pick<ProfileData, 'displayName' | 'bio' | 'location'>,
     value: string
   ) => {
     setProfileData((prev) => ({
@@ -240,6 +240,22 @@ export default function ProfilePage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-6">
+                {/* 显示名称 */}
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
+                    <User className="w-4 h-4" />
+                    {t('displayName')}
+                  </label>
+                  <Input
+                    type="text"
+                    placeholder={t('placeholder.displayName')}
+                    value={profileData.displayName || ''}
+                    onChange={(e) =>
+                      handleBasicInfoChange('displayName', e.target.value)
+                    }
+                  />
+                </div>
+
                 {/* 个人简介 */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-gray-700">
@@ -267,22 +283,6 @@ export default function ProfilePage() {
                     value={profileData.location || ''}
                     onChange={(e) =>
                       handleBasicInfoChange('location', e.target.value)
-                    }
-                  />
-                </div>
-
-                {/* 个人网站 */}
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-gray-700 flex items-center gap-2">
-                    <Globe className="w-4 h-4" />
-                    {t('website')}
-                  </label>
-                  <Input
-                    type="url"
-                    placeholder={t('placeholder.website')}
-                    value={profileData.website || ''}
-                    onChange={(e) =>
-                      handleBasicInfoChange('website', e.target.value)
                     }
                   />
                 </div>
