@@ -7,37 +7,36 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { User, MapPin, Globe, Trash2, Link, Plus } from 'lucide-react'
 import {
-  Plus,
-  Trash2,
-  User,
-  MapPin,
-  Globe,
-  Link,
-  GitBranch,
-  X,
-  Share2,
-  Camera,
-  Play,
-  Building2,
-} from 'lucide-react'
+  SiX,
+  SiFacebook,
+  SiGithub,
+  SiLinkedin,
+  SiInstagram,
+  SiYoutube,
+  SiBilibili,
+  SiTiktok,
+  SiSinaweibo ,
+  SiXiaohongshu
+} from 'react-icons/si'
 import { api } from '@/services/api'
 import { ProfileData, SocialLink } from '@/services/types'
 import { toast } from 'sonner'
 
 // 社交平台配置
 const SOCIAL_PLATFORMS = [
-  { id: 'twitter', name: 'X (Twitter)', icon: X, color: '#000000' },
-  { id: 'facebook', name: 'Facebook', icon: Share2, color: '#1877F2' },
-  { id: 'github', name: 'GitHub', icon: GitBranch, color: '#181717' },
-  { id: 'linkedin', name: 'LinkedIn', icon: Building2, color: '#0A66C2' },
-  { id: 'instagram', name: 'Instagram', icon: Camera, color: '#E4405F' },
-  { id: 'youtube', name: 'YouTube', icon: Play, color: '#FF0000' },
-  { id: 'bilibili', name: '哔哩哔哩', icon: null, color: '#00A1D6' },
-  { id: 'xiaohongshu', name: '小红书', icon: null, color: '#FF2442' },
-  { id: 'weibo', name: '微博', icon: null, color: '#E6162D' },
-  { id: 'tiktok', name: 'TikTok', icon: null, color: '#000000' },
-  { id: 'custom', name: '自定义', icon: Link, color: '#6B7280' },
+  { id: 'twitter', name: 'X (Twitter)', icon: SiX, color: '#000000' },
+  { id: 'facebook', name: 'Facebook', icon: SiFacebook, color: '#1877F2' },
+  { id: 'github', name: 'GitHub', icon: SiGithub, color: '#181717' },
+  { id: 'linkedin', name: 'LinkedIn', icon: SiLinkedin, color: '#0A66C2' },
+  { id: 'instagram', name: 'Instagram', icon: SiInstagram, color: '#E4405F' },
+  { id: 'youtube', name: 'YouTube', icon: SiYoutube, color: '#FF0000' },
+  { id: 'bilibili', name: '哔哩哔哩', icon: SiBilibili, color: '#00A1D6' },
+  { id: 'xiaohongshu', name: '小红书', icon: SiXiaohongshu, color: '#FF2442' },
+  { id: 'weibo', name: '微博', icon: SiSinaweibo , color: '#E6162D' },
+  { id: 'tiktok', name: 'TikTok', icon: SiTiktok, color: '#000000' },
+  { id: 'custom', name: '自定义', icon: Globe, color: '#6B7280' },
 ]
 
 // 平台图标组件
@@ -51,42 +50,15 @@ const PlatformIcon = ({
   const platformConfig = SOCIAL_PLATFORMS.find((p) => p.id === platform)
 
   if (!platformConfig) {
-    return <Link className={className} />
+    return <Globe className={className} />
   }
 
-  if (platformConfig.icon) {
-    const IconComponent = platformConfig.icon
-    return (
-      <IconComponent
-        className={className}
-        style={{ color: platformConfig.color }}
-      />
-    )
-  }
-
-  // 对于没有 Lucide 图标的平台，使用文字缩写
-  const getAbbreviation = (id: string) => {
-    switch (id) {
-      case 'bilibili':
-        return 'B'
-      case 'xiaohongshu':
-        return '小'
-      case 'weibo':
-        return '微'
-      case 'tiktok':
-        return 'T'
-      default:
-        return '?'
-    }
-  }
-
+  const IconComponent = platformConfig.icon
   return (
-    <div
-      className={`${className} rounded-full flex items-center justify-center text-white font-bold text-xs`}
-      style={{ backgroundColor: platformConfig.color }}
-    >
-      {getAbbreviation(platform)}
-    </div>
+    <IconComponent
+      className={className}
+      style={{ color: platformConfig.color }}
+    />
   )
 }
 
