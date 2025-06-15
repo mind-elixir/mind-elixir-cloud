@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import {
   Brain,
   List,
@@ -7,22 +8,23 @@ import {
   Eye,
   Copy,
   Check,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
-import { MindMapItem } from "@/models/list";
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
+import { cn } from '@/lib/utils'
+import { MindMapItem } from '@/models/list'
+import Link from 'next/link'
 
-type ViewMode = "mindmap" | "outline" | "split";
+type ViewMode = 'mindmap' | 'outline' | 'split'
 
 interface ShareHeaderProps {
-  mapItem: MindMapItem;
-  viewMode: ViewMode;
-  setViewMode: (mode: ViewMode) => void;
-  isFullscreen: boolean;
-  setIsFullscreen: (fullscreen: boolean) => void;
-  copied: boolean;
-  onCopyLink: () => void;
+  mapItem: MindMapItem
+  viewMode: ViewMode
+  setViewMode: (mode: ViewMode) => void
+  isFullscreen: boolean
+  setIsFullscreen: (fullscreen: boolean) => void
+  copied: boolean
+  onCopyLink: () => void
 }
 
 export function ShareHeader({
@@ -35,23 +37,23 @@ export function ShareHeader({
   onCopyLink,
 }: ShareHeaderProps) {
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("zh-CN", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-  };
+    return new Date(dateString).toLocaleDateString('zh-CN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  }
 
   return (
-    <div className="fixed-header border-b border-gray-200/20 dark:border-gray-800/20">
+    <div className="fixed-header border-b border-gray-200/20 dark:border-gray-800/20 bg-white dark:bg-gray-900 z-50">
       <div className="container mx-auto px-6 py-4">
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
           {/* 标题和元信息 */}
           <div className="flex-1">
             <div className="flex items-center gap-4 mb-2">
-              <div className="p-2.5 rounded-xl bg-gray-100 dark:bg-gray-800 shadow-soft">
-                <Brain className="w-5 h-5 text-gray-700 dark:text-gray-300" />
-              </div>
+              <Link href="/list/public" className="flex-shrink-0">
+                <Image src="/logo2.png" alt="Logo" width={32} height={32} />
+              </Link>
               <h1 className="text-xl lg:text-2xl font-semibold gradient-text">
                 {mapItem.name}
               </h1>
@@ -80,35 +82,35 @@ export function ShareHeader({
             {/* 视图切换 */}
             <div className="flex items-center bg-gray-50 dark:bg-gray-800 rounded-lg p-0.5 shadow-soft border border-gray-200 dark:border-gray-700">
               <Button
-                variant={viewMode === "mindmap" ? "default" : "ghost"}
+                variant={viewMode === 'mindmap' ? 'default' : 'ghost'}
                 size="sm"
-                onClick={() => setViewMode("mindmap")}
-                className={cn("h-8 px-3 text-xs font-medium")}
+                onClick={() => setViewMode('mindmap')}
+                className={cn('h-8 px-3 text-xs font-medium')}
               >
                 <Brain className="w-3.5 h-3.5 mr-1.5" />
                 思维导图
               </Button>
               <Button
-                variant={viewMode === "outline" ? "default" : "ghost"}
+                variant={viewMode === 'outline' ? 'default' : 'ghost'}
                 size="sm"
-                onClick={() => setViewMode("outline")}
-                className={cn("h-8 px-3 text-xs font-medium")}
+                onClick={() => setViewMode('outline')}
+                className={cn('h-8 px-3 text-xs font-medium')}
               >
                 <List className="w-3.5 h-3.5 mr-1.5" />
                 大纲
               </Button>
               <Button
-                variant={viewMode === "split" ? "default" : "ghost"}
+                variant={viewMode === 'split' ? 'default' : 'ghost'}
                 size="sm"
-                onClick={() => setViewMode("split")}
-                className={cn("h-8 px-3 text-xs font-medium")}
+                onClick={() => setViewMode('split')}
+                className={cn('h-8 px-3 text-xs font-medium')}
               >
                 分屏
               </Button>
             </div>
 
             {/* 全屏切换 */}
-            <Button
+            {/* <Button
               variant="outline"
               size="sm"
               onClick={() => setIsFullscreen(!isFullscreen)}
@@ -119,7 +121,7 @@ export function ShareHeader({
               ) : (
                 <Maximize2 className="w-3.5 h-3.5" />
               )}
-            </Button>
+            </Button> */}
 
             {/* 分享按钮 */}
             <Button
@@ -134,12 +136,12 @@ export function ShareHeader({
                 <Copy className="w-3.5 h-3.5 mr-1.5" />
               )}
               <span className="text-xs font-medium">
-                {copied ? "已复制" : "复制链接"}
+                {copied ? '已复制' : '复制链接'}
               </span>
             </Button>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -26,9 +26,6 @@ export default async function RootLayout({
       <body className="font-sans">
         <NextIntlClientProvider messages={messages}>
           <UserProvider>
-            <div className="fixed top-0 left-0 right-0 z-50 p-5">
-              <NavBar className="max-w-4xl mx-auto" />
-            </div>
             {children}
           </UserProvider>
         </NextIntlClientProvider>

@@ -7,7 +7,7 @@ interface ShareFooterProps {
 
 export function ShareFooter({ onCopyLink }: ShareFooterProps) {
   return (
-    <div className="border-t border-gray-200/50 dark:border-gray-800/50 bg-gray-50/80 dark:bg-gray-900/80 backdrop-blur-sm mt-auto">
+    // <div className="border-t border-gray-200/50 dark:border-gray-800/50 bg-gray-50/80 dark:bg-gray-900/80 backdrop-blur-sm mt-auto">
       <div className="container mx-auto px-6 py-4">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500 dark:text-gray-400 mobile-text-center">
           <div className="flex items-center gap-4">
@@ -26,6 +26,6 @@ export function ShareFooter({ onCopyLink }: ShareFooterProps) {
           </div>
         </div>
       </div>
-    </div>
+    // </div>
   )
 }

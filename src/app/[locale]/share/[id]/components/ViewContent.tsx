@@ -82,7 +82,7 @@ export function ViewContent({
         </CardHeader>
         <CardContent className="p-0">
           <div className="h-[calc(100vh-380px)] min-h-[500px] overflow-auto custom-scrollbar">
-            <Outliner data={mapData.nodeData.children!} />
+            <Outliner data={mapData.nodeData.children!} readonly />
           </div>
         </CardContent>
       </Card>

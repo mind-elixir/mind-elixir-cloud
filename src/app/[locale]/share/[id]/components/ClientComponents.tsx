@@ -124,12 +124,10 @@ export function ClientWrapper({
         copied={copied}
         onCopyLink={handleCopyLink}
       />
-
-      {/* 头部间距 */}
-      <div className="header-spacer"></div>
+ 
 
       {/* 主要内容区域 */}
-      <div className="container mx-auto px-6 py-8">
+      <div className="container mx-auto px-6 pb-8 pt-32">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* 思维导图内容 */}
           <div className="lg:col-span-3">
