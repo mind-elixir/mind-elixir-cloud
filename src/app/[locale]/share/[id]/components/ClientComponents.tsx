@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useMemo, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 
 // Components
@@ -112,7 +111,7 @@ export function ClientWrapper({
 
   return (
     <div className={cn(
-      "min-h-screen gradient-bg",
+      "min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 dark:from-gray-900 dark:via-slate-900 dark:to-gray-800",
       isFullscreen && "fixed inset-0 z-50"
     )}>
       <ShareHeader
@@ -124,7 +123,6 @@ export function ClientWrapper({
         copied={copied}
         onCopyLink={handleCopyLink}
       />
- 
 
       {/* 主要内容区域 */}
       <div className="container mx-auto px-6 pb-8 pt-32">

@@ -1,7 +1,6 @@
 'use client'
 
 import 'react-outliner-neo/style.css'
-import './share-page.css'
 
 // Components
 import { ClientWrapper } from './components/ClientComponents'

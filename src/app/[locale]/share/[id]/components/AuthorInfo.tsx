@@ -124,10 +124,10 @@ export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
   }
 
   return (
-    <div className={`bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border border-gray-200/50 dark:border-gray-800/50 rounded-xl p-6 shadow-soft ${className}`}>
+    <div className={`bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200/60 dark:border-gray-700/60 rounded-xl p-6 ${className}`}>
       {/* 作者头像和基本信息 */}
       <div className="flex items-start gap-4 mb-4">
-        <div className="w-12 h-12 ring-2 ring-gray-200 dark:ring-gray-700 rounded-full overflow-hidden flex-shrink-0">
+        <div className="w-12 h-12 ring-2 ring-gray-200 dark:ring-gray-600 rounded-full overflow-hidden flex-shrink-0">
           {author.image ? (
             <img
               src={author.image}
@@ -176,7 +176,7 @@ export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
             variant="outline"
             size="sm"
             onClick={handleWebsiteClick}
-            className="h-8 px-3 text-xs bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 shadow-soft"
+            className="h-8 px-3 text-xs bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
           >
             <Globe className="w-3.5 h-3.5 mr-1.5" />
             访问网站
