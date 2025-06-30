@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect } from 'react'
 import { cn } from '@/lib/utils'
+import { ExternalLink } from 'lucide-react'
 
 // Components
 import { ShareHeader } from './ShareHeader'
@@ -139,11 +140,29 @@ export function ClientWrapper({
 
           {/* 作者信息侧边栏 */}
           <div className="lg:col-span-1">
-            {authorProfile && (
-              <div className="sticky top-32">
+            <div className="sticky top-32 space-y-4">
+              {authorProfile && (
                 <AuthorInfo className='w-64' author={authorProfile} />
-              </div>
-            )}
+              )}
+
+              {/* 思维导图相关链接 */}
+              {mapItem.source && (
+                <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200/60 dark:border-gray-700/60 rounded-xl p-6 w-64">
+                  <h4 className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wider">
+                    相关链接
+                  </h4>
+                  <a
+                    href={mapItem.source}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span className="truncate">查看关联链接</span>
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

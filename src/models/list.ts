@@ -10,7 +10,7 @@ export interface MindMapItem {
   updatedAt: string
   __v: number
   _id: string
-
+  source?: string // mostly a link
   // added by client
   clone?: MindMapItem
 }
