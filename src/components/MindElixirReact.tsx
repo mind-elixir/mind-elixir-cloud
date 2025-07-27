@@ -3,7 +3,6 @@
 import { useEffect, useRef, useImperativeHandle, forwardRef, useState } from 'react'
 import DOMPurify from 'dompurify'
 import type { MindElixirData, MindElixirInstance, Options } from 'mind-elixir'
-import "mind-elixir/style"
 
 interface MindElixirReactProps {
   data?: MindElixirData

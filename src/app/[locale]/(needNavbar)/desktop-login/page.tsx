@@ -31,12 +31,10 @@ export default function DesktopLoginPage() {
         if (!token) {
           throw new Error('No token found in localStorage')
         }
-        console.log(token)
 
         updateProgress(50, t('connectingApp'))
 
         const port = searchParams.get('port')
-        console.log(port)
 
         updateProgress(80, t('verifyingIdentity'))
 

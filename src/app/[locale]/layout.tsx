@@ -5,6 +5,8 @@ import { getMessages } from 'next-intl/server'
 import NavBar from '@/components/NavBar'
 import { UserProvider } from '@/providers/UserProvider'
 import { Toaster } from 'sonner'
+import 'react-outliner-neo/style.css'
+import "mind-elixir/style.css"
 
 export const metadata: Metadata = {
   title: 'Mind Elixir Cloud',
