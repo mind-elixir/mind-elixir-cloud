@@ -6,7 +6,6 @@ import { useSearchParams } from 'next/navigation'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Info } from 'lucide-react'
-import { api } from '@/services/api'
 
 export default function DesktopLoginPage() {
   const t = useTranslations('misc')
@@ -27,7 +26,11 @@ export default function DesktopLoginPage() {
       try {
         updateProgress(20, t('gettingToken'))
 
-        const { token } = await api.user.getDesktopToken()
+        // 从localStorage获取token
+        const token = localStorage.getItem('auth_token')
+        if (!token) {
+          throw new Error('No token found in localStorage')
+        }
         console.log(token)
 
         updateProgress(50, t('connectingApp'))

@@ -20,15 +20,26 @@ export function UserProvider({ children }: { children: ReactNode }) {
 
   const refreshUser = async () => {
     try {
+      // 检查是否有token
+      const token = localStorage.getItem('auth_token')
+      if (!token) {
+        setUserData(undefined)
+        return
+      }
+      
       const res = await api.user.getCurrentUser()
       if (res.data && res.data.providerAccountId) {
         setUserData(res.data)
       } else {
         setUserData(undefined)
+        // 如果用户数据无效，清除token
+        localStorage.removeItem('auth_token')
       }
     } catch (error) {
       console.error('Failed to fetch user:', error)
       setUserData(undefined)
+      // 如果请求失败，清除可能无效的token
+      localStorage.removeItem('auth_token')
     }
   }
 
@@ -38,10 +49,13 @@ export function UserProvider({ children }: { children: ReactNode }) {
     try {
       await api.user.logout()
       setUserData(undefined)
+      // 清除本地token
+      localStorage.removeItem('auth_token')
     } catch (error) {
       console.error('Logout failed:', error)
-      // 即使API调用失败，也清除本地状态
+      // 即使API调用失败，也清除本地状态和token
       setUserData(undefined)
+      localStorage.removeItem('auth_token')
     }
   }
 
