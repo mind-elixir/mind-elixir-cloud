@@ -12,6 +12,7 @@
     "@mind-elixir/export-html": "^3.0.0",
     "@mind-elixir/export-xmind": "^2.0.1",
     "@mind-elixir/node-menu-neo": "^1.0.3",
+    "@mind-elixir/open-desktop": "^0.0.2",
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-dropdown-menu": "^2.1.15",
     "@radix-ui/react-navigation-menu": "^1.2.13",

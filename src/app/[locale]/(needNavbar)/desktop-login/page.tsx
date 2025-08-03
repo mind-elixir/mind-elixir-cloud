@@ -6,6 +6,7 @@ import { useSearchParams } from 'next/navigation'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Info } from 'lucide-react'
+import { openAppWithFallback } from "@mind-elixir/open-desktop"
 
 export default function DesktopLoginPage() {
   const t = useTranslations('misc')
@@ -34,21 +35,11 @@ export default function DesktopLoginPage() {
 
         updateProgress(50, t('connectingApp'))
 
-        const port = searchParams.get('port')
-
         updateProgress(80, t('verifyingIdentity'))
 
-        const response = await fetch(
-          `http://127.0.0.1:${port}/login?token=${token}`,
-          {
-            method: 'POST',
-          }
-        )
+        openAppWithFallback('mind-elixir://login?token=' + token)
 
         updateProgress(100, t('loginSuccess'))
-
-        const data = await response.text()
-        console.log(data)
 
         // 短暂延迟显示成功状态
         setTimeout(() => {

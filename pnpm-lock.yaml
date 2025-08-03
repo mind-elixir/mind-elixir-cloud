@@ -17,6 +17,9 @@ importers:
       '@mind-elixir/node-menu-neo':
         specifier: ^1.0.3
         version: 1.0.4
+      '@mind-elixir/open-desktop':
+        specifier: ^0.0.2
+        version: 0.0.2
       '@radix-ui/react-dialog':
         specifier: ^1.1.14
         version: 1.1.14(@types/react-dom@19.1.5(@types/react@19.1.6))(@types/react@19.1.6)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -418,6 +421,9 @@ packages:
 
   '@mind-elixir/node-menu-neo@1.0.4':
     resolution: {integrity: sha512-rqMFbKJukPakxZZHk0D015rWahLq5tkETyk2yKnf27GoRLQ73ZyQzQQADgVRAzxVG7z//zQjfFAPyX9s817jDw==}
+
+  '@mind-elixir/open-desktop@0.0.2':
+    resolution: {integrity: sha512-7DAhfr48Zu7xO7l4KqBKEM2kd5RiXmMML1vg/l6g8CGgDmiSkJRj+fUtdmdnNHEaw1cKAIqH4dLz6NEaeEQGVw==}
 
   '@napi-rs/wasm-runtime@0.2.10':
     resolution: {integrity: sha512-bCsCyeZEwVErsGmyPNSzwfwFn4OdxBj0mmv6hOFucB/k81Ojdu68RbZdxYsRQUPc9l6SU5F/cG+bXgWs3oUgsQ==}
@@ -3207,6 +3213,8 @@ snapshots:
     dependencies:
       less: 4.2.0
       mind-elixir: 3.3.2
+
+  '@mind-elixir/open-desktop@0.0.2': {}
 
   '@napi-rs/wasm-runtime@0.2.10':
     dependencies:
