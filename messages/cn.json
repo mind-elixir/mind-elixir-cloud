@@ -78,7 +78,7 @@
     "error": "保存个人设置失败"
   },
   "create": {
-    "desktopRecommendation": "我们推荐使用 Mind Elixir Desktop 来创建思维导图。",
+    "desktopRecommendation": "我们推荐使用 Mind Elixir Desktop 创建思维导图。",
     "desktopApp": "Mind Elixir Desktop",
     "titlePlaceholder": "输入思维导图标题..."
   }

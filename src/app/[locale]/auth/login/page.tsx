@@ -9,7 +9,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { SiGithub, SiGoogle, SiLinux } from 'react-icons/si'
+import { SiGithub, SiGoogle } from 'react-icons/si'
 import { LinuxDoLogo } from '@/components/icon/linuxdo-logo'
 
 export default function AuthLoginPage() {

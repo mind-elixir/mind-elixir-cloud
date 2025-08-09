@@ -8,7 +8,8 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { SiGithub, SiGoogle, SiLinux } from 'react-icons/si'
+import { SiGithub, SiGoogle } from 'react-icons/si'
+import { LinuxDoLogo } from '@/components/icon/linuxdo-logo'
 
 export default function LoginButton() {
   const t = useTranslations('button')
@@ -47,7 +48,7 @@ export default function LoginButton() {
         </DropdownMenuItem>
         {locale === 'cn' && (
           <DropdownMenuItem onClick={linuxDoLogin} className="cursor-pointer">
-            <SiLinux className="mr-2 h-4 w-4" />
+            <LinuxDoLogo className="h-4 w-4" />
             {t('signinWithLinuxDo')}
           </DropdownMenuItem>
         )}
