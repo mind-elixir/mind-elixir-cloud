@@ -34,12 +34,16 @@
     "signinWithWeibo": "Sign in with Weibo",
     "signinWithGitHub": "Sign in with GitHub",
     "signinWithGoogle": "Sign in with Google",
+    "signinWithLinuxDo": "Sign in with Linux Do",
     "logout": "Sign out",
     "new": "New",
     "save": "Save"
   },
   "title": {
     "signinWith": "Sign in with"
+  },
+  "auth": {
+    "loginPageDescription": "Choose your preferred sign in method"
   },
   "about": {
     "title": "About Mind Elixir Cloud",

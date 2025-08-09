@@ -42,6 +42,9 @@
   "title": {
     "signinWith": "登陆方式"
   },
+  "auth": {
+    "loginPageDescription": "选择您喜欢的登录方式"
+  },
   "about": {
     "title": "关于 Mind Elixir Cloud",
     "1": "感谢 netify 和 fly.io 提供的免费服务",

@@ -24,11 +24,15 @@
     "signinWithWeibo": "Weibo でログイン",
     "signinWithGitHub": "GitHub でログイン",
     "signinWithGoogle": "Google でログイン",
+    "signinWithLinuxDo": "Linux Do でログイン",
     "new": "新規",
     "save": "保存"
   },
   "title": {
     "signinWith": "ログイン方法"
+  },
+  "auth": {
+    "loginPageDescription": "お好みのログイン方法を選択してください"
   },
   "about": {
     "title": "Mind Elixir Cloud について",
