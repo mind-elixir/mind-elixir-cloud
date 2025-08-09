@@ -1,6 +1,6 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -8,17 +8,25 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { SiGithub, SiGoogle } from 'react-icons/si'
+import { SiGithub, SiGoogle, SiLinux } from 'react-icons/si'
 
 export default function LoginButton() {
   const t = useTranslations('button')
+  const locale = useLocale()
 
   const githubLogin = () => {
-    window.location.href = process.env.NEXT_PUBLIC_API_URL + '/oauth/github/login'
+    window.location.href =
+      process.env.NEXT_PUBLIC_API_URL + '/oauth/github/login'
   }
 
   const googleLogin = () => {
-    window.location.href = process.env.NEXT_PUBLIC_API_URL + '/oauth/google/login'
+    window.location.href =
+      process.env.NEXT_PUBLIC_API_URL + '/oauth/google/login'
+  }
+
+  const linuxDoLogin = () => {
+    window.location.href =
+      process.env.NEXT_PUBLIC_API_URL + '/oauth/linuxdo/login'
   }
 
   return (
@@ -34,9 +42,15 @@ export default function LoginButton() {
           {t('signinWithGitHub')}
         </DropdownMenuItem>
         <DropdownMenuItem onClick={googleLogin} className="cursor-pointer">
-         <SiGoogle className="mr-2 h-4 w-4"   />
+          <SiGoogle className="mr-2 h-4 w-4" />
           {t('signinWithGoogle')}
         </DropdownMenuItem>
+        {locale === 'cn' && (
+          <DropdownMenuItem onClick={linuxDoLogin} className="cursor-pointer">
+            <SiLinux className="mr-2 h-4 w-4" />
+            {t('signinWithLinuxDo')}
+          </DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   )
