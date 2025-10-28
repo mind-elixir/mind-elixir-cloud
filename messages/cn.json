@@ -81,5 +81,23 @@
     "desktopRecommendation": "我们推荐使用 Mind Elixir Desktop 创建思维导图。",
     "desktopApp": "Mind Elixir Desktop",
     "titlePlaceholder": "输入思维导图标题..."
+  },
+  "share": {
+    "public": "公开",
+    "updatedAt": "更新于",
+    "viewMindMap": "思维导图",
+    "viewOutline": "大纲",
+    "viewSplit": "分屏",
+    "copyLink": "复制链接",
+    "copied": "已复制",
+    "relatedLinks": "相关链接",
+    "viewRelatedLink": "查看关联链接",
+    "poweredBy": "由 Mind Elixir Cloud 强力驱动",
+    "shareThisMindMap": "分享此思维导图",
+    "author": "作者",
+    "socialMedia": "社交媒体",
+    "followOn": "在 {platform} 上关注",
+    "notFound": "思维导图未找到",
+    "checkLink": "请检查链接是否正确"
   }
 }

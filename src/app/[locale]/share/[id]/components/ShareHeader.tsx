@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import {
   Brain,
@@ -14,6 +16,7 @@ import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import { MindMapItem } from '@/models/list'
 import Link from 'next/link'
+import { useTranslations, useLocale } from 'next-intl'
 
 type ViewMode = 'mindmap' | 'outline' | 'split'
 
@@ -36,8 +39,16 @@ export function ShareHeader({
   copied,
   onCopyLink,
 }: ShareHeaderProps) {
+  const t = useTranslations('share')
+  const locale = useLocale()
+
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('zh-CN', {
+    const localeMap: Record<string, string> = {
+      cn: 'zh-CN',
+      en: 'en-US',
+      ja: 'ja-JP',
+    }
+    return new Date(dateString).toLocaleDateString(localeMap[locale] || 'en-US', {
       year: 'numeric',
       month: 'long',
       day: 'numeric',
@@ -63,7 +74,7 @@ export function ShareHeader({
                   className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wide bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"
                 >
                   <Eye className="w-3 h-3 mr-1" />
-                  公开
+                  {t('public')}
                 </Badge>
               )}
             </div>
@@ -71,7 +82,7 @@ export function ShareHeader({
               <div className="flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5" />
                 <span>
-                  更新于 {formatDate(mapItem.updatedAt || mapItem.date)}
+                  {t('updatedAt')} {formatDate(mapItem.updatedAt || mapItem.date)}
                 </span>
               </div>
             </div>
@@ -88,7 +99,7 @@ export function ShareHeader({
                 className={cn('h-8 px-3 text-xs font-medium')}
               >
                 <Brain className="w-3.5 h-3.5 mr-1.5" />
-                思维导图
+                {t('viewMindMap')}
               </Button>
               <Button
                 variant={viewMode === 'outline' ? 'default' : 'ghost'}
@@ -97,7 +108,7 @@ export function ShareHeader({
                 className={cn('h-8 px-3 text-xs font-medium')}
               >
                 <List className="w-3.5 h-3.5 mr-1.5" />
-                大纲
+                {t('viewOutline')}
               </Button>
               <Button
                 variant={viewMode === 'split' ? 'default' : 'ghost'}
@@ -105,7 +116,7 @@ export function ShareHeader({
                 onClick={() => setViewMode('split')}
                 className={cn('h-8 px-3 text-xs font-medium')}
               >
-                分屏
+                {t('viewSplit')}
               </Button>
             </div>
 
@@ -136,7 +147,7 @@ export function ShareHeader({
                 <Copy className="w-3.5 h-3.5 mr-1.5" />
               )}
               <span className="text-xs font-medium">
-                {copied ? '已复制' : '复制链接'}
+                {copied ? t('copied') : t('copyLink')}
               </span>
             </Button>
           </div>

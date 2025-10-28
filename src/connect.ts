@@ -2,7 +2,7 @@ import axios from 'axios'
 import { toast } from 'sonner'
 
 const relink = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: 'https://mind-elixir-backend.fly.dev',
 })
 
 // 请求拦截器：自动添加JWT token

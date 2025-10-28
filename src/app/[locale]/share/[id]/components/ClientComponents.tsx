@@ -3,6 +3,7 @@
 import { useState, useMemo, useEffect } from 'react'
 import { cn } from '@/lib/utils'
 import { ExternalLink } from 'lucide-react'
+import { useTranslations } from 'next-intl'
 
 // Components
 import { ShareHeader } from './ShareHeader'
@@ -29,6 +30,7 @@ export function ClientWrapper({
 }: { 
   params: Promise<{ id: string }> 
 }) {
+  const t = useTranslations('share')
   const [viewMode, setViewMode] = useState<ViewMode>('split')
   const [isFullscreen, setIsFullscreen] = useState(false)
   const [copied, setCopied] = useState(false)
@@ -149,7 +151,7 @@ export function ClientWrapper({
               {mapItem.source && (
                 <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200/60 dark:border-gray-700/60 rounded-xl p-6 w-64">
                   <h4 className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wider">
-                    相关链接
+                    {t('relatedLinks')}
                   </h4>
                   <a
                     href={mapItem.source}
@@ -158,7 +160,7 @@ export function ClientWrapper({
                     className="flex items-center gap-2 text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors duration-200"
                   >
                     <ExternalLink className="w-4 h-4" />
-                    <span className="truncate">查看关联链接</span>
+                    <span className="truncate">{t('viewRelatedLink')}</span>
                   </a>
                 </div>
               )}

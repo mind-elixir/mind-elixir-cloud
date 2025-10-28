@@ -1,3 +1,5 @@
+'use client'
+
 import {
   User,
   MapPin
@@ -6,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { PublicUserProfile, SocialLink } from '@/services/types'
 import { SOCIAL_PLATFORMS, PlatformIcon } from '@/config/socialPlatforms'
+import { useTranslations } from 'next-intl'
 
 interface AuthorInfoProps {
   author: PublicUserProfile
@@ -21,6 +24,8 @@ const getPlatformLabel = (link: SocialLink) => {
 }
 
 export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
+  const t = useTranslations('share')
+  
   const handleSocialClick = (url: string) => {
     window.open(url, '_blank', 'noopener,noreferrer')
   }
@@ -50,7 +55,7 @@ export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
             </h3>
             <Badge variant="secondary" className="text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
               <User className="w-3 h-3 mr-1" />
-              作者
+              {t('author')}
             </Badge>
           </div>
           
@@ -75,7 +80,7 @@ export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
       {author.socialLinks && author.socialLinks.length > 0 && (
         <div>
           <h4 className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wider">
-            社交媒体
+            {t('socialMedia')}
           </h4>
           <div className="flex flex-wrap gap-2">
             {author.socialLinks.map((link, index) => {
@@ -88,7 +93,7 @@ export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
                   size="sm"
                   onClick={() => handleSocialClick(link.url)}
                   className="h-8 px-3 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800"
-                  title={`在 ${label} 上关注`}
+                  title={t('followOn', { platform: label })}
                 >
                   <PlatformIcon platform={link.platform} className="w-3.5 h-3.5 mr-1.5" />
                   {label}

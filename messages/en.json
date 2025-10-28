@@ -81,5 +81,23 @@
     "desktopRecommendation": "We recommend using Mind Elixir Desktop to create mind maps.",
     "desktopApp": "Mind Elixir Desktop",
     "titlePlaceholder": "Enter mind map title..."
+  },
+  "share": {
+    "public": "Public",
+    "updatedAt": "Updated at",
+    "viewMindMap": "Mind Map",
+    "viewOutline": "Outline",
+    "viewSplit": "Split",
+    "copyLink": "Copy Link",
+    "copied": "Copied",
+    "relatedLinks": "Related Links",
+    "viewRelatedLink": "View Related Link",
+    "poweredBy": "Powered by Mind Elixir Cloud",
+    "shareThisMindMap": "Share this mind map",
+    "author": "Author",
+    "socialMedia": "Social Media",
+    "followOn": "Follow on {platform}",
+    "notFound": "Mind map not found",
+    "checkLink": "Please check if the link is correct"
   }
 }

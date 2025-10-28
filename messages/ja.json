@@ -70,5 +70,23 @@
     "desktopRecommendation": "マインドマップの作成には Mind Elixir Desktop の使用をお勧めします。",
     "desktopApp": "Mind Elixir Desktop",
     "titlePlaceholder": "マインドマップのタイトルを入力..."
+  },
+  "share": {
+    "public": "公開",
+    "updatedAt": "更新日時",
+    "viewMindMap": "マインドマップ",
+    "viewOutline": "アウトライン",
+    "viewSplit": "分割表示",
+    "copyLink": "リンクをコピー",
+    "copied": "コピーしました",
+    "relatedLinks": "関連リンク",
+    "viewRelatedLink": "関連リンクを表示",
+    "poweredBy": "Powered by Mind Elixir Cloud",
+    "shareThisMindMap": "このマインドマップを共有",
+    "author": "作成者",
+    "socialMedia": "ソーシャルメディア",
+    "followOn": "{platform}でフォロー",
+    "notFound": "マインドマップが見つかりません",
+    "checkLink": "リンクが正しいかご確認ください"
   }
 }
