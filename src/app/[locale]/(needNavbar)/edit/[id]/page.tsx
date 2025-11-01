@@ -125,6 +125,7 @@ export default function MapEditPage() {
   useEffect(() => {
     if (!mapData || !meInstance.current) return
     sanitizeNodeData(mapData.nodeData)
+    if(!meInstance.current.selection) return
     meInstance.current.refresh(mapData)
     meInstance.current.toCenter()
     meInstance.current.map.style.opacity = '1'

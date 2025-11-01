@@ -133,6 +133,7 @@ const MindElixirReact = forwardRef<MindElixirReactRef, MindElixirReactProps>(
       if (!data || !meInstance.current || !isInitialized.current || !dataHash) return
 
       sanitizeNodeData(data.nodeData)
+      if(!meInstance.current.selection) return
       meInstance.current.refresh(data)
       meInstance.current.toCenter()
       fitPage && meInstance.current.scaleFit()
