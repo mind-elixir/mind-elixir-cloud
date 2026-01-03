@@ -10,10 +10,10 @@ importers:
     dependencies:
       '@mind-elixir/export-html':
         specifier: ^3.0.0
-        version: 3.0.0(mind-elixir@5.3.4)
+        version: 3.0.0(mind-elixir@5.4.0)
       '@mind-elixir/export-xmind':
         specifier: ^2.0.1
-        version: 2.0.1(file-saver@2.0.5)(jszip@3.10.1)(mind-elixir@5.3.4)
+        version: 2.0.1(file-saver@2.0.5)(jszip@3.10.1)(mind-elixir@5.4.0)
       '@mind-elixir/node-menu-neo':
         specifier: ^1.0.3
         version: 1.0.4
@@ -60,8 +60,8 @@ importers:
         specifier: ^0.511.0
         version: 0.511.0(react@19.1.0)
       mind-elixir:
-        specifier: 5.3.4
-        version: 5.3.4
+        specifier: 5.4.0
+        version: 5.4.0
       next:
         specifier: ^15.3.3
         version: 15.3.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -2118,8 +2118,8 @@ packages:
   mind-elixir@3.3.2:
     resolution: {integrity: sha512-SHHospQXT7ARaNMMnaZLFzBsOela9tc8rgSYHPhAPrV8Jxh6MCo1X8qQxJAvuqIVvN8uSGnXf+Po4nhzzSmWWQ==}
 
-  mind-elixir@5.3.4:
-    resolution: {integrity: sha512-HVZZLNC+QBdYvsg3dvhw4+ZLR06Az3lilXewhwfRmzyeAZiI6HB/amsUTAVHaZTby3aXAR+iOIpMXIUXpQckPQ==}
+  mind-elixir@5.4.0:
+    resolution: {integrity: sha512-yxXajDWoSF6id8b2LKxlhXidxH/v6mx4JV+isrtsZ62RGCMsRbjUMFO9xOfTVH8vyxWhsbCkiAP6/i5hqbyk6w==}
 
   minimatch@3.0.8:
     resolution: {integrity: sha512-6FsRAQsxQ61mw+qP1ZzbL9Bc78x2p5OqNgNpnoAFLTrX8n5Kxph0CsnhmKKNXTWjXqU5L0pGPR7hYk+XWZr60Q==}
@@ -3198,16 +3198,16 @@ snapshots:
 
   '@microsoft/tsdoc@0.15.1': {}
 
-  '@mind-elixir/export-html@3.0.0(mind-elixir@5.3.4)':
+  '@mind-elixir/export-html@3.0.0(mind-elixir@5.4.0)':
     dependencies:
       file-saver: 2.0.5
-      mind-elixir: 5.3.4
+      mind-elixir: 5.4.0
 
-  '@mind-elixir/export-xmind@2.0.1(file-saver@2.0.5)(jszip@3.10.1)(mind-elixir@5.3.4)':
+  '@mind-elixir/export-xmind@2.0.1(file-saver@2.0.5)(jszip@3.10.1)(mind-elixir@5.4.0)':
     dependencies:
       file-saver: 2.0.5
       jszip: 3.10.1
-      mind-elixir: 5.3.4
+      mind-elixir: 5.4.0
 
   '@mind-elixir/node-menu-neo@1.0.4':
     dependencies:
@@ -5078,7 +5078,7 @@ snapshots:
 
   mind-elixir@3.3.2: {}
 
-  mind-elixir@5.3.4: {}
+  mind-elixir@5.4.0: {}
 
   minimatch@3.0.8:
     dependencies:
