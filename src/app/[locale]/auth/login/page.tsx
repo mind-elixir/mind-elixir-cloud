@@ -68,14 +68,14 @@ export default function AuthLoginPage() {
             {t('signinWithGoogle')}
           </Button>
 
-          <Button
+          {/* <Button
             onClick={linuxDoLogin}
             variant="outline"
             className="w-full flex items-center justify-center gap-3 h-12 text-base"
           >
             <LinuxDoLogo className="h-5 w-5" />
             {t('signinWithLinuxDo')}
-          </Button>
+          </Button> */}
         </CardContent>
       </Card>
     </div>
