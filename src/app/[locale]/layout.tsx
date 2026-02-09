@@ -6,7 +6,7 @@ import NavBar from '@/components/NavBar'
 import { UserProvider } from '@/providers/UserProvider'
 import { Toaster } from 'sonner'
 import 'react-outliner-neo/style.css'
-import "mind-elixir/style.css"
+import 'mind-elixir/style.css'
 
 export const metadata: Metadata = {
   title: 'Mind Elixir Cloud',
@@ -25,11 +25,18 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
+      <head>
+        {/* 仅在开发环境下加载 */}
+        {process.env.NODE_ENV === 'development' && (
+          <script
+            src="https://unpkg.com/react-scan/dist/auto.global.js"
+            async
+          />
+        )}
+      </head>
       <body className="font-sans">
         <NextIntlClientProvider messages={messages}>
-          <UserProvider>
-            {children}
-          </UserProvider>
+          <UserProvider>{children}</UserProvider>
         </NextIntlClientProvider>
         <Toaster />
       </body>
