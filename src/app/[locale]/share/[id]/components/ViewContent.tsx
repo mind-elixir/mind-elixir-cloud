@@ -51,7 +51,7 @@ export function ViewContent({
                 : 'h-[calc(100vh-280px)] min-h-[600px]'
             }`}
           >
-            <MindMap data={mapData} className="h-full w-full" />
+            <MindMap data={mapData} className="h-full w-full" readonly />
           </div>
         </CardContent>
       </Card>

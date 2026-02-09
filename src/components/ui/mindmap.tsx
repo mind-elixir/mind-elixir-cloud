@@ -12,11 +12,24 @@ import {
   useImperativeHandle,
   type ReactNode,
 } from "react";
-import { Minus, Plus, Download, Loader2, Maximize, ScanSearch } from "lucide-react";
+import {
+  Minus,
+  Plus,
+  Download,
+  Loader2,
+  Maximize,
+  ScanSearch,
+} from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { type MindElixirInstance, type MindElixirData, type NodeObj, type Options, type Theme as MindElixirTheme, SIDE } from "mind-elixir";
-import { snapdom } from "@zumer/snapdom";
+import {
+  type MindElixirInstance,
+  type MindElixirData,
+  type NodeObj,
+  type Options,
+  type Theme as MindElixirTheme,
+} from "mind-elixir";
+import { snapdom, SnapdomOptions } from "@zumer/snapdom";
 
 // Check document class for theme (works with next-themes, etc.)
 function getDocumentTheme(): Theme | null {
@@ -158,7 +171,7 @@ function createTheme(
     panelBgcolor: string;
     panelBorderColor: string;
   },
-  palette: string[]
+  palette: string[],
 ): MindElixirTheme {
   return {
     name,
@@ -185,31 +198,31 @@ function createTheme(
 
 // Base color configurations
 const lightColors = {
-  mainColor: "oklch(0.145 0 0)",           // foreground
-  mainBgcolor: "oklch(1 0 0)",             // background (white)
-  color: "oklch(0.145 0 0)",               // foreground
-  bgcolor: "oklch(1 0 0)",                 // card background
-  selected: "oklch(0.205 0 0)",            // primary
-  rootColor: "oklch(0.985 0 0)",           // primary-foreground
-  rootBgcolor: "oklch(0.205 0 0)",         // primary
-  rootBorderColor: "oklch(0.205 0 0)",     // primary
-  panelColor: "oklch(0.145 0 0)",          // foreground
-  panelBgcolor: "oklch(1 0 0)",            // popover
-  panelBorderColor: "oklch(0.922 0 0)",    // border
+  mainColor: "oklch(0.145 0 0)", // foreground
+  mainBgcolor: "oklch(1 0 0)", // background (white)
+  color: "oklch(0.145 0 0)", // foreground
+  bgcolor: "oklch(1 0 0)", // card background
+  selected: "oklch(0.205 0 0)", // primary
+  rootColor: "oklch(0.985 0 0)", // primary-foreground
+  rootBgcolor: "oklch(0.205 0 0)", // primary
+  rootBorderColor: "oklch(0.205 0 0)", // primary
+  panelColor: "oklch(0.145 0 0)", // foreground
+  panelBgcolor: "oklch(1 0 0)", // popover
+  panelBorderColor: "oklch(0.922 0 0)", // border
 };
 
 const darkColors = {
-  mainColor: "oklch(0.985 0 0)",           // foreground
-  mainBgcolor: "oklch(0.145 0 0)",         // background (dark)
-  color: "oklch(0.985 0 0)",               // foreground
-  bgcolor: "oklch(0.205 0 0)",             // card background
-  selected: "oklch(0.922 0 0)",            // primary
-  rootColor: "oklch(0.205 0 0)",           // primary-foreground
-  rootBgcolor: "oklch(0.922 0 0)",         // primary
-  rootBorderColor: "oklch(0.922 0 0)",     // primary
-  panelColor: "oklch(0.985 0 0)",          // foreground
-  panelBgcolor: "oklch(0.205 0 0)",        // popover
-  panelBorderColor: "oklch(1 0 0 / 10%)",  // border
+  mainColor: "oklch(0.985 0 0)", // foreground
+  mainBgcolor: "oklch(0.145 0 0)", // background (dark)
+  color: "oklch(0.985 0 0)", // foreground
+  bgcolor: "oklch(0.205 0 0)", // card background
+  selected: "oklch(0.922 0 0)", // primary
+  rootColor: "oklch(0.205 0 0)", // primary-foreground
+  rootBgcolor: "oklch(0.922 0 0)", // primary
+  rootBorderColor: "oklch(0.922 0 0)", // primary
+  panelColor: "oklch(0.985 0 0)", // foreground
+  panelBgcolor: "oklch(0.205 0 0)", // popover
+  panelBorderColor: "oklch(1 0 0 / 10%)", // border
 };
 
 // Shadcn-styled light theme
@@ -222,13 +235,13 @@ const lightTheme: MindElixirTheme = createTheme(
   },
   [
     "oklch(0.646 0.222 41.116)", // chart-1: vibrant orange
-    "oklch(0.6 0.118 184.704)",   // chart-2: teal
-    "oklch(0.398 0.07 227.392)",  // chart-3: blue
-    "oklch(0.828 0.189 84.429)",  // chart-4: yellow-green
-    "oklch(0.769 0.188 70.08)",   // chart-5: warm yellow
+    "oklch(0.6 0.118 184.704)", // chart-2: teal
+    "oklch(0.398 0.07 227.392)", // chart-3: blue
+    "oklch(0.828 0.189 84.429)", // chart-4: yellow-green
+    "oklch(0.769 0.188 70.08)", // chart-5: warm yellow
     "oklch(0.488 0.243 264.376)", // purple
-    "oklch(0.696 0.17 162.48)",   // mint
-  ]
+    "oklch(0.696 0.17 162.48)", // mint
+  ],
 );
 
 // Shadcn-styled dark theme
@@ -241,13 +254,13 @@ const darkTheme: MindElixirTheme = createTheme(
   },
   [
     "oklch(0.488 0.243 264.376)", // chart-1: purple
-    "oklch(0.696 0.17 162.48)",   // chart-2: mint
-    "oklch(0.769 0.188 70.08)",   // chart-3: warm yellow
-    "oklch(0.627 0.265 303.9)",   // chart-4: pink
-    "oklch(0.645 0.246 16.439)",  // chart-5: coral
-    "oklch(0.646 0.222 41.116)",  // orange
-    "oklch(0.6 0.118 184.704)",   // teal
-  ]
+    "oklch(0.696 0.17 162.48)", // chart-2: mint
+    "oklch(0.769 0.188 70.08)", // chart-3: warm yellow
+    "oklch(0.627 0.265 303.9)", // chart-4: pink
+    "oklch(0.645 0.246 16.439)", // chart-5: coral
+    "oklch(0.646 0.222 41.116)", // orange
+    "oklch(0.6 0.118 184.704)", // teal
+  ],
 );
 
 // Monochrome variants - reuse base colors, only change accentColor and palette
@@ -258,7 +271,7 @@ const lightThemeMonochrome: MindElixirTheme = createTheme(
     ...lightColors,
     accentColor: "oklch(0.205 0 0)", // primary
   },
-  ["oklch(0.205 0 0)"] // Single primary color
+  ["oklch(0.205 0 0)"], // Single primary color
 );
 
 const darkThemeMonochrome: MindElixirTheme = createTheme(
@@ -268,8 +281,8 @@ const darkThemeMonochrome: MindElixirTheme = createTheme(
     ...darkColors,
     accentColor: "oklch(0.922 0 0)", // primary
   },
-  ["oklch(0.922 0 0)"] // Single primary color
-)
+  ["oklch(0.922 0 0)"], // Single primary color
+);
 
 // Helper function to get the appropriate theme
 function getTheme(isDark: boolean, isMonochrome: boolean): MindElixirTheme {
@@ -279,26 +292,30 @@ function getTheme(isDark: boolean, isMonochrome: boolean): MindElixirTheme {
   return isMonochrome ? lightThemeMonochrome : lightTheme;
 }
 
-export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap({
-  children,
-  data,
-  className,
-  direction = SIDE,
-  contextMenu = true,
-  nodeMenu = true,
-  keypress = true,
-  locale = "en",
-  overflowHidden = false,
-  mainLinkStyle = 2,
-  theme: themeProp,
-  monochrome = false,
-  fit = true,
-  readonly = false,
-  onChange,
-  onOperation,
-  onSelectNodes,
-  loader,
-}: MindMapProps, ref) {
+const SIDE = 2;
+export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap(
+  {
+    children,
+    data,
+    className,
+    direction = SIDE,
+    contextMenu = true,
+    nodeMenu = true,
+    keypress = true,
+    locale = "en",
+    overflowHidden = false,
+    mainLinkStyle = 2,
+    theme: themeProp,
+    monochrome = false,
+    fit = true,
+    readonly = false,
+    onChange,
+    onOperation,
+    onSelectNodes,
+    loader,
+  }: MindMapProps,
+  ref,
+) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mindRef = useRef<MindElixirInstance | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -308,12 +325,16 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap({
   const [isMounted, setIsMounted] = useState(false);
   const resolvedTheme = useResolvedTheme(themeProp);
   const id = useId();
-  
+
   // Expose mind instance to parent component via ref
-  useImperativeHandle(ref, () => ({
-    instance: mindRef.current,
-  }), []);
-  
+  useImperativeHandle(
+    ref,
+    () => ({
+      instance: mindRef.current,
+    }),
+    [],
+  );
+
   // Store resolvedTheme in a ref for use in effects without triggering re-runs
   const resolvedThemeRef = useRef(resolvedTheme);
   useEffect(() => {
@@ -324,7 +345,7 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap({
   const onChangeRef = useRef(onChange);
   const onOperationRef = useRef(onOperation);
   const onSelectNodesRef = useRef(onSelectNodes);
-  
+
   useEffect(() => {
     onChangeRef.current = onChange;
     onOperationRef.current = onOperation;
@@ -351,6 +372,12 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap({
 
       const MindElixir = MindElixirModule.default;
 
+      // Prioritize theme from data, then fall back to component props
+      const initialData = initialDataRef.current || MindElixir.new("Mind Map");
+      const themeToUse =
+        initialData.theme ||
+        getTheme(resolvedThemeRef.current === "dark", monochrome);
+
       const options = {
         el: containerRef.current,
         direction,
@@ -363,15 +390,11 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap({
         mainLinkStyle,
         editable: !readonly,
         alignment: "nodes",
-        theme:
-          getTheme(resolvedThemeRef.current === "dark", monochrome),
+        theme: themeToUse,
       } as Options;
 
       try {
         const mind = new MindElixir(options);
-
-        // Initialize with initial data from ref (not reactive to data prop changes)
-        const initialData = initialDataRef.current || MindElixir.new("Mind Map");
         mind.init(initialData);
 
         if (isSubscribed) {
@@ -400,7 +423,7 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap({
               onChangeRef.current(updatedData, operation);
             }
           });
-          
+
           if (onSelectNodesRef.current) {
             mind.bus.addListener("selectNodes", (nodeObj) => {
               onSelectNodesRef.current?.(nodeObj);
@@ -435,7 +458,7 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap({
 
   // Track internal changes to avoid refresh loops
   const isInternalChangeRef = useRef(false);
-  
+
   // Update data when it changes
   useEffect(() => {
     if (mindRef.current && data && isLoaded) {
@@ -449,9 +472,18 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap({
   }, [data, isLoaded]);
 
   // Update theme when resolvedTheme or monochrome changes
+  // BUT only if the data itself doesn't have a theme (data.theme has highest priority)
   useEffect(() => {
     if (!mindRef.current || !isLoaded) return;
 
+    // Check if current data has its own theme
+    const currentData = mindRef.current.getData();
+    if (currentData.theme) {
+      // Data has its own theme, don't override it with prop changes
+      return;
+    }
+
+    // No theme in data, apply theme from props
     const newTheme = getTheme(resolvedTheme === "dark", monochrome);
     mindRef.current.changeTheme(newTheme);
   }, [resolvedTheme, monochrome, isLoaded]);
@@ -479,7 +511,7 @@ interface MindMapControlsProps {
   showFit?: boolean;
   showExport?: boolean;
   className?: string;
-  onExport?: (type: "png" | "svg" | "json") => void;
+  onExport?: (file: Blob, filename: string) => void;
 }
 
 export function MindMapControls({
@@ -524,11 +556,24 @@ export function MindMapControls({
       try {
         // Export as image using snapdom
         const result = await snapdom(mind.nodes);
-        await result.download({ type: "jpg", filename: "mindmap" });
-        
+        // Use root node's topic as filename
+        const rootTopic = mind.nodeData.topic || "mindmap";
+        const filename = `${rootTopic}.jpg`;
+        const options = {
+          type: "jpg",
+          filename: rootTopic,
+          quality: 1,
+          backgroundColor: mind.theme.cssVar["--bgcolor"],
+        } as SnapdomOptions;
+
+        // Get the blob for the callback
         if (onExport) {
-          onExport("png");
+          const blob = await result.toBlob(options);
+          onExport(blob, filename);
         }
+
+        // Download the file
+        await result.download(options);
       } catch (error) {
         console.error("Failed to export mind map:", error);
       }
@@ -540,11 +585,14 @@ export function MindMapControls({
     if (!container) return;
 
     if (!document.fullscreenElement) {
-      container.requestFullscreen().then(() => {
-        setIsFullscreen(true);
-      }).catch((err) => {
-        console.error("Failed to enter fullscreen:", err);
-      });
+      container
+        .requestFullscreen()
+        .then(() => {
+          setIsFullscreen(true);
+        })
+        .catch((err) => {
+          console.error("Failed to enter fullscreen:", err);
+        });
     } else {
       document.exitFullscreen().then(() => {
         setIsFullscreen(false);
@@ -557,7 +605,7 @@ export function MindMapControls({
     const handleFullscreenChange = () => {
       const isNowFullscreen = !!document.fullscreenElement;
       setIsFullscreen(isNowFullscreen);
-      
+
       // When exiting fullscreen, call scaleFit to ensure content is visible
       if (!isNowFullscreen && mind) {
         mind.scaleFit();

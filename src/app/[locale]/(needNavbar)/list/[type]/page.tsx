@@ -24,7 +24,9 @@ export default function MapListPage() {
     total: 0,
   })
   const [shareModalOpen, setShareModalOpen] = useState(false)
-  const [currentShareItem, setCurrentShareItem] = useState<MindMapItem | null>(null)
+  const [currentShareItem, setCurrentShareItem] = useState<MindMapItem | null>(
+    null,
+  )
 
   const type = params.type as string
   const isPublic = type === 'public'
@@ -118,7 +120,10 @@ export default function MapListPage() {
       <div className="max-w-6xl mx-auto mb-8 px-4">
         <div className="flex items-center gap-4">
           <div className="flex-1">
-            <SearchBar onSearch={handleSearch} className="max-w-none mx-0 mb-0" />
+            <SearchBar
+              onSearch={handleSearch}
+              className="max-w-none mx-0 mb-0"
+            />
           </div>
           {!isPublic && (
             <div className="flex-shrink-0">
@@ -145,6 +150,7 @@ export default function MapListPage() {
                 href={`/${isPublic ? 'share' : 'edit'}/${map._id}`}
               >
                 <MindMapCard
+                  key={map._id}
                   className="h-full"
                   map={map}
                   type={isPublic ? 'public' : 'private'}
@@ -183,7 +189,11 @@ export default function MapListPage() {
         open={shareModalOpen}
         onOpenChange={setShareModalOpen}
         shareUrl={shareUrl}
-        title={currentShareItem?.name ? `Share "${currentShareItem.name}"` : 'Share Mind Map'}
+        title={
+          currentShareItem?.name
+            ? `Share "${currentShareItem.name}"`
+            : 'Share Mind Map'
+        }
       />
     </>
   )
