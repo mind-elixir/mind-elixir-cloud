@@ -34,11 +34,52 @@
   "auth": {
     "loginPageDescription": "お好みのログイン方法を選択してください"
   },
+  "home": {
+    "title": "Mind Elixir Cloud",
+    "subtitle": "自由な思考、AIが点火する創造的なひらめき - いつでも、どこでも",
+    "intro": "Mind Elixir Cloud は、マインドマップの力をブラウザにもたらします。どこからでもアイデアにアクセスし、他の人と協力し、AIで創造性を高めましょう。"
+  },
   "about": {
     "title": "Mind Elixir Cloud について",
-    "1": "Thank you for the free service provided by Netify and Fly.io.",
-    "2": "Regularly Data Backup is recommended.",
-    "3": "Should you require customization features, please reach out to ssshooterx@gmail.com."
+    "subtitle": "自由な思考、AIが点火する創造的なひらめき - いつでも、どこでも",
+    "intro": "Mind Elixir Cloud は、マインドマップの力をブラウザにもたらします。どこからでもアイデアにアクセスし、他の人と協力し、AIで創造性を高めましょう。",
+    "features": {
+      "title": "主な機能",
+      "cloudSync": {
+        "title": "クラウド同期",
+        "description": "自動クラウド同期により、どのデバイスからでもマインドマップにアクセスできます。アイデアは常に手の届くところに。"
+      },
+      "webBased": {
+        "title": "Webベースのアクセス",
+        "description": "インストール不要。ブラウザで直接マインドマップを作成・編集でき、即座にアクセスできます。"
+      },
+      "aiPowered": {
+        "title": "AI駆動のコンテンツ作成",
+        "description": "AIにアイデアを生成させ、マインドマップを自動更新し、新しい探索の道筋を提案させましょう。"
+      },
+      "publicSharing": {
+        "title": "公開共有",
+        "description": "マインドマップを世界と共有しましょう。公開ギャラリーを作成し、あなたのアイデアで他の人にインスピレーションを与えましょう。"
+      },
+      "multiFormat": {
+        "title": "複数のエクスポート形式",
+        "description": "さまざまなユースケースやプラットフォームに対応した形式でマインドマップをエクスポートできます。"
+      },
+      "dataFlow": {
+        "title": "多様なデータフロー",
+        "description": "M10Cや電子書籍コンバーターなどの外部ツールからシームレスにインポートし、多様なコンテンツソースでマインドマップを充実させます。"
+      }
+    },
+    "comparison": {
+      "title": "Cloud vs Desktop",
+      "description": "最大限のプライバシーとオフラインアクセスには Mind Elixir Desktop をお試しください。コラボレーションとクロスデバイスアクセスには Mind Elixir Cloud をご利用ください。"
+    },
+    "acknowledgments": {
+      "title": "謝辞",
+      "1": "Netlify と Fly.io が提供する無料サービスに感謝いたします。",
+      "2": "定期的なデータバックアップをお勧めします。編集したマインドマップはダウンロードしてアーカイブしてください。",
+      "3": "カスタマイズ機能が必要な場合は、ssshooterx@gmail.com までお問い合わせください。"
+    }
   },
   "profile": {
     "title": "プロフィール設定",

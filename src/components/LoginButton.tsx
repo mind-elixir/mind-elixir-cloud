@@ -46,12 +46,12 @@ export default function LoginButton() {
           <SiGoogle className="mr-2 h-4 w-4" />
           {t('signinWithGoogle')}
         </DropdownMenuItem>
-        {locale === 'cn' && (
+        {/* {locale === 'cn' && (
           <DropdownMenuItem onClick={linuxDoLogin} className="cursor-pointer">
             <LinuxDoLogo className="h-4 w-4" />
             {t('signinWithLinuxDo')}
           </DropdownMenuItem>
-        )}
+        )} */}
       </DropdownMenuContent>
     </DropdownMenu>
   )

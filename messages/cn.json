@@ -45,11 +45,52 @@
   "auth": {
     "loginPageDescription": "选择您喜欢的登录方式"
   },
+  "home": {
+    "title": "Mind Elixir Cloud",
+    "subtitle": "思维自由流动，AI 点燃创意火花 - 随时随地",
+    "intro": "Mind Elixir Cloud 将思维导图的强大功能带到您的浏览器中。随时随地访问您的想法，与他人协作，让 AI 增强您的创造力。"
+  },
   "about": {
     "title": "关于 Mind Elixir Cloud",
-    "1": "感谢 netify 和 fly.io 提供的免费服务",
-    "2": "请注意数据备份，编辑好的思维导图请下载归档",
-    "3": "接受定制功能，联系邮箱 ssshooterx@gmail.com"
+    "subtitle": "思维自由流动，AI 点燃创意火花 - 随时随地",
+    "intro": "Mind Elixir Cloud 将思维导图的强大功能带到您的浏览器中。随时随地访问您的想法，与他人协作，让 AI 增强您的创造力。",
+    "features": {
+      "title": "核心特性",
+      "cloudSync": {
+        "title": "云端同步",
+        "description": "从任何设备访问您的思维导图，自动云端同步。您的想法始终触手可及。"
+      },
+      "webBased": {
+        "title": "基于网页",
+        "description": "无需安装。直接在浏览器中创建和编辑思维导图，即时访问。"
+      },
+      "aiPowered": {
+        "title": "AI 驱动的内容创作",
+        "description": "让 AI 为您生成想法，自动更新您的思维导图，并建议新的探索路径。"
+      },
+      "publicSharing": {
+        "title": "公开分享",
+        "description": "与世界分享您的思维导图。创建公开画廊，用您的想法启发他人。"
+      },
+      "multiFormat": {
+        "title": "多种导出格式",
+        "description": "将您的思维导图导出为各种格式，适用于不同的使用场景和平台。"
+      },
+      "dataFlow": {
+        "title": "多样化数据流",
+        "description": "无缝导入来自 M10C 和电子书转换器等外部工具的内容，用多样化的内容源丰富您的思维导图。"
+      }
+    },
+    "comparison": {
+      "title": "云端版 vs 桌面版",
+      "description": "如需最大隐私保护和离线访问，请尝试 Mind Elixir Desktop。如需协作和跨设备访问，请使用 Mind Elixir Cloud。"
+    },
+    "acknowledgments": {
+      "title": "致谢",
+      "1": "感谢 Netlify 和 Fly.io 提供的免费服务。",
+      "2": "请注意数据备份，编辑好的思维导图请下载归档。",
+      "3": "接受定制功能，联系邮箱 ssshooterx@gmail.com。"
+    }
   },
   "profile": {
     "title": "个人设置",
