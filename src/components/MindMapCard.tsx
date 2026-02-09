@@ -1,9 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import dynamic from 'next/dynamic'
 import { MindMapItem } from '@/models/list'
-import { Options } from 'mind-elixir'
 import { MoreVertical, Download } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -19,10 +17,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
 
-const MindElixirReact = dynamic(() => import('./MindElixirReact'), {
-  ssr: false,
-  loading: () => <div className="h-full w-full bg-muted animate-pulse rounded"></div>
-})
+import { MindMap } from '@/components/ui/mindmap'
 
 interface MindMapCardProps {
   map: MindMapItem
@@ -45,27 +40,27 @@ export default function MindMapCard({
 }: MindMapCardProps) {
   const [showDropdown, setShowDropdown] = useState(false)
 
-  const options: Partial<Options> = {
-    direction: 2,
-    draggable: false,
-    editable: false,
-    contextMenu: false,
-    toolBar: false,
-    keypress: false,
-  }
-
   const timeFormatter = (dateString: string) => {
     return new Date(dateString).toLocaleDateString()
   }
 
   return (
-    <Card className={cn("group hover:shadow-lg transition-all duration-300 overflow-hidden", className)}>
+    <Card
+      className={cn(
+        'group hover:shadow-lg transition-all duration-300 overflow-hidden',
+        className,
+      )}
+    >
       <div className="relative w-full aspect-video bg-gradient-to-br from-blue-50 to-indigo-50 overflow-hidden">
         <div className="h-full w-full overflow-hidden pointer-events-none">
-          <MindElixirReact
+          <MindMap
             data={map.content}
-            options={options}
-            initScale={0.2}
+            direction={2}
+            fit={true}
+            contextMenu={false}
+            nodeMenu={false}
+            keypress={false}
+            readonly={true}
             className="h-full w-full"
           />
         </div>
@@ -88,17 +83,21 @@ export default function MindMapCard({
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-52">
               {type === 'private' && (
-                <DropdownMenuItem onClick={(e) => {
-                  e.stopPropagation()
-                  onMakePublic()
-                }}>
+                <DropdownMenuItem
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onMakePublic()
+                  }}
+                >
                   {map.public ? 'Make Private' : 'Make Public'}
                 </DropdownMenuItem>
               )}
-              <DropdownMenuItem onClick={(e) => {
-                e.stopPropagation()
-                onShare()
-              }}>
+              <DropdownMenuItem
+                onClick={(e) => {
+                  e.stopPropagation()
+                  onShare()
+                }}
+              >
                 Share
               </DropdownMenuItem>
               <DropdownMenuSub>
@@ -107,31 +106,40 @@ export default function MindMapCard({
                   Download
                 </DropdownMenuSubTrigger>
                 <DropdownMenuSubContent>
-                  <DropdownMenuItem onClick={(e) => {
-                    e.stopPropagation()
-                    onDownload('json')
-                  }}>
+                  <DropdownMenuItem
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onDownload('json')
+                    }}
+                  >
                     JSON
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={(e) => {
-                    e.stopPropagation()
-                    onDownload('html')
-                  }}>
+                  <DropdownMenuItem
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onDownload('html')
+                    }}
+                  >
                     HTML
                   </DropdownMenuItem>
-                  <DropdownMenuItem onClick={(e) => {
-                    e.stopPropagation()
-                    onDownload('xmind')
-                  }}>
+                  <DropdownMenuItem
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      onDownload('xmind')
+                    }}
+                  >
                     XMind
                   </DropdownMenuItem>
                 </DropdownMenuSubContent>
               </DropdownMenuSub>
               {type === 'private' && (
-                <DropdownMenuItem onClick={(e) => {
-                  e.stopPropagation()
-                  onDelete()
-                }} className="text-destructive">
+                <DropdownMenuItem
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    onDelete()
+                  }}
+                  className="text-destructive"
+                >
                   Delete
                 </DropdownMenuItem>
               )}
@@ -151,7 +159,9 @@ export default function MindMapCard({
             </Badge>
           )}
         </div>
-        <p className="text-sm text-muted-foreground">{timeFormatter(map.updatedAt || map.date)}</p>
+        <p className="text-sm text-muted-foreground">
+          {timeFormatter(map.updatedAt || map.date)}
+        </p>
       </CardContent>
     </Card>
   )

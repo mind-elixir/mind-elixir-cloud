@@ -1,25 +1,21 @@
-"use client";
+'use client'
 
-import dynamic from "next/dynamic";
-import { Brain, List } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Outliner } from "react-outliner-neo";
-import { MindMapSkeleton } from "./MindMapSkeleton";
-import type { MindElixirData, Options } from "mind-elixir";
+import { Brain, List } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Outliner } from 'react-outliner-neo'
+import type { MindElixirData, Options } from 'mind-elixir'
 
 // 确保MindElixirReact组件完全在客户端渲染
-const MindElixirReact = dynamic(() => import("@/components/MindElixirReact"), {
-  ssr: false,
-  loading: () => <MindMapSkeleton />,
-});
+// 确保MindElixirReact组件完全在客户端渲染
+import { MindMap } from '@/components/ui/mindmap'
 
-type ViewMode = "mindmap" | "outline" | "split";
+type ViewMode = 'mindmap' | 'outline' | 'split'
 
 interface ViewContentProps {
-  viewMode: ViewMode;
-  mapData: MindElixirData;
-  plugins: any[];
-  options: Partial<Options>;
+  viewMode: ViewMode
+  mapData: MindElixirData
+  plugins: any[]
+  options: Partial<Options>
 }
 
 export function ViewContent({
@@ -33,11 +29,11 @@ export function ViewContent({
       {/* 思维导图视图 */}
       <Card
         className={`overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-xl ${
-          viewMode !== "mindmap" && viewMode !== "split" ? "hidden" : ""
+          viewMode !== 'mindmap' && viewMode !== 'split' ? 'hidden' : ''
         }`}
-        style={{ display: viewMode === "outline" ? "none" : undefined }}
+        style={{ display: viewMode === 'outline' ? 'none' : undefined }}
       >
-        {viewMode === "split" && (
+        {viewMode === 'split' && (
           <CardHeader className="border-b border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/30">
             <CardTitle className="flex items-center gap-3 text-lg font-semibold text-gray-900 dark:text-gray-100">
               <div className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700">
@@ -50,17 +46,12 @@ export function ViewContent({
         <CardContent className="p-0">
           <div
             className={`${
-              viewMode === "split"
-                ? "h-[calc(100vh-380px)] min-h-[500px]"
-                : "h-[calc(100vh-280px)] min-h-[600px]"
+              viewMode === 'split'
+                ? 'h-[calc(100vh-380px)] min-h-[500px]'
+                : 'h-[calc(100vh-280px)] min-h-[600px]'
             }`}
           >
-            <MindElixirReact
-              data={mapData}
-              plugins={plugins}
-              options={options}
-              className="h-full w-full"
-            />
+            <MindMap data={mapData} className="h-full w-full" />
           </div>
         </CardContent>
       </Card>
@@ -68,9 +59,9 @@ export function ViewContent({
       {/* 大纲视图 */}
       <Card
         className={`overflow-hidden border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 rounded-xl ${
-          viewMode !== "outline" && viewMode !== "split" ? "hidden" : ""
+          viewMode !== 'outline' && viewMode !== 'split' ? 'hidden' : ''
         }`}
-        style={{ display: viewMode === "mindmap" ? "none" : undefined }}
+        style={{ display: viewMode === 'mindmap' ? 'none' : undefined }}
       >
         <CardHeader className="border-b border-gray-200 dark:border-gray-700 bg-gray-50/50 dark:bg-gray-800/30">
           <CardTitle className="flex items-center gap-3 text-lg font-semibold text-gray-900 dark:text-gray-100">
@@ -87,5 +78,5 @@ export function ViewContent({
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }
