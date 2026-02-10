@@ -16,7 +16,6 @@ export default function AboutPage() {
   const features = [
     { key: 'cloudSync', icon: Cloud },
     { key: 'webBased', icon: Globe },
-    { key: 'aiPowered', icon: Sparkles },
     { key: 'publicSharing', icon: Share2 },
     { key: 'multiFormat', icon: Download },
     { key: 'dataFlow', icon: ArrowLeftRight },

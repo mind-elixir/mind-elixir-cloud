@@ -47,13 +47,13 @@
   },
   "home": {
     "title": "Mind Elixir Cloud",
-    "subtitle": "Free-flowing Thoughts, AI-ignited Creative Sparks - Anywhere, Anytime",
-    "intro": "Mind Elixir Cloud brings the power of mind mapping to your browser. Access your ideas from anywhere, collaborate with others, and let AI enhance your creativity."
+    "subtitle": "Free-flowing Thoughts, Ignite Creative Sparks - Anywhere, Anytime",
+    "intro": "Mind Elixir Cloud brings the power of mind mapping to your browser. Access your ideas from anywhere, and share with others."
   },
   "about": {
     "title": "About Mind Elixir Cloud",
-    "subtitle": "Free-flowing Thoughts, AI-ignited Creative Sparks - Anywhere, Anytime",
-    "intro": "Mind Elixir Cloud brings the power of mind mapping to your browser. Access your ideas from anywhere, collaborate with others, and let AI enhance your creativity.",
+    "subtitle": "Free-flowing Thoughts, Ignite Creative Sparks - Anywhere, Anytime",
+    "intro": "Mind Elixir Cloud brings the power of mind mapping to your browser. Access your ideas from anywhere, and share with others.",
     "features": {
       "title": "Key Features",
       "cloudSync": {
@@ -63,10 +63,6 @@
       "webBased": {
         "title": "Web-Based Access",
         "description": "No installation required. Create and edit mind maps directly in your browser with instant access."
-      },
-      "aiPowered": {
-        "title": "AI-Powered Content Creation",
-        "description": "Let AI generate ideas for you, automatically update your mind map, and suggest new pathways for exploration."
       },
       "publicSharing": {
         "title": "Public Sharing",
@@ -83,7 +79,7 @@
     },
     "comparison": {
       "title": "Cloud vs Desktop",
-      "description": "For maximum privacy and offline access, try Mind Elixir Desktop. For collaboration and cross-device access, use Mind Elixir Cloud."
+      "description": "For maximum privacy and offline access, try Mind Elixir Desktop. For sharing and cross-device access, use Mind Elixir Cloud."
     },
     "acknowledgments": {
       "title": "Acknowledgments",

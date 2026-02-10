@@ -36,13 +36,13 @@
   },
   "home": {
     "title": "Mind Elixir Cloud",
-    "subtitle": "自由な思考、AIが点火する創造的なひらめき - いつでも、どこでも",
-    "intro": "Mind Elixir Cloud は、マインドマップの力をブラウザにもたらします。どこからでもアイデアにアクセスし、他の人と協力し、AIで創造性を高めましょう。"
+    "subtitle": "自由な思考、創造的なひらめき - いつでも、どこでも",
+    "intro": "Mind Elixir Cloud は、マインドマップの力をブラウザにもたらします。どこからでもアイデアにアクセスし、他の人と共有しましょう。"
   },
   "about": {
     "title": "Mind Elixir Cloud について",
-    "subtitle": "自由な思考、AIが点火する創造的なひらめき - いつでも、どこでも",
-    "intro": "Mind Elixir Cloud は、マインドマップの力をブラウザにもたらします。どこからでもアイデアにアクセスし、他の人と協力し、AIで創造性を高めましょう。",
+    "subtitle": "自由な思考、創造的なひらめき - いつでも、どこでも",
+    "intro": "Mind Elixir Cloud は、マインドマップの力をブラウザにもたらします。どこからでもアイデアにアクセスし、他の人と共有しましょう。",
     "features": {
       "title": "主な機能",
       "cloudSync": {
@@ -52,10 +52,6 @@
       "webBased": {
         "title": "Webベースのアクセス",
         "description": "インストール不要。ブラウザで直接マインドマップを作成・編集でき、即座にアクセスできます。"
-      },
-      "aiPowered": {
-        "title": "AI駆動のコンテンツ作成",
-        "description": "AIにアイデアを生成させ、マインドマップを自動更新し、新しい探索の道筋を提案させましょう。"
       },
       "publicSharing": {
         "title": "公開共有",
@@ -72,7 +68,7 @@
     },
     "comparison": {
       "title": "Cloud vs Desktop",
-      "description": "最大限のプライバシーとオフラインアクセスには Mind Elixir Desktop をお試しください。コラボレーションとクロスデバイスアクセスには Mind Elixir Cloud をご利用ください。"
+      "description": "最大限のプライバシーとオフラインアクセスには Mind Elixir Desktop をお試しください。共有とクロスデバイスアクセスには Mind Elixir Cloud をご利用ください。"
     },
     "acknowledgments": {
       "title": "謝辞",

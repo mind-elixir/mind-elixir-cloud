@@ -47,13 +47,13 @@
   },
   "home": {
     "title": "Mind Elixir Cloud",
-    "subtitle": "思维自由流动，AI 点燃创意火花 - 随时随地",
-    "intro": "Mind Elixir Cloud 将思维导图的强大功能带到您的浏览器中。随时随地访问您的想法，与他人协作，让 AI 增强您的创造力。"
+    "subtitle": "思维自由流动，点燃创意火花 - 随时随地",
+    "intro": "Mind Elixir Cloud 将思维导图的强大功能带到您的浏览器中。随时随地访问您的想法，与他人协作，与他人分享。"
   },
   "about": {
     "title": "关于 Mind Elixir Cloud",
-    "subtitle": "思维自由流动，AI 点燃创意火花 - 随时随地",
-    "intro": "Mind Elixir Cloud 将思维导图的强大功能带到您的浏览器中。随时随地访问您的想法，与他人协作，让 AI 增强您的创造力。",
+    "subtitle": "思维自由流动，点燃创意火花 - 随时随地",
+    "intro": "Mind Elixir Cloud 将思维导图的强大功能带到您的浏览器中。随时随地访问您的想法，与他人分享。",
     "features": {
       "title": "核心特性",
       "cloudSync": {
@@ -63,10 +63,6 @@
       "webBased": {
         "title": "基于网页",
         "description": "无需安装。直接在浏览器中创建和编辑思维导图，即时访问。"
-      },
-      "aiPowered": {
-        "title": "AI 驱动的内容创作",
-        "description": "让 AI 为您生成想法，自动更新您的思维导图，并建议新的探索路径。"
       },
       "publicSharing": {
         "title": "公开分享",
@@ -83,7 +79,7 @@
     },
     "comparison": {
       "title": "云端版 vs 桌面版",
-      "description": "如需最大隐私保护和离线访问，请尝试 Mind Elixir Desktop。如需协作和跨设备访问，请使用 Mind Elixir Cloud。"
+      "description": "如需最大隐私保护和离线访问，请尝试 Mind Elixir Desktop。如需分享和跨设备访问，请使用 Mind Elixir Cloud。"
     },
     "acknowledgments": {
       "title": "致谢",
