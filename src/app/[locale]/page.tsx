@@ -5,6 +5,7 @@ import { MindMap } from '@/components/ui/mindmap'
 import { desktopFeaturesData } from '@/data/desktopFeatures'
 import { useTranslations } from 'next-intl'
 import { Globe, Share2, Download, ArrowLeftRight } from 'lucide-react'
+import { AuroraText } from '@/components/ui/ui/aurora-text'
 
 export default function HomePage() {
   const t = useTranslations('home')
@@ -22,7 +23,7 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Navigation */}
-      <div className="fixed top-0 left-0 right-0 z-50 p-5 bg-background/80 backdrop-blur-sm">
+      <div className="fixed top-0 left-0 right-0 z-50 p-5">
         <NavBar className="max-w-7xl mx-auto" />
       </div>
 
@@ -30,19 +31,17 @@ export default function HomePage() {
       <div className="pt-32 pb-16 px-8">
         <div className="max-w-7xl mx-auto text-center mb-12">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">{t('title')}</h1>
-          <p className="text-2xl md:text-3xl text-muted-foreground mb-4">
+          <AuroraText className="text-2xl md:text-3xl mb-4">
             {t('subtitle')}
-          </p>
+          </AuroraText>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
             {t('intro')}
           </p>
         </div>
 
         {/* Mind Map Section */}
-        <div className="max-w-7xl mx-auto mb-20">
-          <div className="h-[60vh] w-full rounded-lg border border-border bg-card shadow-lg overflow-hidden">
-            <MindMap className="h-full w-full" data={desktopFeaturesData} />
-          </div>
+        <div className="w-full md:w-[90%] aspect-video mx-auto rounded-lg border border-border bg-card shadow-lg overflow-hidden mb-20">
+          <MindMap className="h-full w-full" data={desktopFeaturesData} />
         </div>
 
         {/* Features Grid */}
