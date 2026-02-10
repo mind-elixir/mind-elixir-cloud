@@ -17,7 +17,7 @@ relink.interceptors.request.use(
   },
   function (error) {
     return Promise.reject(error)
-  }
+  },
 )
 
 // 响应拦截器：处理token过期
@@ -27,20 +27,14 @@ relink.interceptors.response.use(
   },
   function (error) {
     console.log('API Error:', error)
-    
-    // 如果是401错误，清除token并跳转到首页
+
+    // 如果是401错误，清除token但不跳转，让调用方处理
     if (error.response?.status === 401) {
-      toast.error('Session expired, please login again')
       localStorage.removeItem('auth_token')
-      // 如果不在登录页面，则跳转到首页
-      if (typeof window !== 'undefined' && !window.location.pathname.includes('/login')) {
-        window.location.href = '/'
-      }
-    } else {
-      toast.error('Network error')
     }
+
     return Promise.reject(error)
-  }
+  },
 )
 
 export default relink

@@ -3,7 +3,7 @@
     "pleaseLogin": "ログインが必要です",
     "networkError": "ネットワークエラー",
     "formatSelect": "ファイル形式",
-    "title": "タイトル",
+    "title": "新しいマインドマップ",
     "ok": "OK",
     "cancel": "キャンセル",
     "login": "ログイン",
@@ -125,5 +125,29 @@
     "followOn": "{platform}でフォロー",
     "notFound": "マインドマップが見つかりません",
     "checkLink": "リンクが正しいかご確認ください"
+  },
+  "list": {
+    "loginRequired": "ログインが必要です",
+    "loginToView": "{type}マインドマップリストを表示するにはログインが必要です",
+    "loginHint": "右上のログインボタンをクリックしてください",
+    "publicMaps": "公開",
+    "yourMaps": "あなたの",
+    "noMapsFound": "一致するマインドマップが見つかりません",
+    "noMapsYet": "マインドマップがまだありません",
+    "deleteConfirm": "このマインドマップを削除してもよろしいですか?",
+    "shareTitle": "\"{name}\"を共有",
+    "shareDefaultTitle": "マインドマップを共有"
+  },
+  "pagination": {
+    "totalItems": "合計 {total} 項目",
+    "goToFirstPage": "最初のページへ",
+    "goToPreviousPage": "前のページへ",
+    "goToNextPage": "次のページへ",
+    "goToLastPage": "最後のページへ",
+    "goToPage": "ページ {page} へ",
+    "morePages": "他のページ",
+    "currentPage": "ページ",
+    "totalPages": "の",
+    "pageOf": "{current}/{total}"
   }
 }

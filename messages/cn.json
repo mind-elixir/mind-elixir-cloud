@@ -3,7 +3,7 @@
     "pleaseLogin": "请点击右上角按钮登陆",
     "networkError": "网络错误",
     "formatSelect": "格式选择",
-    "title": "标题",
+    "title": "新建思维导图",
     "ok": "确定",
     "cancel": "取消",
     "login": "登陆",
@@ -136,5 +136,29 @@
     "followOn": "在 {platform} 上关注",
     "notFound": "思维导图未找到",
     "checkLink": "请检查链接是否正确"
+  },
+  "list": {
+    "loginRequired": "需要登录",
+    "loginToView": "您需要登录才能查看{type}思维导图列表",
+    "loginHint": "请点击右上角的登录按钮",
+    "publicMaps": "公共",
+    "yourMaps": "您的",
+    "noMapsFound": "没有找到匹配的思维导图",
+    "noMapsYet": "还没有思维导图",
+    "deleteConfirm": "确定要删除这个思维导图吗?",
+    "shareTitle": "分享 \"{name}\"",
+    "shareDefaultTitle": "分享思维导图"
+  },
+  "pagination": {
+    "totalItems": "共 {total} 项",
+    "goToFirstPage": "前往第一页",
+    "goToPreviousPage": "前往上一页",
+    "goToNextPage": "前往下一页",
+    "goToLastPage": "前往最后一页",
+    "goToPage": "前往第 {page} 页",
+    "morePages": "更多页面",
+    "currentPage": "第",
+    "totalPages": "页",
+    "pageOf": "{current}/{total}"
   }
 }

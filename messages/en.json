@@ -3,7 +3,7 @@
     "pleaseLogin": "Please login first",
     "networkError": "Network error",
     "formatSelect": "Choose format",
-    "title": "Title",
+    "title": "New Mind Map",
     "ok": "OK",
     "cancel": "Cancel",
     "login": "Login",
@@ -136,5 +136,29 @@
     "followOn": "Follow on {platform}",
     "notFound": "Mind map not found",
     "checkLink": "Please check if the link is correct"
+  },
+  "list": {
+    "loginRequired": "Login Required",
+    "loginToView": "You need to login to view {type} mind map list",
+    "loginHint": "Please click the login button in the top right corner",
+    "publicMaps": "public",
+    "yourMaps": "your",
+    "noMapsFound": "No matching mind maps found",
+    "noMapsYet": "No mind maps yet",
+    "deleteConfirm": "Are you sure to delete this map?",
+    "shareTitle": "Share \"{name}\"",
+    "shareDefaultTitle": "Share Mind Map"
+  },
+  "pagination": {
+    "totalItems": "Total {total} items",
+    "goToFirstPage": "Go to first page",
+    "goToPreviousPage": "Go to previous page",
+    "goToNextPage": "Go to next page",
+    "goToLastPage": "Go to last page",
+    "goToPage": "Go to page {page}",
+    "morePages": "More pages",
+    "currentPage": "Page",
+    "totalPages": "of",
+    "pageOf": "{current}/{total}"
   }
 }
