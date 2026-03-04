@@ -20,7 +20,8 @@
     "loginSuccess": "Login successful! Redirecting...",
     "completed": "Login completed",
     "connectionFailed": "Connection failed, please try again",
-    "checkDesktopApp": "Login failed, please check network connection or try again later"
+    "checkDesktopApp": "Login failed, please check network connection or try again later",
+    "manualOpenApp": "If it doesn't open automatically or you are on mobile, click here manually"
   },
   "menu": {
     "public": "Public",

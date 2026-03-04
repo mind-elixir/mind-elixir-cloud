@@ -6,15 +6,16 @@ import { useSearchParams } from 'next/navigation'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Info } from 'lucide-react'
-import { openAppWithFallback } from "@mind-elixir/open-desktop"
+import { openAppWithFallback } from '@mind-elixir/open-desktop'
 
 export default function DesktopLoginPage() {
   const t = useTranslations('misc')
   const searchParams = useSearchParams()
-  
+
   // 响应式状态
   const [progressWidth, setProgressWidth] = useState(0)
   const [currentStatus, setCurrentStatus] = useState(t('gettingToken'))
+  const [appLink, setAppLink] = useState('')
 
   // 模拟进度更新
   const updateProgress = (width: number, status: string) => {
@@ -37,7 +38,15 @@ export default function DesktopLoginPage() {
 
         updateProgress(80, t('verifyingIdentity'))
 
-        openAppWithFallback('mind-elixir://login?token=' + token)
+        const url = 'mind-elixir://login?token=' + token
+        setAppLink(url)
+
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+        if (isMobile) {
+          window.location.href = url
+        } else {
+          openAppWithFallback(url)
+        }
 
         updateProgress(100, t('loginSuccess'))
 
@@ -60,7 +69,7 @@ export default function DesktopLoginPage() {
       {/* 背景装饰 */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-slate-200 dark:bg-slate-700 rounded-full opacity-10 animate-pulse" />
-        <div 
+        <div
           className="absolute -bottom-40 -left-40 w-80 h-80 bg-slate-300 dark:bg-slate-600 rounded-full opacity-10 animate-pulse"
           style={{ animationDelay: '1s' }}
         />
@@ -74,17 +83,17 @@ export default function DesktopLoginPage() {
             <div className="text-center mb-8">
               <div className="flex justify-center mb-4">
                 <div className="w-16 h-16 bg-slate-100 dark:bg-slate-700 rounded-2xl flex items-center justify-center">
-                  <svg 
-                    className="w-8 h-8 text-slate-600 dark:text-slate-300" 
-                    fill="none" 
-                    stroke="currentColor" 
+                  <svg
+                    className="w-8 h-8 text-slate-600 dark:text-slate-300"
+                    fill="none"
+                    stroke="currentColor"
                     viewBox="0 0 24 24"
                   >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" 
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                     />
                   </svg>
                 </div>
@@ -122,13 +131,21 @@ export default function DesktopLoginPage() {
                 <p className="text-sm text-slate-600 dark:text-slate-400 mb-2">
                   {currentStatus}
                 </p>
+                {appLink && (
+                  <a
+                    href={appLink}
+                    className="text-xs text-blue-500 hover:underline mb-2 block"
+                  >
+                    {t('manualOpenApp')}
+                  </a>
+                )}
                 <div className="flex justify-center space-x-1">
                   <div className="w-2 h-2 bg-slate-600 dark:bg-slate-400 rounded-full animate-bounce" />
-                  <div 
+                  <div
                     className="w-2 h-2 bg-slate-600 dark:bg-slate-400 rounded-full animate-bounce"
                     style={{ animationDelay: '0.1s' }}
                   />
-                  <div 
+                  <div
                     className="w-2 h-2 bg-slate-600 dark:bg-slate-400 rounded-full animate-bounce"
                     style={{ animationDelay: '0.2s' }}
                   />
@@ -158,11 +175,17 @@ export default function DesktopLoginPage() {
         {/* 底部信息 */}
         <div className="text-center mt-6">
           <div className="flex items-center justify-center space-x-2 text-xs text-slate-500 dark:text-slate-400">
-            <Badge variant="outline" className="text-xs border-slate-300 dark:border-slate-600">
+            <Badge
+              variant="outline"
+              className="text-xs border-slate-300 dark:border-slate-600"
+            >
               {t('secureConnection')}
             </Badge>
             <span>•</span>
-            <Badge variant="outline" className="text-xs border-slate-300 dark:border-slate-600">
+            <Badge
+              variant="outline"
+              className="text-xs border-slate-300 dark:border-slate-600"
+            >
               {t('autoRedirect')}
             </Badge>
           </div>
