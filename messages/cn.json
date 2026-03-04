@@ -21,7 +21,7 @@
     "completed": "登录已完成",
     "connectionFailed": "连接失败，请重试",
     "checkDesktopApp": "登录失败，请检查网络连接或稍后重试",
-    "manualOpenApp": "如果无法自动打开或已在移动端，请点击这里手动打开"
+    "manualOpenApp": "如果无法自动打开，请点击这里手动打开"
   },
   "menu": {
     "public": "公开",
