@@ -4,6 +4,5 @@ export interface User {
   from: string
   id: string
   name: string
-  providerAccountId: string
   _id: string
 }

@@ -9,7 +9,7 @@ import {
   MapResponse,
   UserResponse,
   ProfileResponse,
-  PublicUserResponse
+  PublicUserResponse,
 } from './types'
 
 /**
@@ -49,7 +49,7 @@ export const userApi = {
    */
   getDesktopToken: async (): Promise<TokenResponse> => {
     return await connect.get<never, TokenResponse>('token')
-  }
+  },
 }
 
 /**
@@ -59,9 +59,11 @@ export const mindMapApi = {
   /**
    * 获取思维导图列表
    */
-  getMapList: async (params: PaginationParams): Promise<MindMapListResponse> => {
+  getMapList: async (
+    params: PaginationParams,
+  ): Promise<MindMapListResponse> => {
     return await connect.get<never, MindMapListResponse>('/api/map', {
-      params
+      params,
     })
   },
 
@@ -91,7 +93,7 @@ export const mindMapApi = {
    */
   deleteMap: async (id: string): Promise<void> => {
     return await connect.delete(`/api/map/${id}`)
-  }
+  },
 }
 
 /**
@@ -101,9 +103,11 @@ export const publicApi = {
   /**
    * 获取公共思维导图列表
    */
-  getPublicMapList: async (params: PaginationParams): Promise<MindMapListResponse> => {
+  getPublicMapList: async (
+    params: PaginationParams,
+  ): Promise<MindMapListResponse> => {
     return await connect.get<never, MindMapListResponse>('/api/public', {
-      params
+      params,
     })
   },
 
@@ -118,8 +122,10 @@ export const publicApi = {
    * 获取公共用户资料
    */
   getPublicUserProfile: async (userId: string): Promise<PublicUserResponse> => {
-    return await connect.get<never, PublicUserResponse>(`/api/public/profile?uuid=${userId}`)
-  }
+    return await connect.get<never, PublicUserResponse>(
+      `/api/public/profile?id=${userId}`,
+    )
+  },
 }
 
 /**
@@ -128,7 +134,7 @@ export const publicApi = {
 export const api = {
   user: userApi,
   mindMap: mindMapApi,
-  public: publicApi
+  public: publicApi,
 }
 
 export default api

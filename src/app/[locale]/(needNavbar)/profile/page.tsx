@@ -134,12 +134,16 @@ export default function ProfilePage() {
         <Card className="mb-8">
           <CardHeader>
             <CardTitle className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-slate-200">
-                <img
-                  src={userData.image}
-                  alt="Avatar"
-                  className="w-full h-full object-cover"
-                />
+              <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-slate-200 flex items-center justify-center bg-slate-100">
+                {userData.image ? (
+                  <img
+                    src={userData.image}
+                    alt="Avatar"
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <User className="w-6 h-6 text-slate-400" />
+                )}
               </div>
               <div>
                 <h2 className="text-xl font-semibold">{userData.name}</h2>

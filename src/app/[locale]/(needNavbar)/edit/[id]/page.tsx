@@ -15,7 +15,7 @@ const sanitizeNodeData = (nodeData: MindElixirData['nodeData']) => {
   if (!nodeData) return
   if (nodeData.dangerouslySetInnerHTML) {
     nodeData.dangerouslySetInnerHTML = DOMPurify.sanitize(
-      nodeData.dangerouslySetInnerHTML
+      nodeData.dangerouslySetInnerHTML,
     )
   }
   if (nodeData.children) {
@@ -43,7 +43,6 @@ export default function MapEditPage() {
 
   const mapId = params.id as string
 
-  
   // Load MindElixir dynamically and initialize
   useEffect(() => {
     if (!mindmapEl.current || typeof window === 'undefined') return
@@ -99,18 +98,15 @@ export default function MapEditPage() {
     }
 
     const handleKeydown = (e: KeyboardEvent) => {
-      e.preventDefault()
-      if (e.target !== e.currentTarget) {
-        return
-      }
-      if (e.ctrlKey && e.key === 's') {
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault()
         save()
       }
     }
     const handleOperation = () => {
       setIsUnsaved(true)
     }
-    meInstance.current.map?.addEventListener('keydown', handleKeydown)
+    window.addEventListener('keydown', handleKeydown)
     meInstance.current.bus.addListener('operation', handleOperation)
     meInstance.current.bus.addListener('expandNode', handleOperation)
 
@@ -118,14 +114,14 @@ export default function MapEditPage() {
     return () => {
       meInstance.current?.bus.removeListener('operation', handleOperation)
       meInstance.current?.bus.removeListener('expandNode', handleOperation)
-      meInstance.current?.map?.removeEventListener('keydown', handleKeydown)
+      window.removeEventListener('keydown', handleKeydown)
     }
   }, [])
 
   useEffect(() => {
     if (!mapData || !meInstance.current) return
     sanitizeNodeData(mapData.nodeData)
-    if(!meInstance.current.selection) return
+    if (!meInstance.current.selection) return
     meInstance.current.refresh(mapData)
     meInstance.current.toCenter()
     meInstance.current.map.style.opacity = '1'

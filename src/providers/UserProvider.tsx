@@ -1,6 +1,12 @@
 'use client'
 
-import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  ReactNode,
+} from 'react'
 import { User } from '@/models/user'
 import { api } from '@/services/api'
 
@@ -26,9 +32,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
         setUserData(undefined)
         return
       }
-      
+
       const res = await api.user.getCurrentUser()
-      if (res.data && res.data.providerAccountId) {
+      if (res.data) {
         setUserData(res.data)
       } else {
         setUserData(undefined)
@@ -42,8 +48,6 @@ export function UserProvider({ children }: { children: ReactNode }) {
       localStorage.removeItem('auth_token')
     }
   }
-
-
 
   const logout = async () => {
     try {
@@ -70,7 +74,9 @@ export function UserProvider({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <UserContext.Provider value={{ userData, setUserData, loading, logout, refreshUser }}>
+    <UserContext.Provider
+      value={{ userData, setUserData, loading, logout, refreshUser }}
+    >
       {children}
     </UserContext.Provider>
   )

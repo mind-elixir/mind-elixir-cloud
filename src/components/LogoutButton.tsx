@@ -1,7 +1,7 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { LogOut, Settings } from 'lucide-react'
+import { LogOut, Settings, User } from 'lucide-react'
 import { useUser } from '@/providers/UserProvider'
 import { Button } from '@/components/ui/button'
 import {
@@ -32,8 +32,12 @@ export default function LogoutButton() {
     <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="rounded-full w-10 h-10 flex-shrink-0 hover:bg-slate-100">
-          <div className="w-8 h-8 rounded-full ring-2 ring-slate-200 hover:ring-slate-300 transition-all duration-200 overflow-hidden">
-            <img src={userData.image} alt="Avatar" className="w-full h-full object-cover" />
+          <div className="w-8 h-8 rounded-full ring-2 ring-slate-200 hover:ring-slate-300 transition-all duration-200 overflow-hidden flex items-center justify-center bg-slate-50">
+            {userData.image ? (
+              <img src={userData.image} alt="Avatar" className="w-full h-full object-cover" />
+            ) : (
+              <User className="w-4 h-4 text-slate-400" />
+            )}
           </div>
         </Button>
       </DropdownMenuTrigger>
