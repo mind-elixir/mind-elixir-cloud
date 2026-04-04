@@ -9,28 +9,13 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { SiGithub, SiGoogle } from 'react-icons/si'
-import { LinuxDoLogo } from '@/components/icon/linuxdo-logo'
 
 export default function AuthLoginPage() {
   const t = useTranslations('button')
-  const titleT = useTranslations('title')
-  const authT = useTranslations('auth')
-  const locale = useLocale()
 
-  const githubLogin = () => {
+  const meLogin = () => {
     window.location.href =
-      process.env.NEXT_PUBLIC_API_URL + '/oauth/github/login?type=desktop'
-  }
-
-  const googleLogin = () => {
-    window.location.href =
-      process.env.NEXT_PUBLIC_API_URL + '/oauth/google/login?type=desktop'
-  }
-
-  const linuxDoLogin = () => {
-    window.location.href =
-      process.env.NEXT_PUBLIC_API_URL + '/oauth/linuxdo/login?type=desktop'
+      process.env.NEXT_PUBLIC_API_URL + '/oauth/authme/login?type=desktop'
   }
 
   return (
@@ -44,38 +29,15 @@ export default function AuthLoginPage() {
               alt="Mind Elixir Desktop logo"
             />
           </div>
-          <CardTitle className="text-2xl font-bold">
-            {titleT('signinWith')}
-          </CardTitle>
-          <CardDescription>{authT('loginPageDescription')}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <Button
-            onClick={githubLogin}
+            onClick={meLogin}
             variant="outline"
             className="w-full flex items-center justify-center gap-3 h-12 text-base"
           >
-            <SiGithub className="h-5 w-5" />
-            {t('signinWithGitHub')}
+            {t('signin')}
           </Button>
-
-          <Button
-            onClick={googleLogin}
-            variant="outline"
-            className="w-full flex items-center justify-center gap-3 h-12 text-base"
-          >
-            <SiGoogle className="h-5 w-5" />
-            {t('signinWithGoogle')}
-          </Button>
-
-          {/* <Button
-            onClick={linuxDoLogin}
-            variant="outline"
-            className="w-full flex items-center justify-center gap-3 h-12 text-base"
-          >
-            <LinuxDoLogo className="h-5 w-5" />
-            {t('signinWithLinuxDo')}
-          </Button> */}
         </CardContent>
       </Card>
     </div>
