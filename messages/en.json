@@ -24,7 +24,7 @@
     "manualOpenApp": "If it doesn't open automatically, click here manually"
   },
   "menu": {
-    "public": "Public",
+    "public": "Explore",
     "folder": "Folder",
     "about": "About",
     "language": "language",
@@ -66,8 +66,8 @@
         "description": "No installation required. Create and edit mind maps directly in your browser with instant access."
       },
       "publicSharing": {
-        "title": "Public Sharing",
-        "description": "Share your mind maps with the world. Create public galleries and inspire others with your ideas."
+        "title": "Inspiration Sharing",
+        "description": "Share your mind maps with the world. Join our gallery and inspire others with your ideas."
       },
       "multiFormat": {
         "title": "Multiple Export Formats",
@@ -78,17 +78,11 @@
         "description": "Seamlessly import from external tools like M10C and eBook converters, enriching your mind maps with diverse content sources."
       }
     },
-    "comparison": {
-      "title": "Cloud vs Desktop",
-      "description": "For maximum privacy and offline access, try Mind Elixir Desktop. For sharing and cross-device access, use Mind Elixir Cloud."
+      "comparison": {
+        "title": "Cloud vs Desktop",
+        "description": "For maximum privacy and offline access, try Mind Elixir Desktop. For sharing and cross-device access, use Mind Elixir Cloud."
+      }
     },
-    "acknowledgments": {
-      "title": "Acknowledgments",
-      "1": "Thank you for the free service provided by Netlify and Fly.io.",
-      "2": "Regularly data backup is recommended. Please download and archive your edited mind maps.",
-      "3": "Should you require customization features, please reach out to ssshooterx@gmail.com."
-    }
-  },
   "profile": {
     "title": "Profile Settings",
     "basicInfo": "Basic Information",
@@ -121,7 +115,7 @@
     "titlePlaceholder": "Enter mind map title..."
   },
   "share": {
-    "public": "Public",
+    "public": "Shared",
     "updatedAt": "Updated at",
     "viewMindMap": "Mind Map",
     "viewOutline": "Outline",
@@ -142,7 +136,7 @@
     "loginRequired": "Login Required",
     "loginToView": "You need to login to view {type} mind map list",
     "loginHint": "Please click the login button in the top right corner",
-    "publicMaps": "public",
+    "publicMaps": "Explore",
     "yourMaps": "your",
     "noMapsFound": "No matching mind maps found",
     "noMapsYet": "No mind maps yet",

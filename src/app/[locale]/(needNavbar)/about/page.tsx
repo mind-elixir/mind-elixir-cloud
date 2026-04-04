@@ -72,23 +72,7 @@ export default function AboutPage() {
           </p>
         </div>
 
-        {/* Acknowledgments */}
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6 text-center">
-            {t('acknowledgments.title')}
-          </h2>
-          <div className="space-y-4">
-            <p className="text-lg text-muted-foreground">
-              {t('acknowledgments.1')}
-            </p>
-            <p className="text-lg text-muted-foreground">
-              {t('acknowledgments.2')}
-            </p>
-            <p className="text-lg text-muted-foreground">
-              {t('acknowledgments.3')}
-            </p>
-          </div>
-        </div>
+
       </div>
     </div>
   )

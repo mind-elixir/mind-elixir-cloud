@@ -11,7 +11,6 @@ export default function HomePage() {
   const t = useTranslations('home')
   const tFeatures = useTranslations('about.features')
   const tComparison = useTranslations('about.comparison')
-  const tAck = useTranslations('about.acknowledgments')
 
   const features = [
     { key: 'webBased', icon: Globe },
@@ -85,17 +84,7 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Acknowledgments */}
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl font-bold mb-6 text-center">
-            {tAck('title')}
-          </h2>
-          <div className="space-y-3 text-center">
-            <p className="text-muted-foreground">{tAck('1')}</p>
-            <p className="text-muted-foreground">{tAck('2')}</p>
-            <p className="text-muted-foreground">{tAck('3')}</p>
-          </div>
-        </div>
+
       </div>
     </div>
   )

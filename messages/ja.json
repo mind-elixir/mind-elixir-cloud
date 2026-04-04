@@ -13,7 +13,7 @@
     "manualOpenApp": "自動的に開かない場合はこちらをクリック"
   },
   "menu": {
-    "public": "公開",
+    "public": "共有作品",
     "folder": "フォルダ",
     "about": "基本情報",
     "language": "言語",
@@ -55,8 +55,8 @@
         "description": "インストール不要。ブラウザで直接マインドマップを作成・編集でき、即座にアクセスできます。"
       },
       "publicSharing": {
-        "title": "公開共有",
-        "description": "マインドマップを世界と共有しましょう。公開ギャラリーを作成し、あなたのアイデアで他の人にインスピレーションを与えましょう。"
+        "title": "インスピレーション共有",
+        "description": "マインドマップを世界と共有しましょう。共有ギャラリーに参加し、あなたのアイデアで他の人にインスピレーションを与えましょう。"
       },
       "multiFormat": {
         "title": "複数のエクスポート形式",
@@ -67,17 +67,11 @@
         "description": "M10Cや電子書籍コンバーターなどの外部ツールからシームレスにインポートし、多様なコンテンツソースでマインドマップを充実させます。"
       }
     },
-    "comparison": {
-      "title": "Cloud vs Desktop",
-      "description": "最大限のプライバシーとオフラインアクセスには Mind Elixir Desktop をお試しください。共有とクロスデバイスアクセスには Mind Elixir Cloud をご利用ください。"
+      "comparison": {
+        "title": "Cloud vs Desktop",
+        "description": "最大限のプライバシーとオフラインアクセスには Mind Elixir Desktop をお試しください。共有とクロスデバイスアクセスには Mind Elixir Cloud をご利用ください。"
+      }
     },
-    "acknowledgments": {
-      "title": "謝辞",
-      "1": "Netlify と Fly.io が提供する無料サービスに感謝いたします。",
-      "2": "定期的なデータバックアップをお勧めします。編集したマインドマップはダウンロードしてアーカイブしてください。",
-      "3": "カスタマイズ機能が必要な場合は、ssshooterx@gmail.com までお問い合わせください。"
-    }
-  },
   "profile": {
     "title": "プロフィール設定",
     "basicInfo": "基本情報",
@@ -110,7 +104,7 @@
     "titlePlaceholder": "マインドマップのタイトルを入力..."
   },
   "share": {
-    "public": "公開",
+    "public": "共有中",
     "updatedAt": "更新日時",
     "viewMindMap": "マインドマップ",
     "viewOutline": "アウトライン",
@@ -131,7 +125,7 @@
     "loginRequired": "ログインが必要です",
     "loginToView": "{type}マインドマップリストを表示するにはログインが必要です",
     "loginHint": "右上のログインボタンをクリックしてください",
-    "publicMaps": "公開",
+    "publicMaps": "全体共有",
     "yourMaps": "あなたの",
     "noMapsFound": "一致するマインドマップが見つかりません",
     "noMapsYet": "マインドマップがまだありません",

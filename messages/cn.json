@@ -24,7 +24,7 @@
     "manualOpenApp": "如果无法自动打开，请点击这里手动打开"
   },
   "menu": {
-    "public": "公开",
+    "public": "分享",
     "folder": "文件夹",
     "about": "关于",
     "language": "语言",
@@ -66,8 +66,8 @@
         "description": "无需安装。直接在浏览器中创建和编辑思维导图，即时访问。"
       },
       "publicSharing": {
-        "title": "公开分享",
-        "description": "与世界分享您的思维导图。创建公开画廊，用您的想法启发他人。"
+        "title": "灵感分享",
+        "description": "与世界分享您的思维导图。加入分享画廊，用您的想法启发他人。"
       },
       "multiFormat": {
         "title": "多种导出格式",
@@ -78,17 +78,11 @@
         "description": "无缝导入来自 M10C 和电子书转换器等外部工具的内容，用多样化的内容源丰富您的思维导图。"
       }
     },
-    "comparison": {
-      "title": "云端版 vs 桌面版",
-      "description": "如需最大隐私保护和离线访问，请尝试 Mind Elixir Desktop。如需分享和跨设备访问，请使用 Mind Elixir Cloud。"
+      "comparison": {
+        "title": "云端版 vs 桌面版",
+        "description": "如需最大隐私保护和离线访问，请尝试 Mind Elixir Desktop。如需分享和跨设备访问，请使用 Mind Elixir Cloud。"
+      }
     },
-    "acknowledgments": {
-      "title": "致谢",
-      "1": "感谢 Netlify 和 Fly.io 提供的免费服务。",
-      "2": "请注意数据备份，编辑好的思维导图请下载归档。",
-      "3": "接受定制功能，联系邮箱 ssshooterx@gmail.com。"
-    }
-  },
   "profile": {
     "title": "个人设置",
     "basicInfo": "基本信息",
@@ -121,7 +115,7 @@
     "titlePlaceholder": "输入思维导图标题..."
   },
   "share": {
-    "public": "公开",
+    "public": "分享",
     "updatedAt": "更新于",
     "viewMindMap": "思维导图",
     "viewOutline": "大纲",
@@ -142,7 +136,7 @@
     "loginRequired": "需要登录",
     "loginToView": "您需要登录才能查看{type}思维导图列表",
     "loginHint": "请点击右上角的登录按钮",
-    "publicMaps": "公共",
+    "publicMaps": "全站分享",
     "yourMaps": "您的",
     "noMapsFound": "没有找到匹配的思维导图",
     "noMapsYet": "还没有思维导图",
