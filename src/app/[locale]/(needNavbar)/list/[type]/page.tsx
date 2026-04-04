@@ -22,6 +22,7 @@ export default function MapListPage() {
   const [mapList, setMapList] = useState<MindMapItem[]>([])
   const [loading, setLoading] = useState(true)
   const [keyword, setKeyword] = useState('')
+  const [searchValue, setSearchValue] = useState('')
   const [isUnauthorized, setIsUnauthorized] = useState(false)
   const [pagination, setPagination] = useState({
     page: 1,
@@ -43,7 +44,7 @@ export default function MapListPage() {
       const params = {
         page: pagination.page,
         pageSize: pagination.pageSize,
-        keyword,
+        name: keyword,
       }
 
       const res = isPublic
@@ -92,9 +93,16 @@ export default function MapListPage() {
     console.log('MapList updated:', mapList, 'Length:', mapList.length)
   }, [mapList])
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setKeyword(searchValue)
+      setPagination((prev) => ({ ...prev, page: 1 }))
+    }, 500)
+    return () => clearTimeout(timer)
+  }, [searchValue])
+
   const handleSearch = (val: string) => {
-    setKeyword(val)
-    setPagination((prev) => ({ ...prev, page: 1 }))
+    setSearchValue(val)
   }
 
   const deleteMap = async (item: MindMapItem) => {
@@ -132,11 +140,30 @@ export default function MapListPage() {
 
   const content = (
     <div className="min-h-screen pt-36 pb-12 px-4">
-      {loading ? (
-        <LoadingMask className="pt-20" />
-      ) : isUnauthorized ? (
-        // 未登录状态提示
-        <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto">
+        {!isUnauthorized && (
+          /* Search bar and create button container */
+          <div className="mb-10">
+            <div className="flex items-center gap-4">
+              <div className="flex-1">
+                <SearchBar
+                  onSearch={handleSearch}
+                  className="max-w-none mx-0 mb-0"
+                />
+              </div>
+              {!isPublic && (
+                <div className="flex-shrink-0">
+                  <CreateButton className="h-10 w-auto px-4" />
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
+        {loading ? (
+          <LoadingMask className="pt-20" />
+        ) : isUnauthorized ? (
+          // 未登录状态提示
           <div className="flex flex-col items-center justify-center py-20 px-4">
             <div className="rounded-lg border border-border bg-card p-8 max-w-md w-full text-center shadow-sm">
               <div className="flex justify-center mb-4">
@@ -156,72 +183,51 @@ export default function MapListPage() {
               </p>
             </div>
           </div>
-        </div>
-      ) : (
-        <div className="max-w-7xl mx-auto">
-          {/* Search bar and create button container */}
-          <div className="mb-10">
-            <div className="flex items-center gap-4">
-              <div className="flex-1">
-                <SearchBar
-                  onSearch={handleSearch}
-                  className="max-w-none mx-0 mb-0"
-                />
-              </div>
-              {!isPublic && (
-                <div className="flex-shrink-0">
-                  <CreateButton className="h-10 w-auto px-4" />
-                </div>
-              )}
+        ) : mapList.length === 0 ? (
+          // 空状态
+          <div className="flex flex-col items-center justify-center py-20 px-4">
+            <div className="rounded-lg border border-dashed border-border bg-muted/30 p-12 max-w-md w-full text-center">
+              <p className="text-muted-foreground mb-4">
+                {keyword ? t('noMapsFound') : t('noMapsYet')}
+              </p>
+              {!isPublic && !keyword && <CreateButton className="mx-auto" />}
             </div>
           </div>
-
-          {mapList.length === 0 ? (
-            // 空状态
-            <div className="flex flex-col items-center justify-center py-20 px-4">
-              <div className="rounded-lg border border-dashed border-border bg-muted/30 p-12 max-w-md w-full text-center">
-                <p className="text-muted-foreground mb-4">
-                  {keyword ? t('noMapsFound') : t('noMapsYet')}
-                </p>
-                {!isPublic && !keyword && <CreateButton className="mx-auto" />}
-              </div>
-            </div>
-          ) : (
-            <>
-              <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mb-10">
-                {mapList.map((map) => (
-                  <Link
+        ) : (
+          <>
+            <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mb-10">
+              {mapList.map((map) => (
+                <Link
+                  key={map._id}
+                  href={`/${isPublic ? 'share' : 'edit'}/${map._id}`}
+                >
+                  <MindMapCard
                     key={map._id}
-                    href={`/${isPublic ? 'share' : 'edit'}/${map._id}`}
-                  >
-                    <MindMapCard
-                      key={map._id}
-                      className="h-full"
-                      map={map}
-                      type={isPublic ? 'public' : 'private'}
-                      onDelete={() => deleteMap(map)}
-                      onDownload={(type) => download(map, type)}
-                      onMakePublic={() => makePublic(map)}
-                      onShare={() => share(map)}
-                    />
-                  </Link>
-                ))}
-              </div>
+                    className="h-full"
+                    map={map}
+                    type={isPublic ? 'public' : 'private'}
+                    onDelete={() => deleteMap(map)}
+                    onDownload={(type) => download(map, type)}
+                    onMakePublic={() => makePublic(map)}
+                    onShare={() => share(map)}
+                  />
+                </Link>
+              ))}
+            </div>
 
-              <div className="flex justify-center">
-                <Pagination
-                  page={pagination.page}
-                  pageSize={pagination.pageSize}
-                  total={pagination.total}
-                  onPageChange={(page) =>
-                    setPagination((prev) => ({ ...prev, page }))
-                  }
-                />
-              </div>
-            </>
-          )}
-        </div>
-      )}
+            <div className="flex justify-center">
+              <Pagination
+                page={pagination.page}
+                pageSize={pagination.pageSize}
+                total={pagination.total}
+                onPageChange={(page) =>
+                  setPagination((prev) => ({ ...prev, page }))
+                }
+              />
+            </div>
+          </>
+        )}
+      </div>
     </div>
   )
 

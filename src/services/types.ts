@@ -6,7 +6,7 @@ import { Response } from '@/models/response'
 export interface PaginationParams {
   page: number
   pageSize: number
-  keyword?: string
+  name?: string
 }
 
 export interface CreateMapParams {
