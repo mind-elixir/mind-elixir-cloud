@@ -144,5 +144,26 @@
     "currentPage": "ページ",
     "totalPages": "の",
     "pageOf": "{current}/{total}"
+  },
+  "footer": {
+    "product": "製品",
+    "resources": "リソース",
+    "features": "特徴",
+    "pricing": "価格",
+    "download": "ダウンロード",
+    "blog": "ブログ",
+    "faq": "よくある質問",
+    "feedback": "フィードバック",
+    "emailUs": "お問い合わせ",
+    "reportIssue": "問題を報告",
+    "legal": "法的情報",
+    "privacyPolicy": "プライバシーポリシー",
+    "termsOfService": "利用規約",
+    "otherProducts": "他の製品",
+    "desktop": "Mind Elixir Desktop",
+    "m10c": "M10C ウェブ/動画からマインドマップへ",
+    "cloud": "Mind Elixir Cloud",
+    "followUs": "SNS",
+    "rights": "著作権。"
   }
 }

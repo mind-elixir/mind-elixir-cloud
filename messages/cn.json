@@ -155,5 +155,26 @@
     "currentPage": "第",
     "totalPages": "页",
     "pageOf": "{current}/{total}"
+  },
+  "footer": {
+    "product": "产品",
+    "resources": "资源",
+    "features": "特性",
+    "pricing": "价格",
+    "download": "下载",
+    "blog": "博客",
+    "faq": "常见问题",
+    "feedback": "反馈",
+    "emailUs": "联系我们",
+    "reportIssue": "报告问题",
+    "legal": "法律",
+    "privacyPolicy": "隐私政策",
+    "termsOfService": "服务条款",
+    "otherProducts": "其他产品",
+    "desktop": "Mind Elixir Desktop",
+    "m10c": "M10C 网页/视频转思维导图",
+    "cloud": "Mind Elixir Cloud",
+    "followUs": "关注我们",
+    "rights": "版权所有。"
   }
 }

@@ -6,6 +6,7 @@ import { desktopFeaturesData } from '@/data/desktopFeatures'
 import { useTranslations } from 'next-intl'
 import { Globe, Share2, Download, ArrowLeftRight } from 'lucide-react'
 import { AuroraText } from '@/components/ui/ui/aurora-text'
+import Footer from '@/components/Footer'
 
 export default function HomePage() {
   const t = useTranslations('home')
@@ -86,6 +87,7 @@ export default function HomePage() {
 
 
       </div>
+      <Footer />
     </div>
   )
 }

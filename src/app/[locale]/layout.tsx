@@ -11,6 +11,10 @@ import 'mind-elixir/style.css'
 export const metadata: Metadata = {
   title: 'Mind Elixir Cloud',
   description: 'A powerful mind mapping application',
+  icons: {
+    icon: '/mind-elixir-cloud.png',
+    apple: '/mind-elixir-cloud.png',
+  },
 }
 
 export default async function RootLayout({

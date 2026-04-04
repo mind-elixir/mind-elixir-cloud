@@ -155,5 +155,26 @@
     "currentPage": "Page",
     "totalPages": "of",
     "pageOf": "{current}/{total}"
+  },
+  "footer": {
+    "product": "Product",
+    "resources": "Resources",
+    "features": "Features",
+    "pricing": "Pricing",
+    "download": "Download",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "feedback": "Feedback",
+    "emailUs": "Email Us",
+    "reportIssue": "Report Issue",
+    "legal": "Legal",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfService": "Terms of Service",
+    "otherProducts": "Other Products",
+    "desktop": "Mind Elixir Desktop",
+    "m10c": "M10C Video to Mind Map",
+    "cloud": "Mind Elixir Cloud",
+    "followUs": "Follow Us",
+    "rights": "All rights reserved."
   }
 }
