@@ -78,10 +78,7 @@ export default function NavBar({ className }: NavBarProps) {
             <DropdownMenuItem asChild>
               <Link href="/list/map">{t('menu.folder')}</Link>
             </DropdownMenuItem>
-            {/* TODO: add like page */}
-            {/* <DropdownMenuItem asChild>
-              <Link href="/about">{t('menu.about')}</Link>
-            </DropdownMenuItem> */}
+            {/* TODO: add like/bookmarked page */}
             <DropdownMenuSub>
               <DropdownMenuSubTrigger>
                 <Globe className="mr-2 h-4 w-4" />
