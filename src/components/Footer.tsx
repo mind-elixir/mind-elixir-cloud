@@ -33,8 +33,6 @@ export default function Footer() {
             </p>
           </div>
 
-
-
           {/* Resources Links */}
           <div className="flex flex-col gap-4">
             <h3 className="font-semibold text-foreground tracking-tight">
@@ -130,12 +128,14 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <Link
-                  href="/"
+                <a
+                  href="https://ebook2me-next.mind-elixir.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-primary transition-colors duration-200"
                 >
-                  {t('cloud')}
-                </Link>
+                  {t('ebook2me')}
+                </a>
               </li>
             </ul>
           </div>
