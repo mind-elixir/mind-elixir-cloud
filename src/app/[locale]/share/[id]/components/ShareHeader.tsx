@@ -48,11 +48,14 @@ export function ShareHeader({
       en: 'en-US',
       ja: 'ja-JP',
     }
-    return new Date(dateString).toLocaleDateString(localeMap[locale] || 'en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
+    return new Date(dateString).toLocaleDateString(
+      localeMap[locale] || 'en-US',
+      {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      },
+    )
   }
 
   return (
@@ -63,7 +66,12 @@ export function ShareHeader({
           <div className="flex-1">
             <div className="flex items-center gap-4 mb-2">
               <Link href="/list/public" className="flex-shrink-0">
-                <Image src="/logo2.png" alt="Logo" width={32} height={32} />
+                <Image
+                  src="/mind-elixir-cloud.png"
+                  alt="Logo"
+                  width={32}
+                  height={32}
+                />
               </Link>
               <h1 className="text-xl lg:text-2xl font-semibold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-300 bg-clip-text text-transparent">
                 {mapItem.name}
@@ -82,7 +90,8 @@ export function ShareHeader({
               <div className="flex items-center gap-1.5">
                 <Calendar className="w-3.5 h-3.5" />
                 <span>
-                  {t('updatedAt')} {formatDate(mapItem.updatedAt || mapItem.date)}
+                  {t('updatedAt')}{' '}
+                  {formatDate(mapItem.updatedAt || mapItem.date)}
                 </span>
               </div>
             </div>

@@ -56,7 +56,7 @@ export default function NavBar({ className }: NavBarProps) {
     <nav
       className={cn(
         'flex items-center justify-between p-4 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-sm',
-        className
+        className,
       )}
     >
       {/* Mobile menu */}
@@ -106,7 +106,7 @@ export default function NavBar({ className }: NavBarProps) {
         href="/"
         className="flex items-center space-x-2 text-xl font-semibold flex-shrink-0"
       >
-        <Image src="/logo2.png" alt="Logo" width={32} height={32} />
+        <Image src="/mind-elixir-cloud.png" alt="Logo" width={32} height={32} />
         <span className="hidden sm:inline">Mind Elixir</span>
       </Link>
 
@@ -120,7 +120,7 @@ export default function NavBar({ className }: NavBarProps) {
                   href="/list/public"
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    'hover:bg-slate-100 hover:text-slate-900'
+                    'hover:bg-slate-100 hover:text-slate-900',
                   )}
                 >
                   {t('menu.public')}
@@ -133,7 +133,7 @@ export default function NavBar({ className }: NavBarProps) {
                   href="/list/map"
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    'hover:bg-slate-100 hover:text-slate-900'
+                    'hover:bg-slate-100 hover:text-slate-900',
                   )}
                 >
                   {t('menu.folder')}
