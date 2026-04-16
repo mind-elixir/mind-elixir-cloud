@@ -10,6 +10,8 @@ import DOMPurify from 'dompurify'
 // @ts-ignore
 import nodeMenu from '@mind-elixir/node-menu-neo'
 import { toast } from 'sonner'
+import { CloudCheck, AlertCircle, Loader2 } from 'lucide-react'
+import { cn } from '@/lib/utils'
 
 const sanitizeNodeData = (nodeData: MindElixirData['nodeData']) => {
   if (!nodeData) return
@@ -31,7 +33,8 @@ export default function MapEditPage() {
   const [mapData, setMapData] = useState<MindElixirData | undefined>(undefined)
   const [isUnsaved, setIsUnsaved] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [lastSavedTime, setLastSavedTime] = useState('')
+  const [lastSavedTime, setLastSavedTime] = useState<Date | null>(null)
+  const t = useTranslations('edit')
   const mindmapEl = useRef<HTMLDivElement>(null)
   const meInstance = useRef<MindElixirInstance | null>(null)
 
@@ -93,8 +96,7 @@ export default function MapEditPage() {
 
       setSaving(false)
       setIsUnsaved(false)
-      setLastSavedTime(new Date().toLocaleString())
-      toast.success('Saved')
+      setLastSavedTime(new Date())
     }
 
     const handleKeydown = (e: KeyboardEvent) => {
@@ -157,14 +159,36 @@ export default function MapEditPage() {
   return (
     <>
       <div ref={mindmapEl} className="h-screen" tabIndex={0} />
-      {isUnsaved && (
-        <div className="fixed bottom-10 left-6 dark:text-gray-200">Unsaved</div>
-      )}
-      {lastSavedTime && (
-        <div className="fixed bottom-6 left-6 dark:text-gray-200">
-          Last saved time: {lastSavedTime}
-        </div>
-      )}
+      <div
+        className={cn(
+          'fixed bottom-6 left-6 flex items-center gap-2.5 px-3.5 py-2 rounded-full',
+          'bg-background/80 backdrop-blur-md border border-border shadow-lg',
+          'text-xs font-medium select-none z-50 cursor-default opacity-90',
+        )}
+      >
+        {saving ? (
+          <>
+            <Loader2 className="w-3.5 h-3.5 text-primary" />
+            <span className="text-foreground">{t('saving')}</span>
+          </>
+        ) : isUnsaved ? (
+          <>
+            <div className="flex h-2 w-2 mr-0.5">
+              <span className="inline-flex rounded-full h-2 w-2 bg-yellow-500"></span>
+            </div>
+            <span className="text-muted-foreground">{t('unsaved')}</span>
+          </>
+        ) : (
+          <>
+            <CloudCheck className="w-3.5 h-3.5 text-green-500" />
+            <span className="text-muted-foreground">
+              {lastSavedTime
+                ? t('savedAt', { time: lastSavedTime.toLocaleTimeString() })
+                : t('saved')}
+            </span>
+          </>
+        )}
+      </div>
     </>
   )
 }

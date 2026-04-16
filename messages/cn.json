@@ -177,5 +177,11 @@
     "cloud": "Mind Elixir Cloud",
     "followUs": "关注我们",
     "rights": "版权所有。"
+  },
+  "edit": {
+    "saving": "保存中...",
+    "unsaved": "未保存的更改",
+    "saved": "已保存所有更改",
+    "savedAt": "保存于 {time}"
   }
 }

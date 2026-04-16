@@ -177,5 +177,11 @@
     "cloud": "Mind Elixir Cloud",
     "followUs": "Follow Us",
     "rights": "All rights reserved."
+  },
+  "edit": {
+    "saving": "Saving...",
+    "unsaved": "Unsaved changes",
+    "saved": "All changes saved",
+    "savedAt": "Saved at {time}"
   }
 }

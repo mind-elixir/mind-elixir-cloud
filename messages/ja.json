@@ -166,5 +166,11 @@
     "cloud": "Mind Elixir Cloud",
     "followUs": "SNS",
     "rights": "著作権。"
+  },
+  "edit": {
+    "saving": "保存中...",
+    "unsaved": "未保存の変更",
+    "saved": "すべての変更を保存しました",
+    "savedAt": "保存： {time}"
   }
 }
