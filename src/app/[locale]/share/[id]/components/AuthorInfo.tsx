@@ -32,7 +32,7 @@ export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
       className={`bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200/60 dark:border-gray-700/60 rounded-xl p-6 ${className}`}
     >
       {/* 作者头像和基本信息 */}
-      <div className="relative group/avatar mb-6">
+      <div className="relative group/avatar">
         <div className="flex items-center gap-5">
           <div className="relative">
             <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-lg border-2 border-white dark:border-gray-800 group-hover/avatar:scale-105 transition-transform duration-300">
@@ -54,7 +54,10 @@ export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
           </div>
 
           <div className="flex-1 min-w-0">
-            <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100 truncate tracking-tight mb-0.5">
+            <p className="text-[10px] font-bold text-blue-500 dark:text-blue-400 uppercase tracking-[0.2em] mb-0.5">
+              {t('author')}
+            </p>
+            <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100 truncate tracking-tight">
               {author.name}
             </h3>
             {author.location && (

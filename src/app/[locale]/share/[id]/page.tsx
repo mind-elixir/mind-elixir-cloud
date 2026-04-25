@@ -3,6 +3,7 @@ import { Metadata } from 'next'
 import { unstable_cache } from 'next/cache'
 import { serverApi } from '@/services/api.server'
 import { ClientWrapper } from './components/ClientComponents'
+import { generateI18nAlternates } from '@/lib/metadata'
 import type { MindElixirData } from 'mind-elixir'
 import type { MindMapItem } from '@/models/list'
 import type { PublicUserProfile } from '@/services/types'
@@ -54,7 +55,7 @@ const getAuthorProfile = unstable_cache(
   {
     revalidate: 86400, // 缓存失效时间（秒），与页面的 revalidate 保持一致
     tags: ['author-profile'], // 缓存标签，用于批量清除缓存
-  }
+  },
 )
 
 // Fetch map data with cached author profile
@@ -72,16 +73,21 @@ const getMapData = async (id: string) => {
 }
 
 // Generate dynamic metadata for SEO
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { id } = await params
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { id, locale } = await params
 
   try {
     const { mapItem, authorProfile } = await getMapData(id)
 
-    const authorName = authorProfile?.displayName || authorProfile?.name || 'Mind Elixir User'
+    const authorName =
+      authorProfile?.displayName || authorProfile?.name || 'Mind Elixir User'
     const title = `${mapItem.name} - Mind Elixir`
     const description = `Explore "${mapItem.name}" mind map created by ${authorName}. Interactive mind mapping tool for organizing thoughts and ideas.`
-    const url = `${process.env.NEXT_PUBLIC_BASE_URL || 'https://mind-elixir.com'}/share/${id}`
+    const baseUrl =
+      process.env.NEXT_PUBLIC_BASE_URL || 'https://cloud.mind-elixir.com'
+    const currentUrl = `${baseUrl}/${locale}/share/${id}`
 
     return {
       title,
@@ -89,7 +95,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       openGraph: {
         title,
         description,
-        url,
+        url: currentUrl,
         siteName: 'Mind Elixir',
         type: 'website',
         images: [
@@ -107,15 +113,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
         description,
         images: ['/og-image.png'],
       },
-      alternates: {
-        canonical: url,
-      },
+      alternates: generateI18nAlternates(`/share/${id}`),
     }
   } catch (error) {
     console.error('Failed to generate metadata:', error)
     return {
       title: 'Mind Map - Mind Elixir',
-      description: 'Interactive mind mapping tool for organizing thoughts and ideas.',
+      description:
+        'Interactive mind mapping tool for organizing thoughts and ideas.',
     }
   }
 }
