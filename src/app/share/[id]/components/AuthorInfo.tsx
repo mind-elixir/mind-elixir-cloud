@@ -29,13 +29,13 @@ export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
 
   return (
     <div
-      className={`bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200/60 dark:border-gray-700/60 rounded-xl p-6 ${className}`}
+      className={`bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200/60 dark:border-gray-700/60 rounded-xl p-4 lg:p-6 ${className}`}
     >
       {/* 作者头像和基本信息 */}
       <div className="relative group/avatar">
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-3 lg:gap-5">
           <div className="relative">
-            <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-lg border-2 border-white dark:border-gray-800 group-hover/avatar:scale-105 transition-transform duration-300">
+            <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-2xl overflow-hidden shadow-lg border-2 border-white dark:border-gray-800 group-hover/avatar:scale-105 transition-transform duration-300">
               {author.image ? (
                 <img
                   src={author.image}
@@ -48,21 +48,21 @@ export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
                 </div>
               )}
             </div>
-            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 border-2 border-white dark:border-gray-900 rounded-lg flex items-center justify-center shadow-md">
-              <User className="w-3 h-3 text-white" />
+            <div className="absolute -bottom-1 -right-1 w-5 h-5 lg:w-6 lg:h-6 bg-blue-500 border-2 border-white dark:border-gray-900 rounded-lg flex items-center justify-center shadow-md">
+              <User className="w-2.5 h-2.5 lg:w-3 lg:h-3 text-white" />
             </div>
           </div>
 
           <div className="flex-1 min-w-0">
-            <p className="text-[10px] font-bold text-blue-500 dark:text-blue-400 uppercase tracking-[0.2em] mb-0.5">
+            <p className="text-[9px] lg:text-[10px] font-bold text-blue-500 dark:text-blue-400 uppercase tracking-[0.2em] mb-0.5">
               {t('author')}
             </p>
-            <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100 truncate tracking-tight">
+            <h3 className="font-bold text-base lg:text-lg text-gray-900 dark:text-gray-100 truncate tracking-tight">
               {author.name}
             </h3>
             {author.location && (
-              <div className="flex items-center gap-1.5 text-xs font-medium text-gray-500 dark:text-gray-400">
-                <MapPin className="w-3 h-3" />
+              <div className="flex items-center gap-1 lg:gap-1.5 text-[11px] lg:text-xs font-medium text-gray-500 dark:text-gray-400">
+                <MapPin className="w-2.5 h-2.5 lg:w-3 lg:h-3" />
                 <span>{author.location}</span>
               </div>
             )}
@@ -71,8 +71,8 @@ export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
 
         {/* 个人简介 */}
         {author.bio && (
-          <div className="mt-4">
-            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed line-clamp-2 italic">
+          <div className="mt-3 lg:mt-4">
+            <p className="text-xs lg:text-sm text-gray-600 dark:text-gray-400 leading-relaxed line-clamp-2 italic">
               {author.bio}
             </p>
           </div>
@@ -81,11 +81,11 @@ export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
 
       {/* 社交媒体链接 */}
       {author.socialLinks && author.socialLinks.length > 0 && (
-        <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-800">
-          <h4 className="text-[10px] font-bold text-gray-400 dark:text-gray-500 mb-4 uppercase tracking-[0.2em]">
+        <div className="mt-4 lg:mt-6 pt-4 lg:pt-6 border-t border-gray-100 dark:border-gray-800">
+          <h4 className="text-[9px] lg:text-[10px] font-bold text-gray-400 dark:text-gray-500 mb-3 lg:mb-4 uppercase tracking-[0.2em]">
             {t('socialMedia')}
           </h4>
-          <div className="grid grid-cols-1 gap-3">
+          <div className="grid grid-cols-1 gap-2 lg:gap-3">
             {author.socialLinks.map((link, index) => {
               const label = getPlatformLabel(link)
               const platformConfig = SOCIAL_PLATFORMS.find(
@@ -99,20 +99,20 @@ export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative flex items-center gap-3 p-2.5 rounded-xl border border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-800/30 hover:bg-white dark:hover:bg-gray-800 hover:border-gray-200 dark:hover:border-gray-700 hover:shadow-sm transition-all duration-300"
+                  className="group relative flex items-center gap-2 lg:gap-3 p-2 lg:p-2.5 rounded-xl border border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-800/30 hover:bg-white dark:hover:bg-gray-800 hover:border-gray-200 dark:hover:border-gray-700 hover:shadow-sm transition-all duration-300"
                   title={t('followOn', { platform: label })}
                 >
                   <div
-                    className="flex items-center justify-center w-8 h-8 rounded-lg bg-white dark:bg-gray-900 shadow-sm group-hover:scale-110 transition-transform duration-300"
+                    className="flex items-center justify-center w-7 h-7 lg:w-8 lg:h-8 rounded-lg bg-white dark:bg-gray-900 shadow-sm group-hover:scale-110 transition-transform duration-300"
                     style={{ color }}
                   >
                     <PlatformIcon
                       platform={link.platform}
-                      className="w-4 h-4"
+                      className="w-3.5 h-3.5 lg:w-4 lg:h-4"
                     />
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="text-[11px] font-medium text-gray-600 dark:text-gray-400 truncate group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">
+                    <p className="text-[10px] lg:text-[11px] font-medium text-gray-600 dark:text-gray-400 truncate group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">
                       {label}
                     </p>
                   </div>
