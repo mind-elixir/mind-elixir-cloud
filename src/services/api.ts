@@ -1,6 +1,7 @@
 import connect from '@/connect'
 import {
   PaginationParams,
+  RandomMapParams,
   CreateMapParams,
   UpdateMapParams,
   ProfileData,
@@ -107,6 +108,17 @@ export const publicApi = {
     params: PaginationParams,
   ): Promise<MindMapListResponse> => {
     return await connect.get<never, MindMapListResponse>('/api/public', {
+      params,
+    })
+  },
+
+  /**
+   * 获取随机公共思维导图列表
+   */
+  getRandomMapList: async (
+    params: RandomMapParams,
+  ): Promise<MindMapListResponse> => {
+    return await connect.get<never, MindMapListResponse>('/api/public/random', {
       params,
     })
   },

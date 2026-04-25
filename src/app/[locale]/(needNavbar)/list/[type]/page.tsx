@@ -41,15 +41,19 @@ export default function MapListPage() {
     setLoading(true)
     setIsUnauthorized(false)
     try {
-      const params = {
-        page: pagination.page,
-        pageSize: pagination.pageSize,
-        name: keyword,
-      }
-
       const res = isPublic
-        ? await api.public.getPublicMapList(params)
-        : await api.mindMap.getMapList(params)
+        ? keyword
+          ? await api.public.getPublicMapList({
+              page: pagination.page,
+              pageSize: pagination.pageSize,
+              name: keyword,
+            })
+          : await api.public.getRandomMapList({ size: 20 })
+        : await api.mindMap.getMapList({
+            page: pagination.page,
+            pageSize: pagination.pageSize,
+            name: keyword,
+          })
 
       console.log('API Response:', res)
       console.log('Map List:', res.data)
@@ -215,16 +219,18 @@ export default function MapListPage() {
               ))}
             </div>
 
-            <div className="flex justify-center">
-              <Pagination
-                page={pagination.page}
-                pageSize={pagination.pageSize}
-                total={pagination.total}
-                onPageChange={(page) =>
-                  setPagination((prev) => ({ ...prev, page }))
-                }
-              />
-            </div>
+            {(!isPublic || keyword) && (
+              <div className="flex justify-center">
+                <Pagination
+                  page={pagination.page}
+                  pageSize={pagination.pageSize}
+                  total={pagination.total}
+                  onPageChange={(page) =>
+                    setPagination((prev) => ({ ...prev, page }))
+                  }
+                />
+              </div>
+            )}
           </>
         )}
       </div>

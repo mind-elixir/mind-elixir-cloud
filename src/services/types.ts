@@ -9,6 +9,10 @@ export interface PaginationParams {
   name?: string
 }
 
+export interface RandomMapParams {
+  size: number
+}
+
 export interface CreateMapParams {
   name: string
   content?: any
