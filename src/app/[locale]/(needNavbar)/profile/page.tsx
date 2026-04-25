@@ -37,11 +37,11 @@ export default function ProfilePage() {
         if (response.data) {
           setProfileData(response.data)
         } else {
-          setError('无法加载用户配置信息')
+          setError(t('loadError'))
         }
       } catch (error) {
         console.error('Failed to load profile:', error)
-        setError('加载用户配置信息时发生错误')
+        setError(t('fetchError'))
       } finally {
         setLoading(false)
       }
@@ -118,8 +118,8 @@ export default function ProfilePage() {
     return (
       <div className="min-h-screen pt-28 px-8">
         <div className="max-w-2xl mx-auto text-center">
-          <h1 className="text-2xl font-bold mb-4">请先登录</h1>
-          <p className="text-gray-600">您需要登录后才能访问个人设置页面。</p>
+          <h1 className="text-2xl font-bold mb-4">{t('loginRequired')}</h1>
+          <p className="text-gray-600">{t('loginRequiredDesc')}</p>
         </div>
       </div>
     )
@@ -156,7 +156,7 @@ export default function ProfilePage() {
         {loading ? (
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900 mx-auto"></div>
-            <p className="mt-2 text-gray-600">加载中...</p>
+            <p className="mt-2 text-gray-600">{t('loading')}</p>
           </div>
         ) : error ? (
           <div className="text-center py-12">
@@ -181,7 +181,7 @@ export default function ProfilePage() {
               variant="outline"
               className="mt-4"
             >
-              重新加载
+              {t('reload')}
             </Button>
           </div>
         ) : (
@@ -375,7 +375,7 @@ export default function ProfilePage() {
               {saving ? (
                 <>
                   <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                  保存中...
+                  {t('saving')}
                 </>
               ) : (
                 t('save')

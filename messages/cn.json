@@ -107,7 +107,14 @@
     },
     "save": "保存更改",
     "saved": "个人设置保存成功",
-    "error": "保存个人设置失败"
+    "saving": "保存中...",
+    "error": "保存个人设置失败",
+    "loading": "加载中...",
+    "loginRequired": "请先登录",
+    "loginRequiredDesc": "您需要登录后才能访问个人设置页面。",
+    "reload": "重新加载",
+    "loadError": "无法加载用户配置信息",
+    "fetchError": "加载用户配置信息时发生错误"
   },
   "create": {
     "desktopRecommendation": "我们推荐使用 Mind Elixir Desktop 创建思维导图。",

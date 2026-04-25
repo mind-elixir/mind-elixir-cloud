@@ -96,7 +96,14 @@
     },
     "save": "変更を保存",
     "saved": "プロフィールが正常に保存されました",
-    "error": "プロフィールの保存に失敗しました"
+    "saving": "保存中...",
+    "error": "プロフィールの保存に失敗しました",
+    "loading": "読み込み中...",
+    "loginRequired": "ログインが必要です",
+    "loginRequiredDesc": "プロフィール設定にアクセスするにはログインが必要です。",
+    "reload": "再読み込み",
+    "loadError": "プロフィールを読み込めません",
+    "fetchError": "プロフィールの読み込み中にエラーが発生しました"
   },
   "create": {
     "desktopRecommendation": "マインドマップの作成には Mind Elixir Desktop の使用をお勧めします。",

@@ -107,7 +107,14 @@
     },
     "save": "Save Changes",
     "saved": "Profile saved successfully",
-    "error": "Failed to save profile"
+    "saving": "Saving...",
+    "error": "Failed to save profile",
+    "loading": "Loading...",
+    "loginRequired": "Login Required",
+    "loginRequiredDesc": "You need to login to access profile settings.",
+    "reload": "Reload",
+    "loadError": "Unable to load profile",
+    "fetchError": "Error loading profile"
   },
   "create": {
     "desktopRecommendation": "We recommend using Mind Elixir Desktop to create mind maps.",
