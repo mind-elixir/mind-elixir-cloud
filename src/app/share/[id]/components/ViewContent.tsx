@@ -73,7 +73,7 @@ export function ViewContent({
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">
-          <div className="h-[calc(100vh-450px)] min-h-[350px] md:h-[calc(100vh-420px)] md:min-h-[400px] lg:h-[calc(100vh-380px)] lg:min-h-[500px] overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:rounded-full dark:[&::-webkit-scrollbar-thumb]:bg-gray-600">
+          <div className="px-3 h-[calc(100vh-450px)] min-h-[350px] md:h-[calc(100vh-420px)] md:min-h-[400px] lg:h-[calc(100vh-380px)] lg:min-h-[500px] overflow-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-gray-300 [&::-webkit-scrollbar-thumb]:rounded-full dark:[&::-webkit-scrollbar-thumb]:bg-gray-600">
             <div className="border-b border-gray-100 dark:border-gray-800 px-4 py-2 lg:px-6 lg:py-3">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-gray-100">
                 {mapData.nodeData.topic}
