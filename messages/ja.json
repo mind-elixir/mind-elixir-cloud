@@ -67,11 +67,11 @@
         "description": "M10Cや電子書籍コンバーターなどの外部ツールからシームレスにインポートし、多様なコンテンツソースでマインドマップを充実させます。"
       }
     },
-      "comparison": {
-        "title": "Cloud vs Desktop",
-        "description": "最大限のプライバシーとオフラインアクセスには Mind Elixir Desktop をお試しください。共有とクロスデバイスアクセスには Mind Elixir Cloud をご利用ください。"
-      }
-    },
+    "comparison": {
+      "title": "Cloud vs Desktop",
+      "description": "最大限のプライバシーとオフラインアクセスには Mind Elixir App をお試しください。共有とクロスデバイスアクセスには Mind Elixir Cloud をご利用ください。"
+    }
+  },
   "profile": {
     "title": "プロフィール設定",
     "basicInfo": "基本情報",
@@ -106,8 +106,8 @@
     "fetchError": "プロフィールの読み込み中にエラーが発生しました"
   },
   "create": {
-    "desktopRecommendation": "マインドマップの作成には Mind Elixir Desktop の使用をお勧めします。",
-    "desktopApp": "Mind Elixir Desktop",
+    "desktopRecommendation": "マインドマップの作成には Mind Elixir App の使用をお勧めします。作成後はアプリ内から直接 Cloud へ共有できます。",
+    "desktopApp": "Mind Elixir App",
     "titlePlaceholder": "マインドマップのタイトルを入力..."
   },
   "share": {
@@ -169,7 +169,7 @@
     "privacyPolicy": "プライバシーポリシー",
     "termsOfService": "利用規約",
     "otherProducts": "他の製品",
-    "desktop": "Mind Elixir Desktop",
+    "desktop": "Mind Elixir App",
     "m10c": "M10C ウェブ/動画からマインドマップへ",
     "ebook2me": "Ebook to Me",
     "cloud": "Mind Elixir Cloud",

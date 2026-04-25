@@ -3,7 +3,7 @@ import { MindElixirData } from 'mind-elixir'
 export const desktopFeaturesData: MindElixirData = {
   nodeData: {
     id: 'root',
-    topic: 'Mind Elixir Desktop',
+    topic: 'Mind Elixir App',
     children: [
       {
         id: 'core-features',

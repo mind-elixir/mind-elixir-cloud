@@ -78,11 +78,11 @@
         "description": "无缝导入来自 M10C 和电子书转换器等外部工具的内容，用多样化的内容源丰富您的思维导图。"
       }
     },
-      "comparison": {
-        "title": "云端版 vs 桌面版",
-        "description": "如需最大隐私保护和离线访问，请尝试 Mind Elixir Desktop。如需分享和跨设备访问，请使用 Mind Elixir Cloud。"
-      }
-    },
+    "comparison": {
+      "title": "云端版 vs 桌面版",
+      "description": "如需最大隐私保护和离线访问，请尝试 Mind Elixir Desktop。如需分享和跨设备访问，请使用 Mind Elixir Cloud。"
+    }
+  },
   "profile": {
     "title": "个人设置",
     "basicInfo": "基本信息",
@@ -117,8 +117,8 @@
     "fetchError": "加载用户配置信息时发生错误"
   },
   "create": {
-    "desktopRecommendation": "我们推荐使用 Mind Elixir Desktop 创建思维导图。",
-    "desktopApp": "Mind Elixir Desktop",
+    "desktopRecommendation": "我们推荐使用 Mind Elixir App 创建思维导图。创建完可以直接在 App 中分享到 Cloud。",
+    "desktopApp": "Mind Elixir App",
     "titlePlaceholder": "输入思维导图标题..."
   },
   "share": {
@@ -180,7 +180,7 @@
     "privacyPolicy": "隐私政策",
     "termsOfService": "服务条款",
     "otherProducts": "其他产品",
-    "desktop": "Mind Elixir Desktop",
+    "desktop": "Mind Elixir App",
     "m10c": "M10C 网页/视频转思维导图",
     "ebook2me": "Ebook to Me 电子书转思维导图",
     "cloud": "Mind Elixir Cloud",

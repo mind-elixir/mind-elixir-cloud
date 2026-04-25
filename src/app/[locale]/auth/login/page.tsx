@@ -26,7 +26,7 @@ export default function AuthLoginPage() {
             <img
               className="w-20 h-20"
               src="https://img.ssshooter.com/img/mind-elixir-desktop/icon.svg"
-              alt="Mind Elixir Desktop logo"
+              alt="Mind Elixir App logo"
             />
           </div>
         </CardHeader>

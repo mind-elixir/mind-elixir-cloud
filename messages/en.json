@@ -78,11 +78,11 @@
         "description": "Seamlessly import from external tools like M10C and eBook converters, enriching your mind maps with diverse content sources."
       }
     },
-      "comparison": {
-        "title": "Cloud vs Desktop",
-        "description": "For maximum privacy and offline access, try Mind Elixir Desktop. For sharing and cross-device access, use Mind Elixir Cloud."
-      }
-    },
+    "comparison": {
+      "title": "Cloud vs Desktop",
+      "description": "For maximum privacy and offline access, try Mind Elixir App. For sharing and cross-device access, use Mind Elixir Cloud."
+    }
+  },
   "profile": {
     "title": "Profile Settings",
     "basicInfo": "Basic Information",
@@ -117,8 +117,8 @@
     "fetchError": "Error loading profile"
   },
   "create": {
-    "desktopRecommendation": "We recommend using Mind Elixir Desktop to create mind maps.",
-    "desktopApp": "Mind Elixir Desktop",
+    "desktopRecommendation": "We recommend using Mind Elixir App to create mind maps. You can share your mind maps to Cloud directly after creating them in the App.",
+    "desktopApp": "Mind Elixir App",
     "titlePlaceholder": "Enter mind map title..."
   },
   "share": {
@@ -180,7 +180,7 @@
     "privacyPolicy": "Privacy Policy",
     "termsOfService": "Terms of Service",
     "otherProducts": "Other Products",
-    "desktop": "Mind Elixir Desktop",
+    "desktop": "Mind Elixir App",
     "m10c": "M10C Video to Mind Map",
     "ebook2me": "Ebook to Me",
     "cloud": "Mind Elixir Cloud",
