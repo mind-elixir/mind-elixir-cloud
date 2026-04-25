@@ -33,71 +33,83 @@ export function AuthorInfo({ author, className = '' }: AuthorInfoProps) {
   return (
     <div className={`bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200/60 dark:border-gray-700/60 rounded-xl p-6 ${className}`}>
       {/* 作者头像和基本信息 */}
-      <div className="flex items-start gap-4 mb-4">
-        <div className="w-12 h-12 ring-2 ring-gray-200 dark:ring-gray-600 rounded-full overflow-hidden flex-shrink-0">
-          {author.image ? (
-            <img
-              src={author.image}
-              alt={author.name}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 text-white font-semibold flex items-center justify-center">
-              {author.name.charAt(0).toUpperCase()}
+      <div className="relative group/avatar mb-6">
+        <div className="flex items-center gap-5">
+          <div className="relative">
+            <div className="w-16 h-16 rounded-2xl overflow-hidden shadow-lg border-2 border-white dark:border-gray-800 group-hover/avatar:scale-105 transition-transform duration-300">
+              {author.image ? (
+                <img
+                  src={author.image}
+                  alt={author.name}
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full bg-gradient-to-br from-indigo-500 via-blue-600 to-violet-700 text-white font-bold text-xl flex items-center justify-center">
+                  {author.name.charAt(0).toUpperCase()}
+                </div>
+              )}
             </div>
-          )}
-        </div>
-        
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1">
-            <h3 className="font-semibold text-gray-900 dark:text-gray-100 truncate">
-              {author.name}
-            </h3>
-            <Badge variant="secondary" className="text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300 border border-blue-200 dark:border-blue-800">
-              <User className="w-3 h-3 mr-1" />
-              {t('author')}
-            </Badge>
+            <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-blue-500 border-2 border-white dark:border-gray-900 rounded-lg flex items-center justify-center shadow-md">
+              <User className="w-3 h-3 text-white" />
+            </div>
           </div>
           
-          {/* 位置信息 */}
-          {author.location && (
-            <div className="flex items-center gap-1.5 text-sm text-gray-600 dark:text-gray-400 mb-2">
-              <MapPin className="w-3.5 h-3.5" />
-              <span>{author.location}</span>
-            </div>
-          )}
-          
-          {/* 个人简介 */}
-          {author.bio && (
-            <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed mb-3">
-              {author.bio}
-            </p>
-          )}
+          <div className="flex-1 min-w-0">
+            <h3 className="font-bold text-lg text-gray-900 dark:text-gray-100 truncate tracking-tight mb-0.5">
+              {author.name}
+            </h3>
+            {author.location && (
+              <div className="flex items-center gap-1.5 text-xs font-medium text-gray-500 dark:text-gray-400">
+                <MapPin className="w-3 h-3" />
+                <span>{author.location}</span>
+              </div>
+            )}
+          </div>
         </div>
+        
+        {/* 个人简介 */}
+        {author.bio && (
+          <div className="mt-4">
+            <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed line-clamp-2 italic">
+              "{author.bio}"
+            </p>
+          </div>
+        )}
       </div>
 
       {/* 社交媒体链接 */}
       {author.socialLinks && author.socialLinks.length > 0 && (
-        <div>
-          <h4 className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-wider">
+        <div className="mt-6 pt-6 border-t border-gray-100 dark:border-gray-800">
+          <h4 className="text-[10px] font-bold text-gray-400 dark:text-gray-500 mb-4 uppercase tracking-[0.2em]">
             {t('socialMedia')}
           </h4>
-          <div className="flex flex-wrap gap-2">
+          <div className="grid grid-cols-1 gap-3">
             {author.socialLinks.map((link, index) => {
               const label = getPlatformLabel(link)
+              const platformConfig = SOCIAL_PLATFORMS.find((p) => p.id === link.platform)
+              const color = platformConfig?.color || '#6B7280'
 
               return (
-                <Button
+                <a
                   key={index}
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => handleSocialClick(link.url)}
-                  className="h-8 px-3 text-xs text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex items-center gap-3 p-2.5 rounded-xl border border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-800/30 hover:bg-white dark:hover:bg-gray-800 hover:border-gray-200 dark:hover:border-gray-700 hover:shadow-sm transition-all duration-300"
                   title={t('followOn', { platform: label })}
                 >
-                  <PlatformIcon platform={link.platform} className="w-3.5 h-3.5 mr-1.5" />
-                  {label}
-                </Button>
+                  <div 
+                    className="flex items-center justify-center w-8 h-8 rounded-lg bg-white dark:bg-gray-900 shadow-sm group-hover:scale-110 transition-transform duration-300"
+                    style={{ color }}
+                  >
+                    <PlatformIcon platform={link.platform} className="w-4 h-4" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[11px] font-medium text-gray-600 dark:text-gray-400 truncate group-hover:text-gray-900 dark:group-hover:text-gray-100 transition-colors">
+                      {label}
+                    </p>
+                  </div>
+                </a>
               )
             })}
           </div>

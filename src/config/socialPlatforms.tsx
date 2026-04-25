@@ -31,21 +31,23 @@ export const SOCIAL_PLATFORMS = [
 export const PlatformIcon = ({
   platform,
   className = 'w-4 h-4',
+  color,
 }: {
   platform: string
   className?: string
+  color?: string
 }) => {
   const platformConfig = SOCIAL_PLATFORMS.find((p) => p.id === platform)
 
   if (!platformConfig) {
-    return <Globe className={className} />
+    return <Globe className={className} style={{ color }} />
   }
 
   const IconComponent = platformConfig.icon
   return (
     <IconComponent
       className={className}
-      style={{ color: platformConfig.color }}
+      style={{ color: color || platformConfig.color }}
     />
   )
 }
