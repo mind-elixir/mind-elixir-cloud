@@ -17,6 +17,7 @@ import { cn } from '@/lib/utils'
 import { MindMapItem } from '@/models/list'
 import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
+import { LanguageSelector } from '../../components/LanguageSelector'
 
 type ViewMode = 'mindmap' | 'outline' | 'split'
 
@@ -99,6 +100,8 @@ export function ShareHeader({
 
           {/* 操作按钮 */}
           <div className="flex items-center gap-3 flex-col sm:flex-row w-full sm:w-auto">
+            {/* 语言选择器 */}
+            <LanguageSelector />
             {/* 分享按钮 */}
             <Button
               variant="outline"

@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { unstable_cache } from 'next/cache'
 import { serverApi } from '@/services/api.server'
+import { setRequestLocale } from 'next-intl/server'
 import { ClientWrapper } from './components/ClientComponents'
 import { generateI18nAlternates } from '@/lib/metadata'
 import type { MindElixirData } from 'mind-elixir'
@@ -76,7 +77,8 @@ const getMapData = async (id: string) => {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { id, locale } = await params
+  const { id } = await params
+  const locale = 'en' // Default locale for share pages without URL segment
 
   try {
     const { mapItem, authorProfile } = await getMapData(id)
@@ -87,7 +89,7 @@ export async function generateMetadata({
     const description = `Explore "${mapItem.name}" mind map created by ${authorName}. Interactive mind mapping tool for organizing thoughts and ideas.`
     const baseUrl =
       process.env.NEXT_PUBLIC_BASE_URL || 'https://cloud.mind-elixir.com'
-    const currentUrl = `${baseUrl}/${locale}/share/${id}`
+    const currentUrl = `${baseUrl}/share/${id}`
 
     return {
       title,
@@ -113,7 +115,9 @@ export async function generateMetadata({
         description,
         images: ['/og-image.png'],
       },
-      alternates: generateI18nAlternates(`/share/${id}`),
+      alternates: {
+        canonical: currentUrl,
+      },
     }
   } catch (error) {
     console.error('Failed to generate metadata:', error)
@@ -144,11 +148,13 @@ export async function generateStaticParams() {
 }
 
 interface PageProps {
-  params: Promise<{ id: string; locale: string }>
+  params: Promise<{ id: string }>
 }
 
 export default async function MapSharePage({ params }: PageProps) {
   const { id } = await params
+  const locale = 'en'
+  setRequestLocale(locale)
 
   try {
     const { mapItem, mapData, authorProfile } = await getMapData(id)

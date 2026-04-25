@@ -198,7 +198,11 @@ export default function MapListPage() {
               {mapList.map((map) => (
                 <Link
                   key={map._id}
-                  href={`/${isPublic ? 'share' : 'edit'}/${map._id}`}
+                  href={
+                    isPublic
+                      ? `/share/${map._id}`
+                      : `/${params.locale}/edit/${map._id}`
+                  }
                 >
                   <MindMapCard
                     key={map._id}
@@ -233,7 +237,7 @@ export default function MapListPage() {
   )
 
   const shareUrl = currentShareItem
-    ? `${typeof window !== 'undefined' ? window.location.origin : ''}/${params.locale}/share/${currentShareItem._id}`
+    ? `${typeof window !== 'undefined' ? window.location.origin : ''}/share/${currentShareItem._id}`
     : ''
 
   return (
