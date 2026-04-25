@@ -11,7 +11,7 @@ import { ViewContent } from './ViewContent'
 import { ShareFooter } from './ShareFooter'
 import { AuthorInfo } from './AuthorInfo'
 import { ErrorState } from './ErrorState'
-import LoadingMask  from '@/components/LoadingMask'
+import LoadingMask from '@/components/LoadingMask'
 
 // Services
 import { api } from '@/services/api'
@@ -25,11 +25,7 @@ import nodeMenu from '@mind-elixir/node-menu-neo'
 
 type ViewMode = 'mindmap' | 'outline' | 'split'
 
-export function ClientWrapper({ 
-  params 
-}: { 
-  params: Promise<{ id: string }> 
-}) {
+export function ClientWrapper({ params }: { params: Promise<{ id: string }> }) {
   const t = useTranslations('share')
   const [viewMode, setViewMode] = useState<ViewMode>('split')
   const [isFullscreen, setIsFullscreen] = useState(false)
@@ -38,14 +34,16 @@ export function ClientWrapper({
   const [error, setError] = useState(false)
   const [mapData, setMapData] = useState<MindElixirData | null>(null)
   const [mapItem, setMapItem] = useState<MindMapItem | null>(null)
-  const [authorProfile, setAuthorProfile] = useState<PublicUserProfile | undefined>(undefined)
+  const [authorProfile, setAuthorProfile] = useState<
+    PublicUserProfile | undefined
+  >(undefined)
 
   // 获取数据
   useEffect(() => {
     async function fetchData() {
       try {
         const { id } = await params
-        
+
         // 获取思维导图数据
         const mapRes = await api.public.getPublicMap(id)
         const mapItemData = mapRes.data
@@ -57,7 +55,9 @@ export function ClientWrapper({
         // 获取作者信息
         if (mapItemData.author) {
           try {
-            const authorRes = await api.public.getPublicUserProfile(mapItemData.author.toString())
+            const authorRes = await api.public.getPublicUserProfile(
+              mapItemData.author.toString(),
+            )
             setAuthorProfile(authorRes.data)
           } catch (authorError) {
             console.error('Failed to fetch author profile:', authorError)
@@ -78,14 +78,17 @@ export function ClientWrapper({
 
   // 使用useMemo缓存plugins和options，避免不必要的重新渲染
   const plugins = useMemo(() => [nodeMenu], [])
-  const options = useMemo<Partial<Options>>(() => ({
-    direction: 2,
-    draggable: false,
-    editable: false,
-    contextMenu: false,
-    toolBar: true,
-    keypress: false,
-  }), [])
+  const options = useMemo<Partial<Options>>(
+    () => ({
+      direction: 2,
+      draggable: false,
+      editable: false,
+      contextMenu: false,
+      toolBar: true,
+      keypress: false,
+    }),
+    [],
+  )
 
   const handleCopyLink = async () => {
     try {
@@ -113,10 +116,12 @@ export function ClientWrapper({
   }
 
   return (
-    <div className={cn(
-      "min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 dark:from-gray-900 dark:via-slate-900 dark:to-gray-800",
-      isFullscreen && "fixed inset-0 z-50"
-    )}>
+    <div
+      className={cn(
+        'min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-blue-50 dark:from-gray-900 dark:via-slate-900 dark:to-gray-800',
+        isFullscreen && 'fixed inset-0 z-50',
+      )}
+    >
       <ShareHeader
         mapItem={mapItem}
         viewMode={viewMode}
@@ -144,7 +149,7 @@ export function ClientWrapper({
           <div className="lg:col-span-1">
             <div className="sticky top-32 space-y-4">
               {authorProfile && (
-                <AuthorInfo className='w-64' author={authorProfile} />
+                <AuthorInfo className="w-64" author={authorProfile} />
               )}
 
               {/* 思维导图相关链接 */}

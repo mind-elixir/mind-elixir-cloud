@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Copy, Check, Twitter, Facebook, Linkedin, Share2, Code } from 'lucide-react'
+import { Copy, Check, Code } from 'lucide-react'
+import { SiX, SiFacebook, SiLinkedin, SiSinaweibo } from 'react-icons/si'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -118,7 +119,7 @@ export default function ShareModal({
                 onClick={shareToTwitter}
                 className="rounded-full"
               >
-                <Twitter className="h-4 w-4" />
+                <SiX className="h-4 w-4" />
               </Button>
               <Button
                 variant="outline"
@@ -126,7 +127,7 @@ export default function ShareModal({
                 onClick={shareToFacebook}
                 className="rounded-full"
               >
-                <Facebook className="h-4 w-4" />
+                <SiFacebook className="h-4 w-4" />
               </Button>
               <Button
                 variant="outline"
@@ -134,7 +135,7 @@ export default function ShareModal({
                 onClick={shareToLinkedin}
                 className="rounded-full"
               >
-                <Linkedin className="h-4 w-4" />
+                <SiLinkedin className="h-4 w-4" />
               </Button>
               <Button
                 variant="outline"
@@ -142,7 +143,7 @@ export default function ShareModal({
                 onClick={shareToWeibo}
                 className="rounded-full"
               >
-                <Share2 className="h-4 w-4" />
+                <SiSinaweibo className="h-4 w-4" />
               </Button>
             </div>
           </div>

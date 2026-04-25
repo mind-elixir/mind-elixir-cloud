@@ -24,12 +24,12 @@ export default function HomePage() {
     <div className="min-h-screen">
       {/* Navigation */}
       <div className="fixed top-0 left-0 right-0 z-50 p-5">
-        <NavBar className="max-w-7xl mx-auto" />
+        <NavBar className="max-w-5xl mx-auto" />
       </div>
 
       {/* Hero Section */}
       <div className="pt-32 pb-16 px-8">
-        <div className="max-w-7xl mx-auto text-center mb-12">
+        <div className="max-w-5xl mx-auto text-center mb-12">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">{t('title')}</h1>
           <AuroraText className="text-2xl md:text-3xl mb-4">
             {t('subtitle')}
@@ -74,7 +74,7 @@ export default function HomePage() {
         </div>
 
         {/* Comparison Section */}
-        <div className="max-w-4xl mx-auto mb-20">
+        <div className="max-w-5xl mx-auto mb-20">
           <div className="p-8 rounded-lg bg-muted/50 border border-border">
             <h2 className="text-2xl md:text-3xl font-bold mb-4 text-center">
               {tComparison('title')}
