@@ -84,8 +84,8 @@ importers:
         specifier: ^5.5.0
         version: 5.5.0(react@19.1.0)
       react-outliner-neo:
-        specifier: ^0.5.0
-        version: 0.5.0(@types/node@20.16.11)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.6.3)
+        specifier: ^0.5.1
+        version: 0.5.1(@types/node@20.16.11)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.6.3)
       react-scan:
         specifier: ^0.4.3
         version: 0.4.3(@types/react@19.1.6)(next@15.3.8(@babel/core@7.29.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -2907,8 +2907,8 @@ packages:
   react-is@16.13.1:
     resolution: {integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==}
 
-  react-outliner-neo@0.5.0:
-    resolution: {integrity: sha512-Ob15aHPZu5VGGmCTSO0gpvjcL6y5pwmF6ewh2WihAOwxbLfuwKST4cUwQdtTMmF4f2n7Ea+J4iJr9VsbKVoZpQ==}
+  react-outliner-neo@0.5.1:
+    resolution: {integrity: sha512-+oe+g5AcSU9ZXtZ3vCDaHBfb5h8xNEM7uQNSb67BPuVo2qjjNh6tpWSVseiXn9tbjbHEiqopyntro3EBFP0Uvw==}
     peerDependencies:
       react: ^19.0.0
       react-dom: ^19.0.0
@@ -6292,7 +6292,7 @@ snapshots:
 
   react-is@16.13.1: {}
 
-  react-outliner-neo@0.5.0(@types/node@20.16.11)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.6.3):
+  react-outliner-neo@0.5.1(@types/node@20.16.11)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.6.3):
     dependencies:
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
