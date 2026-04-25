@@ -99,6 +99,22 @@ export function ShareHeader({
 
           {/* 操作按钮 */}
           <div className="flex items-center gap-3 flex-col sm:flex-row w-full sm:w-auto">
+            {/* 分享按钮 */}
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={onCopyLink}
+              className="h-8 px-3 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
+            >
+              {copied ? (
+                <Check className="w-3.5 h-3.5 mr-1.5 text-emerald-600" />
+              ) : (
+                <Copy className="w-3.5 h-3.5 mr-1.5" />
+              )}
+              <span className="text-xs font-medium">
+                {copied ? t('copied') : t('copyLink')}
+              </span>
+            </Button>
             {/* 视图切换 */}
             <div className="flex items-center bg-gray-50 dark:bg-gray-800 rounded-lg p-0.5 border border-gray-200 dark:border-gray-700">
               <Button
@@ -128,37 +144,6 @@ export function ShareHeader({
                 {t('viewSplit')}
               </Button>
             </div>
-
-            {/* 全屏切换 */}
-            {/* <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setIsFullscreen(!isFullscreen)}
-              className="h-8 px-3 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 shadow-soft"
-            >
-              {isFullscreen ? (
-                <Minimize2 className="w-3.5 h-3.5" />
-              ) : (
-                <Maximize2 className="w-3.5 h-3.5" />
-              )}
-            </Button> */}
-
-            {/* 分享按钮 */}
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={onCopyLink}
-              className="h-8 px-3 bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100"
-            >
-              {copied ? (
-                <Check className="w-3.5 h-3.5 mr-1.5 text-emerald-600" />
-              ) : (
-                <Copy className="w-3.5 h-3.5 mr-1.5" />
-              )}
-              <span className="text-xs font-medium">
-                {copied ? t('copied') : t('copyLink')}
-              </span>
-            </Button>
           </div>
         </div>
       </div>
