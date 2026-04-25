@@ -14,6 +14,7 @@ import ShareModal from '@/components/ShareModal'
 import { api } from '@/services/api'
 import { MindMapItem } from '@/models/list'
 import Link from 'next/link'
+import { useDebounce } from '@/hooks/useDebounce'
 
 export default function MapListPage() {
   const t = useTranslations('list')
@@ -21,7 +22,6 @@ export default function MapListPage() {
   const router = useRouter()
   const [mapList, setMapList] = useState<MindMapItem[]>([])
   const [loading, setLoading] = useState(true)
-  const [keyword, setKeyword] = useState('')
   const [searchValue, setSearchValue] = useState('')
   const [isUnauthorized, setIsUnauthorized] = useState(false)
   const [pagination, setPagination] = useState({
@@ -36,23 +36,24 @@ export default function MapListPage() {
 
   const type = params.type as string
   const isPublic = type === 'public'
+  const debouncedSearchValue = useDebounce(searchValue, 500)
 
   const fetchList = async () => {
     setLoading(true)
     setIsUnauthorized(false)
     try {
       const res = isPublic
-        ? keyword
+        ? debouncedSearchValue
           ? await api.public.getPublicMapList({
               page: pagination.page,
               pageSize: pagination.pageSize,
-              name: keyword,
+              name: debouncedSearchValue,
             })
           : await api.public.getRandomMapList({ size: 20 })
         : await api.mindMap.getMapList({
             page: pagination.page,
             pageSize: pagination.pageSize,
-            name: keyword,
+            name: debouncedSearchValue,
           })
 
       console.log('API Response:', res)
@@ -91,19 +92,11 @@ export default function MapListPage() {
 
   useEffect(() => {
     fetchList()
-  }, [pagination.page, keyword, type])
+  }, [pagination.page, debouncedSearchValue, type])
 
   useEffect(() => {
-    console.log('MapList updated:', mapList, 'Length:', mapList.length)
-  }, [mapList])
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setKeyword(searchValue)
-      setPagination((prev) => ({ ...prev, page: 1 }))
-    }, 500)
-    return () => clearTimeout(timer)
-  }, [searchValue])
+    setPagination((prev) => ({ ...prev, page: 1 }))
+  }, [debouncedSearchValue])
 
   const handleSearch = (val: string) => {
     setSearchValue(val)
@@ -192,9 +185,11 @@ export default function MapListPage() {
           <div className="flex flex-col items-center justify-center py-20 px-4">
             <div className="rounded-lg border border-dashed border-border bg-muted/30 p-12 max-w-md w-full text-center">
               <p className="text-muted-foreground mb-4">
-                {keyword ? t('noMapsFound') : t('noMapsYet')}
+                {debouncedSearchValue ? t('noMapsFound') : t('noMapsYet')}
               </p>
-              {!isPublic && !keyword && <CreateButton className="mx-auto" />}
+              {!isPublic && !debouncedSearchValue && (
+                <CreateButton className="mx-auto" />
+              )}
             </div>
           </div>
         ) : (
@@ -219,7 +214,7 @@ export default function MapListPage() {
               ))}
             </div>
 
-            {(!isPublic || keyword) && (
+            {(!isPublic || debouncedSearchValue) && (
               <div className="flex justify-center">
                 <Pagination
                   page={pagination.page}
