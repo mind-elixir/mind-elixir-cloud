@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useTranslations } from 'next-intl'
 import { MindMapItem } from '@/models/list'
 import { MoreVertical, Download } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -38,6 +39,7 @@ export default function MindMapCard({
   onMakePublic,
   onShare,
 }: MindMapCardProps) {
+  const t = useTranslations('card')
   const [showDropdown, setShowDropdown] = useState(false)
 
   const timeFormatter = (dateString: string) => {
@@ -89,7 +91,7 @@ export default function MindMapCard({
                     onMakePublic()
                   }}
                 >
-                  {map.public ? 'Make Private' : 'Make Public'}
+                  {map.public ? t('unshare') : t('makeShare')}
                 </DropdownMenuItem>
               )}
               <DropdownMenuItem
@@ -98,12 +100,12 @@ export default function MindMapCard({
                   onShare()
                 }}
               >
-                Share
+                {t('shareLink')}
               </DropdownMenuItem>
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger>
                   <Download className="mr-2 h-4 w-4" />
-                  Download
+                  {t('download')}
                 </DropdownMenuSubTrigger>
                 <DropdownMenuSubContent>
                   <DropdownMenuItem
@@ -140,7 +142,7 @@ export default function MindMapCard({
                   }}
                   className="text-destructive"
                 >
-                  Delete
+                  {t('delete')}
                 </DropdownMenuItem>
               )}
             </DropdownMenuContent>
@@ -155,7 +157,7 @@ export default function MindMapCard({
           </CardTitle>
           {map.public && (
             <Badge variant="secondary" className="ml-2">
-              Public
+              {t('share')}
             </Badge>
           )}
         </div>

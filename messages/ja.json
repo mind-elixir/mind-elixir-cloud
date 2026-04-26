@@ -181,5 +181,13 @@
     "unsaved": "未保存の変更",
     "saved": "すべての変更を保存しました",
     "savedAt": "保存： {time}"
+  },
+  "card": {
+    "makeShare": "ギャラリーに共有",
+    "unshare": "共有を解除",
+    "shareLink": "リンクを共有",
+    "download": "ダウンロード",
+    "delete": "削除",
+    "share": "共有"
   }
 }

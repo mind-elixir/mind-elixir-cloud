@@ -192,5 +192,13 @@
     "unsaved": "未保存的更改",
     "saved": "已保存所有更改",
     "savedAt": "保存于 {time}"
+  },
+  "card": {
+    "makeShare": "分享到画廊",
+    "unshare": "取消分享",
+    "shareLink": "分享链接",
+    "download": "下载",
+    "delete": "删除",
+    "share": "分享"
   }
 }

@@ -36,7 +36,7 @@ const availableLocales = ['en', 'cn', 'ja']
 
 const localeNames = {
   en: 'English',
-  cn: '中文',
+  cn: '简体中文',
   ja: '日本語',
 }
 
@@ -82,6 +82,7 @@ export default function NavBar({ className }: NavBarProps) {
             <DropdownMenuSub>
               <DropdownMenuSubTrigger>
                 <Globe className="mr-2 h-4 w-4" />
+                <span>{t('menu.language')}</span>
               </DropdownMenuSubTrigger>
               <DropdownMenuSubContent>
                 {availableLocales.map((localeOption) => (
@@ -145,7 +146,7 @@ export default function NavBar({ className }: NavBarProps) {
                     className="h-10 px-4 py-2 hover:bg-slate-100 hover:text-slate-900"
                   >
                     <Globe className="mr-2 h-4 w-4" />
-                    i18n
+                    {t('menu.language')}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>

@@ -27,7 +27,7 @@
     "public": "Explore",
     "folder": "Folder",
     "about": "About",
-    "language": "language",
+    "language": "Language",
     "profile": "Profile"
   },
   "button": {
@@ -192,5 +192,13 @@
     "unsaved": "Unsaved changes",
     "saved": "All changes saved",
     "savedAt": "Saved at {time}"
+  },
+  "card": {
+    "makeShare": "Share to Gallery",
+    "unshare": "Make Private",
+    "shareLink": "Share Link",
+    "download": "Download",
+    "delete": "Delete",
+    "share": "Shared"
   }
 }

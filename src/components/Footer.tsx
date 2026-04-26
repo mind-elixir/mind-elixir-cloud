@@ -28,8 +28,7 @@ export default function Footer() {
               <span>Mind Elixir</span>
             </Link>
             <p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-              Free-flowing Thoughts, AI-ignited Creative Sparks. A powerful,
-              lightweight, and privacy-focused mind mapping tool.
+              Free-flowing Thoughts, AI-ignited Creative Sparks.
             </p>
           </div>
 
@@ -158,7 +157,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://x.com/ssshooter_z"
+                  href="https://x.com/mindelixirx"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-primary transition-colors duration-200"
