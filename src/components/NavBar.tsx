@@ -32,13 +32,7 @@ import { cn } from '@/lib/utils'
 interface NavBarProps {
   className?: string
 }
-const availableLocales = ['en', 'cn', 'ja']
-
-const localeNames = {
-  en: 'English',
-  cn: '简体中文',
-  ja: '日本語',
-}
+import { locales as availableLocales, localeNames } from '@/config/i18n'
 
 export default function NavBar({ className }: NavBarProps) {
   const t = useTranslations()

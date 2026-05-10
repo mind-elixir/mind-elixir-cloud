@@ -3,6 +3,7 @@ import { Metadata } from 'next'
 import { unstable_cache } from 'next/cache'
 import { serverApi } from '@/services/api.server'
 import { setRequestLocale } from 'next-intl/server'
+import { defaultLocale } from '@/config/i18n'
 import { ClientWrapper } from './components/ClientComponents'
 import { generateI18nAlternates } from '@/lib/metadata'
 import type { MindElixirData } from 'mind-elixir'
@@ -78,7 +79,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { id } = await params
-  const locale = 'en' // Default locale for share pages without URL segment
+  const locale = defaultLocale // Default locale for share pages without URL segment
 
   try {
     const { mapItem, authorProfile } = await getMapData(id)
@@ -153,7 +154,7 @@ interface PageProps {
 
 export default async function MapSharePage({ params }: PageProps) {
   const { id } = await params
-  const locale = 'en'
+  const locale = defaultLocale
   setRequestLocale(locale)
 
   try {

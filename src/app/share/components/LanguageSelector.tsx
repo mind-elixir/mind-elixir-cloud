@@ -10,14 +10,10 @@ import {
 } from '@/components/ui/select'
 import { Languages } from 'lucide-react'
 
+import { languages } from '@/config/i18n'
+
 export function LanguageSelector() {
   const { locale, setLocale } = useShareLocale()
-
-  const languages = [
-    { value: 'en', label: 'English' },
-    { value: 'cn', label: '简体中文' },
-    { value: 'ja', label: '日本語' },
-  ]
 
   return (
     <div className="flex items-center gap-2">

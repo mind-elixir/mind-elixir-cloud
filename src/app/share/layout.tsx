@@ -15,17 +15,27 @@ export const metadata: Metadata = {
   },
 }
 
+import { locales } from '@/config/i18n'
+
 export default async function ShareLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
-  // Load all messages to support client-side switching
-  const allMessages = {
-    en: (await import('../../../messages/en.json')).default,
-    cn: (await import('../../../messages/cn.json')).default,
-    ja: (await import('../../../messages/ja.json')).default,
-  }
+  // Load all messages dynamically to support client-side switching
+  const messagesArray = await Promise.all(
+    locales.map(async (locale) => ({
+      locale,
+      messages: (await import(`../../../messages/${locale}.json`)).default,
+    }))
+  )
+  const allMessages = messagesArray.reduce(
+    (acc, { locale, messages }) => {
+      acc[locale] = messages
+      return acc
+    },
+    {} as Record<string, any>
+  )
 
   return (
     <html lang="en" suppressHydrationWarning>

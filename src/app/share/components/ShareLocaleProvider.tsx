@@ -2,8 +2,7 @@
 
 import { NextIntlClientProvider } from 'next-intl'
 import { useState, useEffect, createContext, useContext } from 'react'
-
-type Locale = 'en' | 'cn' | 'ja'
+import { Locale, locales, defaultLocale } from '@/config/i18n'
 
 interface LocaleContextType {
   locale: Locale
@@ -27,12 +26,12 @@ export function ShareLocaleProvider({
   children: React.ReactNode
   allMessages: Record<string, any>
 }) {
-  const [locale, setLocale] = useState<Locale>('en')
+  const [locale, setLocale] = useState<Locale>(defaultLocale)
 
   useEffect(() => {
     // 1. Check localStorage
     const savedLocale = localStorage.getItem('share-locale') as Locale
-    if (savedLocale && ['en', 'cn', 'ja'].includes(savedLocale)) {
+    if (savedLocale && (locales as readonly string[]).includes(savedLocale)) {
       setLocale(savedLocale)
       return
     }
@@ -43,8 +42,10 @@ export function ShareLocaleProvider({
       setLocale('cn')
     } else if (browserLang.startsWith('ja')) {
       setLocale('ja')
+    } else if (browserLang.startsWith('es')) {
+      setLocale('es')
     } else {
-      setLocale('en')
+      setLocale(defaultLocale)
     }
   }, [])
 

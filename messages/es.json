@@ -1,0 +1,204 @@
+{
+  "misc": {
+    "pleaseLogin": "Por favor, inicie sesión primero",
+    "networkError": "Error de red",
+    "formatSelect": "Elegir formato",
+    "title": "Nuevo mapa mental",
+    "ok": "Aceptar",
+    "cancel": "Cancelar",
+    "login": "Iniciar sesión",
+    "share": "Compartir",
+    "loggingIn": "Iniciando sesión...",
+    "create": "Crear",
+    "connectingDesktop": "Conectando con la aplicación de escritorio",
+    "ensureDesktopRunning": "Asegúrese de que la aplicación de escritorio esté abierta y lista para conectarse",
+    "secureConnection": "Conexión segura",
+    "autoRedirect": "Redirección automática",
+    "gettingToken": "Obteniendo token de autenticación...",
+    "connectingApp": "Conectando con la aplicación de escritorio...",
+    "verifyingIdentity": "Verificando identidad...",
+    "loginSuccess": "¡Inicio de sesión correcto! Redireccionando...",
+    "completed": "Inicio de sesión completado",
+    "connectionFailed": "Error de conexión, inténtelo de nuevo",
+    "checkDesktopApp": "Error al iniciar sesión, verifique la conexión de red o inténtelo de nuevo más tarde",
+    "manualOpenApp": "Si no se abre automáticamente, haga clic aquí manualmente"
+  },
+  "menu": {
+    "public": "Explorar",
+    "folder": "Carpeta",
+    "about": "Acerca de",
+    "language": "Idioma",
+    "profile": "Perfil"
+  },
+  "button": {
+    "signin": "Iniciar sesión",
+    "signinWithWeibo": "Iniciar sesión con Weibo",
+    "signinWithGitHub": "Iniciar sesión con GitHub",
+    "signinWithGoogle": "Iniciar sesión con Google",
+    "signinWithLinuxDo": "Iniciar sesión con Linux Do",
+    "logout": "Cerrar sesión",
+    "new": "Nuevo",
+    "save": "Guardar"
+  },
+  "title": {
+    "signinWith": "Iniciar sesión con"
+  },
+  "auth": {
+    "loginPageDescription": "Elija su método de inicio de sesión preferido"
+  },
+  "home": {
+    "title": "Mind Elixir Cloud",
+    "subtitle": "Ideas fluidas, chispas creativas: en cualquier lugar y en cualquier momento",
+    "intro": "Mind Elixir Cloud lleva el poder de los mapas mentales a su navegador. Acceda a sus ideas desde cualquier lugar y compártalas con otros."
+  },
+  "about": {
+    "title": "Acerca de Mind Elixir Cloud",
+    "subtitle": "Ideas fluidas, chispas creativas: en cualquier lugar y en cualquier momento",
+    "intro": "Mind Elixir Cloud lleva el poder de los mapas mentales a su navegador. Acceda a sus ideas desde cualquier lugar y compártalas con otros.",
+    "features": {
+      "title": "Características clave",
+      "cloudSync": {
+        "title": "Sincronización en la nube",
+        "description": "Acceda a sus mapas mentales desde cualquier dispositivo con sincronización automática en la nube. Sus ideas siempre al alcance de su mano."
+      },
+      "webBased": {
+        "title": "Acceso web",
+        "description": "No requiere instalación. Cree y edite mapas mentales directamente en su navegador con acceso instantáneo."
+      },
+      "publicSharing": {
+        "title": "Compartir inspiración",
+        "description": "Comparta sus mapas mentales con el mundo. Únase a nuestra galería e inspire a otros con sus ideas."
+      },
+      "multiFormat": {
+        "title": "Múltiples formatos de exportación",
+        "description": "Exporte sus mapas mentales a varios formatos para diferentes casos de uso y plataformas."
+      },
+      "dataFlow": {
+        "title": "Flujo de datos diversificado",
+        "description": "Importe de manera fluida desde herramientas externas como M10C y conversores de libros electrónicos, enriqueciendo sus mapas mentales con diversas fuentes de contenido."
+      }
+    },
+    "comparison": {
+      "title": "Nube vs Escritorio",
+      "description": "Para máxima privacidad y acceso sin conexión, pruebe la aplicación Mind Elixir. Para compartir y acceder desde múltiples dispositivos, use Mind Elixir Cloud."
+    }
+  },
+  "profile": {
+    "title": "Configuración del perfil",
+    "basicInfo": "Información básica",
+    "displayName": "Nombre visible",
+    "bio": "Biografía",
+    "location": "Ubicación",
+    "socialLinks": "Enlaces sociales",
+    "addSocialLink": "Añadir enlace",
+    "popularPlatforms": "Plataformas populares",
+    "customLinks": "Enlaces personalizados",
+    "addCustomLink": "Añadir enlace personalizado",
+    "noLinksYet": "Aún no hay enlaces",
+    "url": "URL",
+    "label": "Etiqueta",
+    "remove": "Eliminar",
+    "placeholder": {
+      "displayName": "Establezca su nombre público visible...",
+      "bio": "Cuéntenos sobre usted...",
+      "location": "¿Dónde se encuentra?",
+      "url": "https://ejemplo.com",
+      "label": "Nombre del enlace"
+    },
+    "save": "Guardar cambios",
+    "saved": "Perfil guardado correctamente",
+    "saving": "Guardando...",
+    "error": "Error al guardar el perfil",
+    "loading": "Cargando...",
+    "loginRequired": "Inicio de sesión requerido",
+    "loginRequiredDesc": "Debe iniciar sesión para acceder a la configuración del perfil.",
+    "reload": "Recargar",
+    "loadError": "No se pudo cargar el perfil",
+    "fetchError": "Error al cargar el perfil"
+  },
+  "create": {
+    "desktopRecommendation": "Recomendamos usar la aplicación Mind Elixir para crear mapas mentales. Puede compartir sus mapas mentales en la nube directamente después de crearlos en la aplicación.",
+    "desktopApp": "Aplicación Mind Elixir",
+    "titlePlaceholder": "Introduzca el título del mapa mental..."
+  },
+  "share": {
+    "public": "Compartido",
+    "updatedAt": "Actualizado el",
+    "viewMindMap": "Mapa mental",
+    "viewOutline": "Esquema",
+    "viewSplit": "Dividido",
+    "mindMapView": "Vista de mapa mental",
+    "mindMapOutline": "Esquema de mapa mental",
+    "copyLink": "Copiar enlace",
+    "copied": "Copiado",
+    "relatedLinks": "Enlaces relacionados",
+    "viewRelatedLink": "Ver enlace relacionado",
+    "poweredBy": "Desarrollado por Mind Elixir Cloud",
+    "shareThisMindMap": "Compartir este mapa mental",
+    "author": "Autor",
+    "socialMedia": "Redes sociales",
+    "followOn": "Seguir en {platform}",
+    "notFound": "Mapa mental no encontrado",
+    "checkLink": "Verifique si el enlace es correcto"
+  },
+  "list": {
+    "loginRequired": "Inicio de sesión requerido",
+    "loginToView": "Debe iniciar sesión para ver la lista de mapas mentales de tipo {type}",
+    "loginHint": "Haga clic en el botón de inicio de sesión en la esquina superior derecha",
+    "publicMaps": "Explorar",
+    "yourMaps": "sus",
+    "noMapsFound": "No se encontraron mapas mentales coincidentes",
+    "noMapsYet": "Aún no hay mapas mentales",
+    "deleteConfirm": "¿Está seguro de que desea eliminar este mapa?",
+    "shareTitle": "Compartir \"{name}\"",
+    "shareDefaultTitle": "Compartir mapa mental"
+  },
+  "pagination": {
+    "totalItems": "Total {total} elementos",
+    "goToFirstPage": "Ir a la primera página",
+    "goToPreviousPage": "Ir a la página anterior",
+    "goToNextPage": "Ir a la página siguiente",
+    "goToLastPage": "Ir a la última página",
+    "goToPage": "Ir a la página {page}",
+    "morePages": "Más páginas",
+    "currentPage": "Página",
+    "totalPages": "de",
+    "pageOf": "{current}/{total}"
+  },
+  "footer": {
+    "product": "Producto",
+    "resources": "Recursos",
+    "features": "Características",
+    "pricing": "Precios",
+    "download": "Descargar",
+    "blog": "Blog",
+    "faq": "Preguntas frecuentes",
+    "feedback": "Comentarios",
+    "emailUs": "Escríbanos",
+    "reportIssue": "Informar de un problema",
+    "legal": "Legal",
+    "privacyPolicy": "Política de privacidad",
+    "termsOfService": "Condiciones del servicio",
+    "otherProducts": "Otros productos",
+    "desktop": "Aplicación Mind Elixir",
+    "m10c": "M10C Vídeo a mapa mental",
+    "ebook2me": "Ebook to Me",
+    "cloud": "Mind Elixir Cloud",
+    "followUs": "Síguenos",
+    "rights": "Todos los derechos reservados."
+  },
+  "edit": {
+    "saving": "Guardando...",
+    "unsaved": "Cambios sin guardar",
+    "saved": "Todos los cambios guardados",
+    "savedAt": "Guardado a las {time}"
+  },
+  "card": {
+    "makeShare": "Compartir en la galería",
+    "unshare": "Hacer privado",
+    "shareLink": "Compartir enlace",
+    "download": "Descargar",
+    "delete": "Eliminar",
+    "share": "Compartido"
+  }
+}
