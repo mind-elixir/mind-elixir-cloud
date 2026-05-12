@@ -35,9 +35,7 @@ export default function LikeButton({ mapId, initialLiked = false, initialCount =
     setLoading(true)
 
     try {
-      const res = await api.public.toggleLike(mapId)
-      setLiked(res.liked)
-      setCount(res.likeCount)
+      await api.public.toggleLike(mapId)
     } catch {
       // 回滚
       setLiked(prevLiked)

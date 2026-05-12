@@ -9,6 +9,7 @@ import 'react-outliner-neo/style.css'
 import 'mind-elixir/style.css'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://cloud.mind-elixir.com'),
   title: 'Mind Elixir Cloud',
   description: 'A powerful mind mapping application',
   icons: {
