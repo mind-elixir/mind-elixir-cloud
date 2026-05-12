@@ -10,6 +10,7 @@ export function generateI18nAlternates(path: string) {
       en: `${BASE_URL}/en${path}`,
       'zh-CN': `${BASE_URL}/cn${path}`,
       ja: `${BASE_URL}/ja${path}`,
+      es: `${BASE_URL}/es${path}`,
       'x-default': canonicalUrl,
     },
   }

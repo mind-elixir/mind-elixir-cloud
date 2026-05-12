@@ -4,7 +4,7 @@ import { unstable_cache } from 'next/cache'
 import { cookies } from 'next/headers'
 import { serverApi } from '@/services/api.server'
 import { setRequestLocale } from 'next-intl/server'
-import { defaultLocale } from '@/config/i18n'
+import { locales, defaultLocale } from '@/config/i18n'
 import { ClientWrapper } from './components/ClientComponents'
 import { generateI18nAlternates } from '@/lib/metadata'
 import type { MindElixirData } from 'mind-elixir'
@@ -22,7 +22,7 @@ export const dynamicParams = true
  *
  * unstable_cache 特性说明：
  *
- * 1. 跨请求缓存：与 React cache 不同，unstable_cache 的缓存会持久化到 Next.js 数据缓存层
+ * 1. 跨请求缓存：与 React cache 不同，unstable_cache 的缓存会持久化 to Next.js 数据缓存层
  *    - React cache: 仅在单次请求/渲染中有效
  *    - unstable_cache: 跨多个页面构建、多次请求都有效
  *
@@ -79,8 +79,8 @@ const getMapData = async (id: string, cookie?: string) => {
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
-  const { id } = await params
-  const locale = defaultLocale // Default locale for share pages without URL segment
+  const { id, locale } = await params
+  setRequestLocale(locale)
 
   try {
     const { mapItem, authorProfile } = await getMapData(id)
@@ -91,7 +91,7 @@ export async function generateMetadata({
     const description = `Explore "${mapItem.name}" mind map created by ${authorName}. Interactive mind mapping tool for organizing thoughts and ideas.`
     const baseUrl =
       process.env.NEXT_PUBLIC_BASE_URL || 'https://cloud.mind-elixir.com'
-    const currentUrl = `${baseUrl}/share/${id}`
+    const currentUrl = `${baseUrl}/${locale}/share/${id}`
 
     return {
       title,
@@ -117,9 +117,7 @@ export async function generateMetadata({
         description,
         images: ['/og-image.png'],
       },
-      alternates: {
-        canonical: currentUrl,
-      },
+      alternates: generateI18nAlternates(`/share/${id}`),
     }
   } catch (error) {
     console.error('Failed to generate metadata:', error)
@@ -131,7 +129,7 @@ export async function generateMetadata({
   }
 }
 
-// Pre-generate top 50 mind maps at build time
+// Pre-generate top 50 mind maps at build time for all supported locales
 export async function generateStaticParams() {
   try {
     // Fetch top 50 public mind maps
@@ -140,9 +138,16 @@ export async function generateStaticParams() {
       pageSize: 50,
     })
 
-    return response.data.map((map: MindMapItem) => ({
-      id: map._id,
-    }))
+    const params: Array<{ id: string; locale: string }> = []
+    for (const locale of locales) {
+      for (const map of response.data) {
+        params.push({
+          id: map._id,
+          locale,
+        })
+      }
+    }
+    return params
   } catch (error) {
     console.error('Failed to fetch maps for static generation:', error)
     return []
@@ -150,12 +155,11 @@ export async function generateStaticParams() {
 }
 
 interface PageProps {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string; locale: string }>
 }
 
 export default async function MapSharePage({ params }: PageProps) {
-  const { id } = await params
-  const locale = defaultLocale
+  const { id, locale } = await params
   setRequestLocale(locale)
 
   try {

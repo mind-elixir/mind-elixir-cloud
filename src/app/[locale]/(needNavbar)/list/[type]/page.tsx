@@ -200,7 +200,7 @@ export default function MapListPage() {
                   key={map._id}
                   href={
                     isPublic
-                      ? `/share/${map._id}`
+                      ? `/${params.locale}/share/${map._id}`
                       : `/${params.locale}/edit/${map._id}`
                   }
                 >

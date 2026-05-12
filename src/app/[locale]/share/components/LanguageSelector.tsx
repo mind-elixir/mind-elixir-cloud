@@ -1,6 +1,7 @@
 'use client'
 
-import { useShareLocale } from './ShareLocaleProvider'
+import { useLocale } from 'next-intl'
+import { useRouter, usePathname } from 'next/navigation'
 import {
   Select,
   SelectContent,
@@ -13,11 +14,18 @@ import { Languages } from 'lucide-react'
 import { languages } from '@/config/i18n'
 
 export function LanguageSelector() {
-  const { locale, setLocale } = useShareLocale()
+  const locale = useLocale()
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const handleSetLocale = (newLocale: string) => {
+    const newPath = pathname.replace(`/${locale}`, `/${newLocale}`)
+    router.push(newPath)
+  }
 
   return (
     <div className="flex items-center gap-2">
-      <Select value={locale} onValueChange={(val: any) => setLocale(val)}>
+      <Select value={locale} onValueChange={handleSetLocale}>
         <SelectTrigger className="h-7 w-[90px] lg:h-8 lg:w-[110px] bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-xs">
           <Languages className="w-3 h-3 lg:w-3.5 lg:h-3.5 mr-1 lg:mr-1.5 text-gray-500" />
           <SelectValue placeholder="Language" />
@@ -33,3 +41,4 @@ export function LanguageSelector() {
     </div>
   )
 }
+
