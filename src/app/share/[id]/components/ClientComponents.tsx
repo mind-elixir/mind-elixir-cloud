@@ -10,6 +10,7 @@ import { ShareHeader } from './ShareHeader'
 import { ViewContent } from './ViewContent'
 import { ShareFooter } from './ShareFooter'
 import { AuthorInfo } from './AuthorInfo'
+import LikeButton from '@/components/LikeButton'
 
 // Config
 import { PlatformIcon } from '@/config/socialPlatforms'
@@ -94,6 +95,15 @@ export function ClientWrapper({ mapData, mapItem, authorProfile }: ClientWrapper
               {authorProfile && (
                 <AuthorInfo className="w-full lg:w-64" author={authorProfile} />
               )}
+
+              {/* 点赞 */}
+              <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200/60 dark:border-gray-700/60 rounded-2xl p-4 lg:p-6 w-full lg:w-64 shadow-sm">
+                <LikeButton
+                  mapId={mapItem._id}
+                  initialLiked={mapItem.liked}
+                  initialCount={mapItem.likeCount}
+                />
+              </div>
 
               {/* 分享到社交媒体 */}
               <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm border border-gray-200/60 dark:border-gray-700/60 rounded-2xl p-4 lg:p-6 w-full lg:w-64 shadow-sm">

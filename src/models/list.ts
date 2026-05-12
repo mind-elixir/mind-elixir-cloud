@@ -11,6 +11,8 @@ export interface MindMapItem {
   __v: number
   _id: string
   source?: string // mostly a link
+  likeCount?: number
+  liked?: boolean
   // added by client
   clone?: MindMapItem
 }

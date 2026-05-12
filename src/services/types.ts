@@ -78,3 +78,8 @@ export interface PublicUserResponse {
   data?: PublicUserProfile
   message?: string
 }
+
+export interface LikeStatusResponse {
+  liked: boolean
+  likeCount: number
+}

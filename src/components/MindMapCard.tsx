@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { MindMapItem } from '@/models/list'
-import { MoreVertical, Download } from 'lucide-react'
+import { MoreVertical, Download, Heart } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
@@ -161,9 +161,17 @@ export default function MindMapCard({
             </Badge>
           )}
         </div>
-        <p className="text-sm text-muted-foreground">
-          {timeFormatter(map.updatedAt || map.date)}
-        </p>
+        <div className="flex items-center justify-between">
+          <p className="text-sm text-muted-foreground">
+            {timeFormatter(map.updatedAt || map.date)}
+          </p>
+          {(map.likeCount ?? 0) > 0 && (
+            <span className="flex items-center gap-1 text-sm text-muted-foreground">
+              <Heart className="w-3.5 h-3.5" />
+              {map.likeCount}
+            </span>
+          )}
+        </div>
       </CardContent>
     </Card>
   )
