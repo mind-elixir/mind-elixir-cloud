@@ -1,9 +1,12 @@
 'use client'
 
 import { useTranslations } from 'next-intl'
-import { Button } from '@/components/ui/button'
+import { Button, ButtonProps } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
-export default function LoginButton() {
+interface LoginButtonProps extends ButtonProps {}
+
+export default function LoginButton({ className, ...props }: LoginButtonProps) {
   const t = useTranslations('button')
 
   return (
@@ -12,9 +15,11 @@ export default function LoginButton() {
         window.location.href =
           process.env.NEXT_PUBLIC_API_URL + '/oauth/authme/login'
       }}
-      className="flex-shrink-0 bg-slate-900 hover:bg-slate-800 text-white"
+      className={cn('flex-shrink-0 bg-slate-900 hover:bg-slate-800 text-white', className)}
+      {...props}
     >
       {t('signin')}
     </Button>
   )
 }
+

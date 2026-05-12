@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Heart } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useUser } from '@/providers/UserProvider'
@@ -18,15 +18,6 @@ export default function LikeButton({ mapId, initialLiked = false, initialCount =
   const [liked, setLiked] = useState(initialLiked)
   const [count, setCount] = useState(initialCount)
   const [loading, setLoading] = useState(false)
-
-  // 登录用户挂载后获取真实 liked 状态
-  useEffect(() => {
-    if (!userData) return
-    api.public.getLikeStatus(mapId).then((res) => {
-      setLiked(res.liked)
-      setCount(res.likeCount)
-    }).catch(() => {})
-  }, [userData, mapId])
 
   const handleClick = async () => {
     if (!userData) {

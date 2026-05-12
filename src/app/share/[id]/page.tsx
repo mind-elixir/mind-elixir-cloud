@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { unstable_cache } from 'next/cache'
+import { cookies } from 'next/headers'
 import { serverApi } from '@/services/api.server'
 import { setRequestLocale } from 'next-intl/server'
 import { defaultLocale } from '@/config/i18n'
@@ -61,8 +62,8 @@ const getAuthorProfile = unstable_cache(
 )
 
 // Fetch map data with cached author profile
-const getMapData = async (id: string) => {
-  const mapRes = await serverApi.public.getPublicMap(id)
+const getMapData = async (id: string, cookie?: string) => {
+  const mapRes = await serverApi.public.getPublicMap(id, cookie)
   const mapItem: MindMapItem = mapRes.data
   const mapData: MindElixirData = mapRes.data.content
 
@@ -158,7 +159,9 @@ export default async function MapSharePage({ params }: PageProps) {
   setRequestLocale(locale)
 
   try {
-    const { mapItem, mapData, authorProfile } = await getMapData(id)
+    const cookieStore = await cookies()
+    const cookie = cookieStore.toString()
+    const { mapItem, mapData, authorProfile } = await getMapData(id, cookie)
 
     return (
       <ClientWrapper

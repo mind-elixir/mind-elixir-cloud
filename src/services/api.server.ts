@@ -24,8 +24,10 @@ export const serverPublicApi = {
   /**
    * Get specific public mind map
    */
-  getPublicMap: async (id: string): Promise<MapResponse> => {
-    return await connect.get<never, MapResponse>(`/api/public/${id}`)
+  getPublicMap: async (id: string, cookie?: string): Promise<MapResponse> => {
+    return await connect.get<never, MapResponse>(`/api/public/${id}`, {
+      headers: cookie ? { Cookie: cookie } : {},
+    })
   },
 
   /**

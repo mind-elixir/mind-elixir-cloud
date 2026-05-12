@@ -18,6 +18,9 @@ import { MindMapItem } from '@/models/list'
 import Link from 'next/link'
 import { useTranslations, useLocale } from 'next-intl'
 import { LanguageSelector } from '../../components/LanguageSelector'
+import { useUser } from '@/providers/UserProvider'
+import LoginButton from '@/components/LoginButton'
+import LogoutButton from '@/components/LogoutButton'
 
 type ViewMode = 'mindmap' | 'outline' | 'split'
 
@@ -42,6 +45,7 @@ export function ShareHeader({
 }: ShareHeaderProps) {
   const t = useTranslations('share')
   const locale = useLocale()
+  const { userData } = useUser()
 
   const formatDate = (dateString: string) => {
     const localeMap: Record<string, string> = {
@@ -85,6 +89,16 @@ export function ShareHeader({
                 <Eye className="w-2.5 h-2.5" />
               </Badge>
             )}
+            {/* 用户登录状态显示 */}
+            <div className="flex-shrink-0 flex items-center ml-1">
+              {userData ? (
+                <div className="scale-90 -mr-1">
+                  <LogoutButton />
+                </div>
+              ) : (
+                <LoginButton className="h-7 px-2.5 text-[11px] font-medium rounded-md" />
+              )}
+            </div>
           </div>
 
           {/* 第二行：控制按钮 */}
@@ -228,9 +242,18 @@ export function ShareHeader({
                 {t('viewSplit')}
               </Button>
             </div>
+            {/* 用户登录状态显示 */}
+            <div className="flex items-center pl-3 border-l border-gray-200/60 dark:border-gray-700/60 h-8">
+              {userData ? (
+                <LogoutButton />
+              ) : (
+                <LoginButton className="h-8 px-3 text-xs" />
+              )}
+            </div>
           </div>
         </div>
       </div>
     </div>
   )
 }
+

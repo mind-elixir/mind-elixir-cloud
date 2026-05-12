@@ -147,12 +147,6 @@ export const publicApi = {
     return await connect.post<never, LikeStatusResponse>(`/api/public/${mapId}/like`)
   },
 
-  /**
-   * 获取点赞状态
-   */
-  getLikeStatus: async (mapId: string): Promise<LikeStatusResponse> => {
-    return await connect.get<never, LikeStatusResponse>(`/api/public/${mapId}/like`)
-  },
 }
 
 /**
