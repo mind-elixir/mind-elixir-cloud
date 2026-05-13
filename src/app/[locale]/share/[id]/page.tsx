@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import { unstable_cache } from 'next/cache'
-import { cookies } from 'next/headers'
 import { serverApi } from '@/services/api.server'
 import { setRequestLocale } from 'next-intl/server'
 import { locales, defaultLocale } from '@/config/i18n'
@@ -10,7 +9,7 @@ import { generateI18nAlternates } from '@/lib/metadata'
 import type { MindElixirData } from 'mind-elixir'
 import type { MindMapItem } from '@/models/list'
 import type { PublicUserProfile } from '@/services/types'
-
+// TODO 登录重定向错误
 // Enable ISR with 1 day revalidation
 export const revalidate = 86400
 
@@ -62,8 +61,8 @@ const getAuthorProfile = unstable_cache(
 )
 
 // Fetch map data with cached author profile
-const getMapData = async (id: string, cookie?: string) => {
-  const mapRes = await serverApi.public.getPublicMap(id, cookie)
+const getMapData = async (id: string) => {
+  const mapRes = await serverApi.public.getPublicMap(id)
   const mapItem: MindMapItem = mapRes.data
   const mapData: MindElixirData = mapRes.data.content
 
@@ -163,9 +162,7 @@ export default async function MapSharePage({ params }: PageProps) {
   setRequestLocale(locale)
 
   try {
-    const cookieStore = await cookies()
-    const cookie = cookieStore.toString()
-    const { mapItem, mapData, authorProfile } = await getMapData(id, cookie)
+    const { mapItem, mapData, authorProfile } = await getMapData(id)
 
     return (
       <ClientWrapper

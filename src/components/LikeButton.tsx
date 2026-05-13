@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Heart } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useUser } from '@/providers/UserProvider'
@@ -14,10 +14,28 @@ interface LikeButtonProps {
 }
 
 export default function LikeButton({ mapId, initialLiked = false, initialCount = 0, className }: LikeButtonProps) {
-  const { userData } = useUser()
+  const { userData, loading: userLoading } = useUser()
   const [liked, setLiked] = useState(initialLiked)
   const [count, setCount] = useState(initialCount)
   const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    if (!userLoading) {
+      if (!userData) {
+        setLiked(false)
+      } else {
+        const fetchLikeStatus = async () => {
+          try {
+            const res = await api.public.getLikeStatus(mapId)
+            setLiked(res.liked)
+          } catch (error) {
+            console.error('Failed to fetch like status:', error)
+          }
+        }
+        fetchLikeStatus()
+      }
+    }
+  }, [userData, userLoading, mapId])
 
   const handleClick = async () => {
     if (!userData) {
@@ -55,7 +73,7 @@ export default function LikeButton({ mapId, initialLiked = false, initialCount =
       )}
     >
       <Heart className={cn('w-4 h-4', liked && 'fill-current')} />
-      {count > 0 && <span>{count}</span>}
+      <span>{count}</span>
     </button>
   )
 }

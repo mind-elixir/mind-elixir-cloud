@@ -165,10 +165,10 @@ export default function MindMapCard({
           <p className="text-sm text-muted-foreground">
             {timeFormatter(map.updatedAt || map.date)}
           </p>
-          {(map.likeCount ?? 0) > 0 && (
+          {(map.public || (map.likeCount ?? 0) > 0) && (
             <span className="flex items-center gap-1 text-sm text-muted-foreground">
               <Heart className="w-3.5 h-3.5" />
-              {map.likeCount}
+              {map.likeCount ?? 0}
             </span>
           )}
         </div>
