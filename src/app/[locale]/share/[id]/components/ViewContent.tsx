@@ -79,7 +79,11 @@ export function ViewContent({
                 {mapData.nodeData.topic}
               </h1>
             </div>
-            <Outliner data={mapData.nodeData.children!} readonly />
+            <Outliner
+              data={mapData.nodeData.children!}
+              readonly
+              fileName={mapData.nodeData.topic}
+            />
           </div>
         </CardContent>
       </Card>
