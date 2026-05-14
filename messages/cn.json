@@ -28,7 +28,8 @@
     "folder": "文件夹",
     "about": "关于",
     "language": "语言",
-    "profile": "个人设置"
+    "profile": "个人设置",
+    "liked": "我的点赞"
   },
   "button": {
     "signin": "登录",
@@ -151,7 +152,9 @@
     "noMapsYet": "还没有思维导图",
     "deleteConfirm": "确定要删除这个思维导图吗?",
     "shareTitle": "分享 \"{name}\"",
-    "shareDefaultTitle": "分享思维导图"
+    "shareDefaultTitle": "分享思维导图",
+    "noLikedMaps": "还没有点赞过的思维导图",
+    "likedMaps": "点赞"
   },
   "pagination": {
     "totalItems": "共 {total} 项",

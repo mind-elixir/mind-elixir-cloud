@@ -28,7 +28,8 @@
     "folder": "Folder",
     "about": "About",
     "language": "Language",
-    "profile": "Profile"
+    "profile": "Profile",
+    "liked": "Liked"
   },
   "button": {
     "signin": "Sign in",
@@ -151,7 +152,9 @@
     "noMapsYet": "No mind maps yet",
     "deleteConfirm": "Are you sure to delete this map?",
     "shareTitle": "Share \"{name}\"",
-    "shareDefaultTitle": "Share Mind Map"
+    "shareDefaultTitle": "Share Mind Map",
+    "noLikedMaps": "No liked maps yet",
+    "likedMaps": "liked"
   },
   "pagination": {
     "totalItems": "Total {total} items",

@@ -28,7 +28,8 @@
     "folder": "Carpeta",
     "about": "Acerca de",
     "language": "Idioma",
-    "profile": "Perfil"
+    "profile": "Perfil",
+    "liked": "Me gusta"
   },
   "button": {
     "signin": "Iniciar sesión",
@@ -151,7 +152,9 @@
     "noMapsYet": "Aún no hay mapas mentales",
     "deleteConfirm": "¿Está seguro de que desea eliminar este mapa?",
     "shareTitle": "Compartir \"{name}\"",
-    "shareDefaultTitle": "Compartir mapa mental"
+    "shareDefaultTitle": "Compartir mapa mental",
+    "noLikedMaps": "Aún no hay mapas mentales que te gusten",
+    "likedMaps": "que te gustan"
   },
   "pagination": {
     "totalItems": "Total {total} elementos",

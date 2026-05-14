@@ -72,7 +72,9 @@ export default function NavBar({ className }: NavBarProps) {
             <DropdownMenuItem asChild>
               <Link href="/list/map">{t('menu.folder')}</Link>
             </DropdownMenuItem>
-            {/* TODO: add like/bookmarked page */}
+            <DropdownMenuItem asChild>
+              <Link href="/list/liked">{t('menu.liked')}</Link>
+            </DropdownMenuItem>
             <DropdownMenuSub>
               <DropdownMenuSubTrigger>
                 <Globe className="mr-2 h-4 w-4" />
@@ -129,6 +131,19 @@ export default function NavBar({ className }: NavBarProps) {
                   )}
                 >
                   {t('menu.folder')}
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link
+                  href="/list/liked"
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    'hover:bg-slate-100 hover:text-slate-900',
+                  )}
+                >
+                  {t('menu.liked')}
                 </Link>
               </NavigationMenuLink>
             </NavigationMenuItem>

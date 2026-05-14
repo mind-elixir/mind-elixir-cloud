@@ -70,6 +70,17 @@ export const mindMapApi = {
   },
 
   /**
+   * 获取点赞的思维导图列表
+   */
+  getLikedMapList: async (
+    params: PaginationParams,
+  ): Promise<MindMapListResponse> => {
+    return await connect.get<never, MindMapListResponse>('/api/user/liked-maps', {
+      params,
+    })
+  },
+
+  /**
    * 创建新的思维导图
    */
   createMap: async (params: CreateMapParams): Promise<MapResponse> => {

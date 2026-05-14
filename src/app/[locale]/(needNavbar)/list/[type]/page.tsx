@@ -36,25 +36,32 @@ export default function MapListPage() {
 
   const type = params.type as string
   const isPublic = type === 'public'
+  const isLiked = type === 'liked'
   const debouncedSearchValue = useDebounce(searchValue, 500)
 
   const fetchList = async () => {
     setLoading(true)
     setIsUnauthorized(false)
     try {
-      const res = isPublic
-        ? debouncedSearchValue
-          ? await api.public.getPublicMapList({
-              page: pagination.page,
-              pageSize: pagination.pageSize,
-              name: debouncedSearchValue,
-            })
-          : await api.public.getRandomMapList({ size: 20 })
-        : await api.mindMap.getMapList({
-            page: pagination.page,
-            pageSize: pagination.pageSize,
-            name: debouncedSearchValue,
-          })
+      const res =
+        isPublic
+          ? debouncedSearchValue
+            ? await api.public.getPublicMapList({
+                page: pagination.page,
+                pageSize: pagination.pageSize,
+                name: debouncedSearchValue,
+              })
+            : await api.public.getRandomMapList({ size: 20 })
+          : isLiked
+            ? await api.mindMap.getLikedMapList({
+                page: pagination.page,
+                pageSize: pagination.pageSize,
+              })
+            : await api.mindMap.getMapList({
+                page: pagination.page,
+                pageSize: pagination.pageSize,
+                name: debouncedSearchValue,
+              })
 
       console.log('API Response:', res)
       console.log('Map List:', res.data)
@@ -142,13 +149,15 @@ export default function MapListPage() {
           /* Search bar and create button container */
           <div className="mb-10">
             <div className="flex items-center gap-4">
-              <div className="flex-1">
-                <SearchBar
-                  onSearch={handleSearch}
-                  className="max-w-none mx-0 mb-0"
-                />
-              </div>
-              {!isPublic && (
+              {!isLiked && (
+                <div className="flex-1">
+                  <SearchBar
+                    onSearch={handleSearch}
+                    className="max-w-none mx-0 mb-0"
+                  />
+                </div>
+              )}
+              {!isPublic && !isLiked && (
                 <div className="flex-shrink-0">
                   <CreateButton className="h-10 w-auto px-4" />
                 </div>
@@ -173,7 +182,7 @@ export default function MapListPage() {
               </h3>
               <p className="text-sm text-muted-foreground">
                 {t('loginToView', {
-                  type: isPublic ? t('publicMaps') : t('yourMaps'),
+                  type: isPublic ? t('publicMaps') : isLiked ? t('likedMaps') : t('yourMaps'),
                 })}
                 <br />
                 {t('loginHint')}
@@ -185,9 +194,13 @@ export default function MapListPage() {
           <div className="flex flex-col items-center justify-center py-20 px-4">
             <div className="rounded-lg border border-dashed border-border bg-muted/30 p-12 max-w-md w-full text-center">
               <p className="text-muted-foreground mb-4">
-                {debouncedSearchValue ? t('noMapsFound') : t('noMapsYet')}
+                {debouncedSearchValue
+                  ? t('noMapsFound')
+                  : isLiked
+                    ? t('noLikedMaps')
+                    : t('noMapsYet')}
               </p>
-              {!isPublic && !debouncedSearchValue && (
+              {!isPublic && !isLiked && !debouncedSearchValue && (
                 <CreateButton className="mx-auto" />
               )}
             </div>
@@ -199,7 +212,7 @@ export default function MapListPage() {
                 <Link
                   key={map._id}
                   href={
-                    isPublic
+                    isPublic || isLiked
                       ? `/${params.locale}/share/${map._id}`
                       : `/${params.locale}/edit/${map._id}`
                   }
@@ -208,7 +221,7 @@ export default function MapListPage() {
                     key={map._id}
                     className="h-full"
                     map={map}
-                    type={isPublic ? 'public' : 'private'}
+                    type={isPublic || isLiked ? 'public' : 'private'}
                     onDelete={() => deleteMap(map)}
                     onDownload={(type) => download(map, type)}
                     onMakePublic={() => makePublic(map)}
@@ -218,7 +231,19 @@ export default function MapListPage() {
               ))}
             </div>
 
-            {(!isPublic || debouncedSearchValue) && (
+            {(!isPublic || debouncedSearchValue) && !isLiked && (
+              <div className="flex justify-center">
+                <Pagination
+                  page={pagination.page}
+                  pageSize={pagination.pageSize}
+                  total={pagination.total}
+                  onPageChange={(page) =>
+                    setPagination((prev) => ({ ...prev, page }))
+                  }
+                />
+              </div>
+            )}
+            {isLiked && pagination.total > pagination.pageSize && (
               <div className="flex justify-center">
                 <Pagination
                   page={pagination.page}

@@ -17,7 +17,8 @@
     "folder": "フォルダ",
     "about": "基本情報",
     "language": "言語",
-    "profile": "プロフィール"
+    "profile": "プロフィール",
+    "liked": "いいね"
   },
   "button": {
     "signin": "ログイン",
@@ -140,7 +141,9 @@
     "noMapsYet": "マインドマップがまだありません",
     "deleteConfirm": "このマインドマップを削除してもよろしいですか?",
     "shareTitle": "\"{name}\"を共有",
-    "shareDefaultTitle": "マインドマップを共有"
+    "shareDefaultTitle": "マインドマップを共有",
+    "noLikedMaps": "まだいいねしたマインドマップはありません",
+    "likedMaps": "いいね"
   },
   "pagination": {
     "totalItems": "合計 {total} 項目",
