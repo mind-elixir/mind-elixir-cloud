@@ -63,9 +63,6 @@ export default function MapListPage() {
                 name: debouncedSearchValue,
               })
 
-      console.log('API Response:', res)
-      console.log('Map List:', res.data)
-
       if (res && Array.isArray(res.data)) {
         setMapList(res.data)
         setPagination((prev) => ({
@@ -73,7 +70,6 @@ export default function MapListPage() {
           total: res.total || 0,
         }))
       } else {
-        console.warn('Unexpected API response structure:', res)
         setMapList([])
         setPagination((prev) => ({
           ...prev,
@@ -82,8 +78,6 @@ export default function MapListPage() {
       }
     } catch (error: any) {
       console.error('Failed to fetch maps:', error)
-
-      // 处理401未授权错误
       if (error.response?.status === 401) {
         setIsUnauthorized(true)
         setMapList([])
@@ -138,136 +132,128 @@ export default function MapListPage() {
   }
 
   const download = (item: MindMapItem, type: string) => {
-    // TODO: Implement download functionality
     console.log('Download:', item, type)
   }
 
-  const content = (
-    <div className="min-h-screen pt-36 pb-12 px-4">
-      <div className="max-w-7xl mx-auto">
-        {!isUnauthorized && (
-          /* Search bar and create button container */
-          <div className="mb-10">
-            <div className="flex items-center gap-4">
-              {!isLiked && (
-                <div className="flex-1">
-                  <SearchBar
-                    onSearch={handleSearch}
-                    className="max-w-none mx-0 mb-0"
-                  />
-                </div>
-              )}
-              {!isPublic && !isLiked && (
-                <div className="flex-shrink-0">
-                  <CreateButton className="h-10 w-auto px-4" />
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-
-        {loading ? (
-          <LoadingMask className="pt-20" />
-        ) : isUnauthorized ? (
-          // 未登录状态提示
-          <div className="flex flex-col items-center justify-center py-20 px-4">
-            <div className="rounded-lg border border-border bg-card p-8 max-w-md w-full text-center shadow-sm">
-              <div className="flex justify-center mb-4">
-                <div className="rounded-full bg-muted p-3">
-                  <AlertCircle className="h-6 w-6 text-muted-foreground" />
-                </div>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">
-                {t('loginRequired')}
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                {t('loginToView', {
-                  type: isPublic ? t('publicMaps') : isLiked ? t('likedMaps') : t('yourMaps'),
-                })}
-                <br />
-                {t('loginHint')}
-              </p>
-            </div>
-          </div>
-        ) : mapList.length === 0 ? (
-          // 空状态
-          <div className="flex flex-col items-center justify-center py-20 px-4">
-            <div className="rounded-lg border border-dashed border-border bg-muted/30 p-12 max-w-md w-full text-center">
-              <p className="text-muted-foreground mb-4">
-                {debouncedSearchValue
-                  ? t('noMapsFound')
-                  : isLiked
-                    ? t('noLikedMaps')
-                    : t('noMapsYet')}
-              </p>
-              {!isPublic && !isLiked && !debouncedSearchValue && (
-                <CreateButton className="mx-auto" />
-              )}
-            </div>
-          </div>
-        ) : (
-          <>
-            <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mb-10">
-              {mapList.map((map) => (
-                <Link
-                  key={map._id}
-                  href={
-                    isPublic || isLiked
-                      ? `/${params.locale}/share/${map._id}`
-                      : `/${params.locale}/edit/${map._id}`
-                  }
-                >
-                  <MindMapCard
-                    key={map._id}
-                    className="h-full"
-                    map={map}
-                    type={isPublic || isLiked ? 'public' : 'private'}
-                    onDelete={() => deleteMap(map)}
-                    onDownload={(type) => download(map, type)}
-                    onMakePublic={() => makePublic(map)}
-                    onShare={() => share(map)}
-                  />
-                </Link>
-              ))}
-            </div>
-
-            {(!isPublic || debouncedSearchValue) && !isLiked && (
-              <div className="flex justify-center">
-                <Pagination
-                  page={pagination.page}
-                  pageSize={pagination.pageSize}
-                  total={pagination.total}
-                  onPageChange={(page) =>
-                    setPagination((prev) => ({ ...prev, page }))
-                  }
-                />
-              </div>
-            )}
-            {isLiked && pagination.total > pagination.pageSize && (
-              <div className="flex justify-center">
-                <Pagination
-                  page={pagination.page}
-                  pageSize={pagination.pageSize}
-                  total={pagination.total}
-                  onPageChange={(page) =>
-                    setPagination((prev) => ({ ...prev, page }))
-                  }
-                />
-              </div>
-            )}
-          </>
-        )}
-      </div>
-    </div>
-  )
+  const showSearch = !isLiked
+  const showPagination =
+    pagination.total > pagination.pageSize &&
+    (!isPublic || debouncedSearchValue || isLiked)
 
   const shareUrl = currentShareItem
     ? `${typeof window !== 'undefined' ? window.location.origin : ''}/share/${currentShareItem._id}`
     : ''
 
+  const renderContent = () => {
+    if (isUnauthorized) {
+      return (
+        <div className="flex flex-col items-center justify-center py-20">
+          <div className="rounded-lg border border-border bg-card p-8 max-w-md w-full text-center shadow-sm">
+            <div className="flex justify-center mb-4">
+              <div className="rounded-full bg-muted p-3">
+                <AlertCircle className="h-6 w-6 text-muted-foreground" />
+              </div>
+            </div>
+            <h3 className="text-lg font-semibold mb-2">
+              {t('loginRequired')}
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              {t('loginToView', {
+                type: isPublic
+                  ? t('publicMaps')
+                  : isLiked
+                    ? t('likedMaps')
+                    : t('yourMaps'),
+              })}
+              <br />
+              {t('loginHint')}
+            </p>
+          </div>
+        </div>
+      )
+    }
+
+    if (loading) {
+      return <LoadingMask className="py-20" />
+    }
+
+    if (mapList.length === 0) {
+      return (
+        <div className="flex flex-col items-center justify-center py-20">
+          <div className="rounded-lg border border-dashed border-border bg-muted/30 p-12 max-w-md w-full text-center">
+            <p className="text-muted-foreground mb-4">
+              {debouncedSearchValue
+                ? t('noMapsFound')
+                : isLiked
+                  ? t('noLikedMaps')
+                  : t('noMapsYet')}
+            </p>
+            {!isPublic && !isLiked && !debouncedSearchValue && (
+              <CreateButton className="mx-auto" />
+            )}
+          </div>
+        </div>
+      )
+    }
+
+    return (
+      <>
+        <div className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {mapList.map((map) => (
+            <Link
+              key={map._id}
+              href={
+                isPublic || isLiked
+                  ? `/${params.locale}/share/${map._id}`
+                  : `/${params.locale}/edit/${map._id}`
+              }
+            >
+              <MindMapCard
+                className="h-full"
+                map={map}
+                type={isPublic || isLiked ? 'public' : 'private'}
+                onDelete={() => deleteMap(map)}
+                onDownload={(type) => download(map, type)}
+                onMakePublic={() => makePublic(map)}
+                onShare={() => share(map)}
+              />
+            </Link>
+          ))}
+        </div>
+
+        {showPagination && (
+          <div className="flex justify-center pt-2">
+            <Pagination
+              page={pagination.page}
+              pageSize={pagination.pageSize}
+              total={pagination.total}
+              onPageChange={(page) =>
+                setPagination((prev) => ({ ...prev, page }))
+              }
+            />
+          </div>
+        )}
+      </>
+    )
+  }
+
   return (
     <>
-      {content}
+      <div className="min-h-screen pt-32 pb-16 px-4">
+        <div className="max-w-7xl mx-auto space-y-6">
+          {!isUnauthorized && (showSearch || (!isPublic && !isLiked)) && (
+            <div className="flex items-center gap-3">
+              {showSearch && (
+                <SearchBar onSearch={handleSearch} className="flex-1" />
+              )}
+              {!isPublic && !isLiked && (
+                <CreateButton className="flex-shrink-0 h-10" />
+              )}
+            </div>
+          )}
+          {renderContent()}
+        </div>
+      </div>
       <ShareModal
         open={shareModalOpen}
         onOpenChange={setShareModalOpen}
