@@ -74,14 +74,14 @@ export default function CreateButton({ className }: CreateButtonProps) {
           <div>{t('create.desktopRecommendation')}</div>
           <div className="flex items-center gap-2 text-blue-500">
             <a
-              href="https://desktop.mind-elixir.com/"
+              href="https://app.mind-elixir.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
               {t('create.desktopApp')}
             </a>
             <a
-              href="https://desktop.mind-elixir.com/"
+              href="https://app.mind-elixir.com/"
               target="_blank"
               rel="noopener noreferrer"
             >
