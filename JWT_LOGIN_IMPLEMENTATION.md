@@ -21,8 +21,8 @@
 2. 重定向到后端 OAuth 端点，并携带前端 `/login` 页面的重定向 URL
 3. 用户完成第三方认证
 4. 后端生成 JWT token，重定向到前端 `/login?token=xxx&type=desktop&port=xxxx`
-5. 前端 `/login` 页面检测到 `type=desktop` 参数，存储 token 后跳转到 `/desktop-login`
-6. `/desktop-login` 页面从 localStorage 读取 token，发送给本地桌面应用
+5. 前端 `/login` 页面检测到 `type=desktop` 参数，存储 token 后跳转到 `/app-login`
+6. `/app-login` 页面从 localStorage 读取 token，发送给本地客户端 App
 
 ### 2. 修改的文件
 
@@ -34,7 +34,7 @@
 - `src/providers/UserProvider.tsx` - 支持 JWT token 认证和本地存储管理
 - `src/components/LoginButton.tsx` - 修改 OAuth 重定向 URL
 - `src/app/[locale]/login/page.tsx` - 添加桌面登录类型检测和跳转逻辑
-- `src/app/[locale]/(needNavbar)/desktop-login/page.tsx` - 修改为从 localStorage 读取 token
+- `src/app/[locale]/(needNavbar)/app-login/page.tsx` - 修改为从 localStorage 读取 token
 
 ### 3. JWT Token 处理
 

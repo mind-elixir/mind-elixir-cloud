@@ -10,6 +10,17 @@
     "share": "共有",
     "loggingIn": "ログイン中...",
     "create": "作成",
+    "connectingDesktop": "App に接続中",
+    "ensureDesktopRunning": "App が起動しており、接続可能な状態であることを確認してください",
+    "secureConnection": "安全な接続",
+    "autoRedirect": "自動リダイレクト",
+    "gettingToken": "認証トークンを取得中...",
+    "connectingApp": "App に接続中...",
+    "verifyingIdentity": "本人確認中...",
+    "loginSuccess": "ログイン成功！リダイレクト中...",
+    "completed": "ログイン完了",
+    "connectionFailed": "接続失敗。再試行してください",
+    "checkDesktopApp": "ログイン失敗。ネットワーク接続を確認するか、しばらくしてから再試行してください",
     "manualOpenApp": "自動的に開かない場合はこちらをクリック"
   },
   "menu": {

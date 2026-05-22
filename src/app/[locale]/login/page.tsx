@@ -37,12 +37,12 @@ export default function LoginPage() {
         // 将token存储到localStorage
         localStorage.setItem('auth_token', token)
 
-        // 如果是桌面登录类型，跳转到desktop-login页面
+        // 如果是桌面登录类型，跳转到app-login页面
         if (type === 'desktop') {
           const port = searchParams.get('port')
           const desktopUrl = port
-            ? `/desktop-login?port=${port}`
-            : '/desktop-login'
+            ? `/app-login?port=${port}`
+            : '/app-login'
           router.push(desktopUrl)
           return
         }

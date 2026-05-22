@@ -56,7 +56,7 @@ src/services/
 - `src/app/[locale]/list/[type]/page.tsx`
 - `src/app/[locale]/edit/[id]/page.tsx`
 - `src/app/[locale]/profile/page.tsx`
-- `src/app/[locale]/desktop-login/page.tsx`
+- `src/app/[locale]/app-login/page.tsx`
 
 ### 3. Hook 文件
 - `src/app/[locale]/share/[id]/hooks/useSharePage.ts`

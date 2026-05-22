@@ -8,7 +8,7 @@ import { Badge } from '@/components/ui/badge'
 import { Info } from 'lucide-react'
 import { openAppWithFallback } from '@mind-elixir/open-desktop'
 
-export default function DesktopLoginPage() {
+export default function AppLoginPage() {
   const t = useTranslations('misc')
   const searchParams = useSearchParams()
 
