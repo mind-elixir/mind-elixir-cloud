@@ -7,12 +7,10 @@ import {
   Maximize2,
   Minimize2,
   Calendar,
-  Eye,
   Copy,
   Check,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
 import { MindMapItem } from '@/models/list'
 import Link from 'next/link'
@@ -81,14 +79,7 @@ export function ShareHeader({
             <h1 className="text-base font-semibold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-300 bg-clip-text text-transparent truncate flex-1">
               {mapItem.name}
             </h1>
-            {mapItem.public && (
-              <Badge
-                variant="secondary"
-                className="flex-shrink-0 inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium uppercase tracking-wide bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"
-              >
-                <Eye className="w-2.5 h-2.5" />
-              </Badge>
-            )}
+
             {/* 用户登录状态显示 */}
             <div className="flex-shrink-0 flex items-center ml-1">
               {userData ? (
@@ -172,15 +163,7 @@ export function ShareHeader({
               <h1 className="text-xl lg:text-2xl font-semibold bg-gradient-to-r from-gray-900 to-gray-600 dark:from-gray-100 dark:to-gray-300 bg-clip-text text-transparent">
                 {mapItem.name}
               </h1>
-              {mapItem.public && (
-                <Badge
-                  variant="secondary"
-                  className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium uppercase tracking-wide bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800"
-                >
-                  <Eye className="w-3 h-3 mr-1" />
-                  {t('public')}
-                </Badge>
-              )}
+
             </div>
             <div className="flex items-center gap-4 text-xs text-gray-500 dark:text-gray-400">
               <div className="flex items-center gap-1.5">

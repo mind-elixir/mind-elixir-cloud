@@ -1,8 +1,6 @@
 'use client'
 
 import { User, MapPin } from 'lucide-react'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { PublicUserProfile, SocialLink } from '@/services/types'
 import { SOCIAL_PLATFORMS, PlatformIcon } from '@/config/socialPlatforms'
 import { useTranslations } from 'next-intl'
