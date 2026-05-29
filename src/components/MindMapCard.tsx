@@ -155,7 +155,7 @@ export default function MindMapCard({
           <CardTitle className="text-base font-semibold overflow-hidden whitespace-nowrap text-ellipsis flex-1 group-hover:text-primary transition-colors duration-200">
             {map.name}
           </CardTitle>
-          {map.public && (
+          {type === 'private' && map.public && (
             <Badge variant="secondary" className="ml-2">
               {t('share')}
             </Badge>
