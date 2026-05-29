@@ -161,8 +161,8 @@ export const publicApi = {
   /**
    * 获取点赞状态
    */
-  getLikeStatus: async (mapId: string): Promise<{ liked: boolean }> => {
-    return await connect.get<never, { liked: boolean }>(`/api/public/${mapId}/like`)
+  getLikeStatus: async (mapId: string): Promise<LikeStatusResponse> => {
+    return await connect.get<never, LikeStatusResponse>(`/api/public/${mapId}/like`)
   },
 }
 

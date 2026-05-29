@@ -21,23 +21,21 @@ export default function LikeButton({ mapId, initialLiked = false, initialCount =
 
   useEffect(() => {
     if (!userLoading) {
-      if (!userData) {
-        setLiked(false)
-        setLoading(false)
-      } else {
-        const fetchLikeStatus = async () => {
-          setLoading(true)
-          try {
-            const res = await api.public.getLikeStatus(mapId)
-            setLiked(res.liked)
-          } catch (error) {
-            console.error('Failed to fetch like status:', error)
-          } finally {
-            setLoading(false)
+      const fetchLikeStatus = async () => {
+        setLoading(true)
+        try {
+          const res = await api.public.getLikeStatus(mapId)
+          setLiked(res.liked)
+          if (res.likeCount !== undefined) {
+            setCount(res.likeCount)
           }
+        } catch (error) {
+          console.error('Failed to fetch like status:', error)
+        } finally {
+          setLoading(false)
         }
-        fetchLikeStatus()
       }
+      fetchLikeStatus()
     } else {
       setLoading(true)
     }
