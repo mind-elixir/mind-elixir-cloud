@@ -21,7 +21,13 @@
     "completed": "Inicio de sesión completado",
     "connectionFailed": "Error de conexión, inténtelo de nuevo",
     "checkDesktopApp": "Error al iniciar sesión, verifique la conexión de red o inténtelo de nuevo más tarde",
-    "manualOpenApp": "Si no se abre automáticamente, haga clic aquí manualmente"
+    "manualOpenApp": "Si no se abre automáticamente, haga clic aquí manualmente",
+    "welcomeBack": "Bienvenido de nuevo",
+    "redirectingToHome": "Redirigiendo a la página principal...",
+    "appLoginTitle": "Conectando con la App",
+    "appLoginDesc": "Autenticando con la aplicación de escritorio Mind Elixir",
+    "desktopAuthTitle": "Iniciar sesión en la App",
+    "desktopAuthDesc": "Autentique su aplicación de escritorio Mind Elixir"
   },
   "menu": {
     "public": "Explorar",

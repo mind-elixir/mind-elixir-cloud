@@ -3,15 +3,9 @@
 import React, { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import { useUser } from '@/providers/UserProvider'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
 import { Loader2, CheckCircle, XCircle } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 export default function LoginPage() {
   const t = useTranslations('misc')
@@ -34,22 +28,17 @@ export default function LoginPage() {
       }
 
       try {
-        // 将token存储到localStorage
         localStorage.setItem('auth_token', token)
 
-        // 如果是桌面登录类型，跳转到app-login页面
         if (type === 'desktop') {
           const port = searchParams.get('port')
-          const desktopUrl = port
-            ? `/app-login?port=${port}`
-            : '/app-login'
+          const desktopUrl = port ? `/app-login?port=${port}` : '/app-login'
           router.push(desktopUrl)
           return
         }
         setStatus('success')
-        setMessage(t('loginSuccess'))
+        setMessage(t('redirectingToHome'))
 
-        // 延迟跳转到首页
         setTimeout(() => {
           router.push('/')
         }, 1000)
@@ -57,8 +46,6 @@ export default function LoginPage() {
         console.error('Login failed:', error)
         setStatus('error')
         setMessage(t('checkDesktopApp'))
-
-        // 清除无效token
         localStorage.removeItem('auth_token')
       }
     }
@@ -66,53 +53,84 @@ export default function LoginPage() {
     handleTokenLogin()
   }, [searchParams, router, t])
 
-  const getIcon = () => {
-    switch (status) {
-      case 'loading':
-        return <Loader2 className="h-8 w-8 animate-spin text-blue-500" />
-      case 'success':
-        return <CheckCircle className="h-8 w-8 text-green-500" />
-      case 'error':
-        return <XCircle className="h-8 w-8 text-red-500" />
-    }
-  }
-
-  const getStatusColor = () => {
-    switch (status) {
-      case 'loading':
-        return 'text-blue-600'
-      case 'success':
-        return 'text-green-600'
-      case 'error':
-        return 'text-red-600'
-    }
-  }
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <div className="flex justify-center mb-4">{getIcon()}</div>
-          <CardTitle className={`text-xl ${getStatusColor()}`}>
-            {status === 'loading' && t('loggingIn')}
-            {status === 'success' && t('loginSuccess')}
-            {status === 'error' && t('connectionFailed')}
-          </CardTitle>
-          <CardDescription>{message}</CardDescription>
-        </CardHeader>
-        <CardContent>
+    <div className="min-h-screen flex items-center justify-center bg-background px-4 relative overflow-hidden">
+      {/* Aurora background decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative w-full max-w-md">
+        {/* Frosted glass card */}
+        <div className="bg-card/80 backdrop-blur-sm border border-border rounded-2xl shadow-lg p-8">
+          {/* Logo */}
+          <div className="text-center mb-8">
+            <div className="flex justify-center mb-4">
+              <img
+                className="w-16 h-16"
+                src="https://img.ssshooter.com/img/mind-elixir-desktop/icon.svg"
+                alt="Mind Elixir logo"
+              />
+            </div>
+            <h1 className="text-xl font-semibold text-foreground">Mind Elixir</h1>
+          </div>
+
+          {/* Status icon */}
+          <div className="flex justify-center mb-6">
+            {status === 'loading' && (
+              <div className="relative">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center">
+                  <Loader2 className="h-8 w-8 text-primary animate-spin" />
+                </div>
+                <div className="absolute inset-0 rounded-full bg-primary/5 animate-ping" />
+              </div>
+            )}
+            {status === 'success' && (
+              <div className="w-16 h-16 rounded-full bg-green-500/10 flex items-center justify-center">
+                <CheckCircle className="h-8 w-8 text-green-500" />
+              </div>
+            )}
+            {status === 'error' && (
+              <div className="w-16 h-16 rounded-full bg-destructive/10 flex items-center justify-center">
+                <XCircle className="h-8 w-8 text-destructive" />
+              </div>
+            )}
+          </div>
+
+          {/* Status text */}
+          <div className="text-center space-y-2">
+            <h2 className="text-lg font-medium text-foreground">
+              {status === 'loading' && t('loggingIn')}
+              {status === 'success' && t('loginSuccess')}
+              {status === 'error' && t('connectionFailed')}
+            </h2>
+            {message && (
+              <p className="text-sm text-muted-foreground">{message}</p>
+            )}
+          </div>
+
+          {/* Error action */}
           {status === 'error' && (
-            <div className="text-center">
-              <button
-                onClick={() => router.push('/')}
-                className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-              >
+            <div className="mt-6 flex justify-center">
+              <Button onClick={() => router.push('/')} variant="default">
                 {t('ok')}
-              </button>
+              </Button>
             </div>
           )}
-        </CardContent>
-      </Card>
+        </div>
+
+        {/* Footer badges */}
+        <div className="flex items-center justify-center gap-2 mt-6">
+          <Badge variant="outline" className="text-xs text-muted-foreground">
+            {t('secureConnection')}
+          </Badge>
+          <span className="text-muted-foreground text-xs">&bull;</span>
+          <Badge variant="outline" className="text-xs text-muted-foreground">
+            {t('autoRedirect')}
+          </Badge>
+        </div>
+      </div>
     </div>
   )
 }

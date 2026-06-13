@@ -21,7 +21,13 @@
     "completed": "Login completed",
     "connectionFailed": "Connection failed, please try again",
     "checkDesktopApp": "Login failed, please check network connection or try again later",
-    "manualOpenApp": "If it doesn't open automatically, click here manually"
+    "manualOpenApp": "If it doesn't open automatically, click here manually",
+    "welcomeBack": "Welcome back",
+    "redirectingToHome": "Redirecting to homepage...",
+    "appLoginTitle": "Connecting to App",
+    "appLoginDesc": "Authenticating with Mind Elixir desktop application",
+    "desktopAuthTitle": "Sign in to App",
+    "desktopAuthDesc": "Authenticate your Mind Elixir desktop application"
   },
   "menu": {
     "public": "Explore",

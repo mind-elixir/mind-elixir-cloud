@@ -21,7 +21,13 @@
     "completed": "登录已完成",
     "connectionFailed": "连接失败，请重试",
     "checkDesktopApp": "登录失败，请检查网络连接或稍后重试",
-    "manualOpenApp": "如果无法自动打开，请点击这里手动打开"
+    "manualOpenApp": "如果无法自动打开，请点击这里手动打开",
+    "welcomeBack": "欢迎回来",
+    "redirectingToHome": "正在跳转到首页...",
+    "appLoginTitle": "正在连接 App",
+    "appLoginDesc": "正在验证 Mind Elixir 桌面应用身份",
+    "desktopAuthTitle": "登录到 App",
+    "desktopAuthDesc": "验证您的 Mind Elixir 桌面应用"
   },
   "menu": {
     "public": "分享",

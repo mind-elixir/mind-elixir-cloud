@@ -21,7 +21,13 @@
     "completed": "ログイン完了",
     "connectionFailed": "接続失敗。再試行してください",
     "checkDesktopApp": "ログイン失敗。ネットワーク接続を確認するか、しばらくしてから再試行してください",
-    "manualOpenApp": "自動的に開かない場合はこちらをクリック"
+    "manualOpenApp": "自動的に開かない場合はこちらをクリック",
+    "welcomeBack": "おかえりなさい",
+    "redirectingToHome": "ホームページにリダイレクト中...",
+    "appLoginTitle": "App に接続中",
+    "appLoginDesc": "Mind Elixir デスクトップアプリの認証中",
+    "desktopAuthTitle": "App にサインイン",
+    "desktopAuthDesc": "Mind Elixir デスクトップアプリを認証する"
   },
   "menu": {
     "public": "共有作品",

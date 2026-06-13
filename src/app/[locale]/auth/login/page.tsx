@@ -1,17 +1,11 @@
 'use client'
 
-import { useTranslations, useLocale } from 'next-intl'
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
+import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 export default function AuthLoginPage() {
-  const t = useTranslations('button')
+  const t = useTranslations('misc')
 
   const meLogin = () => {
     window.location.href =
@@ -19,27 +13,58 @@ export default function AuthLoginPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <div className="flex justify-center mb-6">
-            <img
-              className="w-20 h-20"
-              src="https://img.ssshooter.com/img/mind-elixir-desktop/icon.svg"
-              alt="Mind Elixir App logo"
-            />
+    <div className="min-h-screen flex items-center justify-center bg-background px-4 relative overflow-hidden">
+      {/* Aurora background decoration */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative w-full max-w-md">
+        {/* Frosted glass card */}
+        <div className="bg-card/80 backdrop-blur-sm border border-border rounded-2xl shadow-lg p-8">
+          {/* Logo */}
+          <div className="text-center mb-8">
+            <div className="flex justify-center mb-4">
+              <div className="relative">
+                <img
+                  className="w-20 h-20"
+                  src="https://img.ssshooter.com/img/mind-elixir-desktop/icon.svg"
+                  alt="Mind Elixir App logo"
+                />
+                <div className="absolute inset-0 bg-primary/10 rounded-2xl blur-xl -z-10" />
+              </div>
+            </div>
+            <h1 className="text-2xl font-bold text-foreground mb-1">
+              Mind Elixir
+            </h1>
+            <p className="text-muted-foreground text-sm">
+              {t('desktopAuthDesc')}
+            </p>
           </div>
-        </CardHeader>
-        <CardContent className="space-y-4">
+
+          {/* Sign in button */}
           <Button
             onClick={meLogin}
-            variant="outline"
-            className="w-full flex items-center justify-center gap-3 h-12 text-base"
+            variant="default"
+            size="lg"
+            className="w-full text-base"
           >
-            {t('signin')}
+            {t('desktopAuthTitle')}
           </Button>
-        </CardContent>
-      </Card>
+        </div>
+
+        {/* Footer badges */}
+        <div className="flex items-center justify-center gap-2 mt-6">
+          <Badge variant="outline" className="text-xs text-muted-foreground">
+            {t('secureConnection')}
+          </Badge>
+          <span className="text-muted-foreground text-xs">&bull;</span>
+          <Badge variant="outline" className="text-xs text-muted-foreground">
+            Mind Elixir App
+          </Badge>
+        </div>
+      </div>
     </div>
   )
 }
