@@ -8,6 +8,7 @@ import type { MindElixirData, Options } from 'mind-elixir'
 // 确保MindElixirReact组件完全在客户端渲染
 import { MindMap } from '@/components/ui/mindmap'
 import { useTranslations } from 'next-intl'
+import { md2html } from '@/utils/md2html'
 
 type ViewMode = 'mindmap' | 'outline' | 'split'
 
@@ -83,6 +84,7 @@ export function ViewContent({
               data={mapData.nodeData.children!}
               readonly
               fileName={mapData.nodeData.topic}
+              markdown={md2html}
             />
           </div>
         </CardContent>

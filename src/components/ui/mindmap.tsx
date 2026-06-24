@@ -30,6 +30,7 @@ import {
   type Theme as MindElixirTheme,
 } from "mind-elixir";
 import { snapdom, SnapdomOptions } from "@zumer/snapdom";
+import { md2html } from "@/utils/md2html";
 
 // Check document class for theme (works with next-themes, etc.)
 function getDocumentTheme(): Theme | null {
@@ -391,6 +392,7 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap(
         editable: !readonly,
         alignment: "nodes",
         theme: themeToUse,
+        markdown: md2html,
       } as Options;
 
       try {

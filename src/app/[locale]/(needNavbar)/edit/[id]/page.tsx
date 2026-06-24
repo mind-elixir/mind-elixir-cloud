@@ -12,6 +12,7 @@ import nodeMenu from '@mind-elixir/node-menu-neo'
 import { toast } from 'sonner'
 import { CloudCheck, AlertCircle, Loader2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { md2html } from '@/utils/md2html'
 
 const sanitizeNodeData = (nodeData: MindElixirData['nodeData']) => {
   if (!nodeData) return
@@ -42,6 +43,7 @@ export default function MapEditPage() {
   const options: Partial<Options> = {
     direction: 2,
     allowUndo: true,
+    markdown: md2html,
   }
 
   const mapId = params.id as string
