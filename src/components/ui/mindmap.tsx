@@ -29,8 +29,12 @@ import {
   type Options,
   type Theme as MindElixirTheme,
 } from "mind-elixir";
-import { snapdom, SnapdomOptions } from "@zumer/snapdom";
-import { md2html } from "@/utils/md2html";
+import MindElixir from "mind-elixir";
+import { plaintextToMindElixir } from "mind-elixir/plaintextConverter";
+import { domToBlob } from "@mind-elixir/export-mindmap";
+
+/** Custom markdown parser — same signature as Mind Elixir `Options.markdown`. */
+export type MindMapMarkdownParser = NonNullable<Options["markdown"]>;
 
 // Check document class for theme (works with next-themes, etc.)
 function getDocumentTheme(): Theme | null {
@@ -108,6 +112,20 @@ export function useMindMap() {
 // MindMap Props
 type MindMapData = MindElixirData;
 
+/**
+ * Accepted data input for the MindMap component.
+ * Either a `MindElixirData` object or a Mind Elixir plaintext string
+ * (indentation-based outline that is parsed via `plaintextToMindElixir`).
+ */
+export type MindMapInput = MindElixirData | string;
+
+/** Normalize accepted input (object or plaintext string) to MindElixirData. */
+function toData(input: MindMapInput | undefined): MindElixirData | undefined {
+  if (input == null) return undefined;
+  if (typeof input === "string") return plaintextToMindElixir(input);
+  return input;
+}
+
 // Ref type to expose MindElixir instance to parent components
 export interface MindMapRef {
   instance: MindElixirInstance | null;
@@ -115,19 +133,38 @@ export interface MindMapRef {
 
 interface MindMapProps {
   children?: ReactNode;
-  data?: MindMapData;
+  /**
+   * Map data. Accepts a `MindElixirData` object or a Mind Elixir plaintext
+   * string (indentation-based outline).
+   */
+  data?: MindMapInput;
   className?: string;
   direction?: 0 | 1 | 2;
   contextMenu?: boolean;
-  nodeMenu?: boolean;
   keypress?: boolean;
   locale?: "en" | "zh_CN" | "zh_TW" | "ja" | "pt";
   overflowHidden?: boolean;
-  mainLinkStyle?: number;
   theme?: "dark" | "light";
   monochrome?: boolean;
   fit?: boolean;
   readonly?: boolean;
+  /**
+   * Compact layout with tighter node spacing.
+   * Useful for dense presentation maps.
+   */
+  compact?: boolean;
+  /**
+   * Custom markdown parser. When provided, node topics (and arrow/summary
+   * labels) are passed through this function before rendering as HTML.
+   * Bring your own parser (e.g. marked, markdown-it) or a small custom one.
+   */
+  markdown?: MindMapMarkdownParser;
+  /**
+   * Rewrite remote node image URLs so they can be captured when exporting
+   * the map (avoids CORS failures during image generation). Not needed for
+   * normal on-screen viewing alone.
+   */
+  imageProxy?: (url: string) => string;
   onChange?: (data: MindMapData, operation: unknown) => void;
   onOperation?: (operation: unknown) => void;
   onSelectNodes?: (nodeObj: NodeObj[]) => void;
@@ -301,15 +338,16 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap(
     className,
     direction = SIDE,
     contextMenu = true,
-    nodeMenu = true,
     keypress = true,
     locale = "en",
     overflowHidden = false,
-    mainLinkStyle = 2,
     theme: themeProp,
     monochrome = false,
     fit = true,
     readonly = false,
+    compact = false,
+    markdown,
+    imageProxy,
     onChange,
     onOperation,
     onSelectNodes,
@@ -323,7 +361,6 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap(
   const [mindInstance, setMindInstance] = useState<MindElixirInstance | null>(
     null,
   );
-  const [isMounted, setIsMounted] = useState(false);
   const resolvedTheme = useResolvedTheme(themeProp);
   const id = useId();
 
@@ -346,96 +383,94 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap(
   const onChangeRef = useRef(onChange);
   const onOperationRef = useRef(onOperation);
   const onSelectNodesRef = useRef(onSelectNodes);
+  const markdownRef = useRef(markdown);
+  const imageProxyRef = useRef(imageProxy);
 
   useEffect(() => {
     onChangeRef.current = onChange;
     onOperationRef.current = onOperation;
     onSelectNodesRef.current = onSelectNodes;
-  }, [onChange, onOperation, onSelectNodes]);
+    markdownRef.current = markdown;
+    imageProxyRef.current = imageProxy;
+  }, [onChange, onOperation, onSelectNodes, markdown, imageProxy]);
+
+  // Track internal changes to avoid refresh loops
+  const isInternalChangeRef = useRef(false);
 
   // Store initial data in ref - only used for initialization, not reactive
   const initialDataRef = useRef(data);
 
-  // Ensure component only renders on client
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   // Initialize MindElixir (client-side only)
   useEffect(() => {
-    if (!isMounted || !containerRef.current || mindRef.current) return;
+    if (!containerRef.current || mindRef.current) return;
 
     let isSubscribed = true;
 
-    // Dynamic import to avoid SSR issues
-    import("mind-elixir").then((MindElixirModule) => {
-      if (!isSubscribed || !containerRef.current) return;
+    // Prioritize theme from data, then fall back to component props
+    const initialData =
+      toData(initialDataRef.current) || MindElixir.new("Mind Map");
+    const themeToUse =
+      initialData.theme ||
+      getTheme(resolvedThemeRef.current === "dark", monochrome);
 
-      const MindElixir = MindElixirModule.default;
+    const options: Options = {
+      el: containerRef.current,
+      direction,
+      contextMenu,
+      toolBar: false,
+      keypress,
+      locale,
+      overflowHidden,
+      editable: !readonly,
+      compact,
+      alignment: "nodes",
+      theme: themeToUse,
+      markdown: markdownRef.current
+        ? (text, obj) => markdownRef.current?.(text, obj) ?? text
+        : undefined,
+      imageProxy: imageProxyRef.current
+        ? (url) => imageProxyRef.current?.(url) ?? url
+        : undefined,
+    };
 
-      // Prioritize theme from data, then fall back to component props
-      const initialData = initialDataRef.current || MindElixir.new("Mind Map");
-      const themeToUse =
-        initialData.theme ||
-        getTheme(resolvedThemeRef.current === "dark", monochrome);
+    try {
+      const mind = new MindElixir(options);
+      mind.init(initialData);
 
-      const options = {
-        el: containerRef.current,
-        direction,
-        contextMenu,
-        toolBar: false,
-        nodeMenu,
-        keypress,
-        locale,
-        overflowHidden,
-        mainLinkStyle,
-        editable: !readonly,
-        alignment: "nodes",
-        theme: themeToUse,
-        markdown: md2html,
-      } as Options;
+      if (isSubscribed) {
+        mindRef.current = mind;
+        setMindInstance(mind);
+        setIsLoaded(true);
 
-      try {
-        const mind = new MindElixir(options);
-        mind.init(initialData);
-
-        if (isSubscribed) {
-          mindRef.current = mind;
-          setMindInstance(mind);
-          setIsLoaded(true);
-
-          // Auto-fit if enabled
-          if (fit) {
-            mind.scaleFit();
-          }
-
-          // Event listeners (using refs to avoid re-initialization)
-          mind.bus.addListener("operation", (operation) => {
-            console.log(operation);
-
-            // Call onOperation if provided
-            if (onOperationRef.current) {
-              onOperationRef.current(operation);
-            }
-            // Call onChange if provided
-            if (onChangeRef.current) {
-              const updatedData = mind.getData();
-              // Mark this as an internal change to prevent refresh loop
-              isInternalChangeRef.current = true;
-              onChangeRef.current(updatedData, operation);
-            }
-          });
-
-          if (onSelectNodesRef.current) {
-            mind.bus.addListener("selectNodes", (nodeObj) => {
-              onSelectNodesRef.current?.(nodeObj);
-            });
-          }
+        // Auto-fit if enabled
+        if (fit) {
+          mind.scaleFit();
         }
-      } catch (error) {
-        console.error("Failed to initialize MindElixir:", error);
+
+        // Event listeners (using refs to avoid re-initialization)
+        mind.bus.addListener("operation", (operation) => {
+          // Call onOperation if provided
+          if (onOperationRef.current) {
+            onOperationRef.current(operation);
+          }
+          // Call onChange if provided
+          if (onChangeRef.current) {
+            const updatedData = mind.getData();
+            // Mark this as an internal change to prevent refresh loop
+            isInternalChangeRef.current = true;
+            onChangeRef.current(updatedData, operation);
+          }
+        });
+
+        if (onSelectNodesRef.current) {
+          mind.bus.addListener("selectNodes", (nodeObj) => {
+            onSelectNodesRef.current?.(nodeObj);
+          });
+        }
       }
-    });
+    } catch (error) {
+      console.error("Failed to initialize MindElixir:", error);
+    }
 
     return () => {
       isSubscribed = false;
@@ -445,21 +480,15 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap(
       mindRef.current = null;
     };
   }, [
-    isMounted,
     direction,
     contextMenu,
-    nodeMenu,
     keypress,
     locale,
     overflowHidden,
-    mainLinkStyle,
     monochrome,
     readonly,
     fit,
   ]);
-
-  // Track internal changes to avoid refresh loops
-  const isInternalChangeRef = useRef(false);
 
   // Update data when it changes
   useEffect(() => {
@@ -469,18 +498,22 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap(
         isInternalChangeRef.current = false;
         return;
       }
-      mindRef.current.refresh(data);
+      const next = toData(data);
+      if (next) {
+        mindRef.current.refresh(next);
+      }
     }
   }, [data, isLoaded]);
 
   // Update theme when resolvedTheme or monochrome changes
   // BUT only if the data itself doesn't have a theme (data.theme has highest priority)
+  // Plaintext strings never carry a theme, so only object data is checked.
+  const dataTheme = typeof data === "object" ? data?.theme : undefined;
   useEffect(() => {
     if (!mindRef.current || !isLoaded) return;
 
-    // Check if current data has its own theme
-    const currentData = mindRef.current.getData();
-    if (currentData.theme) {
+    // Check if the provided data prop has its own theme
+    if (dataTheme) {
       // Data has its own theme, don't override it with prop changes
       return;
     }
@@ -488,7 +521,38 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap(
     // No theme in data, apply theme from props
     const newTheme = getTheme(resolvedTheme === "dark", monochrome);
     mindRef.current.changeTheme(newTheme);
-  }, [resolvedTheme, monochrome, isLoaded]);
+  }, [resolvedTheme, monochrome, isLoaded, dataTheme]);
+
+  // Update compact mode when prop changes (after init)
+  const compactInitializedRef = useRef(false);
+  useEffect(() => {
+    if (!mindRef.current || !isLoaded) return;
+    // Skip first run — compact is already applied via Options at init
+    if (!compactInitializedRef.current) {
+      compactInitializedRef.current = true;
+      return;
+    }
+    mindRef.current.changeCompact(compact);
+  }, [compact, isLoaded]);
+
+  // Keep markdown / imageProxy in sync without re-initializing the map
+  const parsersInitializedRef = useRef(false);
+  useEffect(() => {
+    if (!mindRef.current || !isLoaded) return;
+    mindRef.current.markdown = markdown
+      ? (text, obj) => markdown(text, obj)
+      : undefined;
+    mindRef.current.imageProxy = imageProxy
+      ? (url) => imageProxy(url)
+      : undefined;
+    // Skip first run — parsers are already applied via Options at init
+    if (!parsersInitializedRef.current) {
+      parsersInitializedRef.current = true;
+      return;
+    }
+    // Re-render nodes so updated parsers take effect
+    mindRef.current.refresh();
+  }, [markdown, imageProxy, isLoaded]);
 
   return (
     <MindMapContext.Provider value={{ mind: mindInstance, isLoaded }}>
@@ -499,7 +563,7 @@ export const MindMap = forwardRef<MindMapRef, MindMapProps>(function MindMap(
           id={`mindmap-${id}`}
           className="w-full h-full bg-background rounded-lg overflow-hidden"
         />
-        {!isMounted || !isLoaded ? loader || <DefaultLoader /> : null}
+        {!isLoaded ? loader || <DefaultLoader /> : null}
         {children}
       </div>
     </MindMapContext.Provider>
@@ -556,26 +620,27 @@ export function MindMapControls({
   const handleExport = async () => {
     if (mind) {
       try {
-        // Export as image using snapdom
-        const result = await snapdom(mind.nodes);
+        // Export as image using the SCST engine
+        const blob = await domToBlob(mind.nodes, "jpeg", {
+          quality: 1,
+          backgroundColor: mind.theme.cssVar["--bgcolor"],
+        });
         // Use root node's topic as filename
         const rootTopic = mind.nodeData.topic || "mindmap";
         const filename = `${rootTopic}.jpg`;
-        const options = {
-          type: "jpg",
-          filename: rootTopic,
-          quality: 1,
-          backgroundColor: mind.theme.cssVar["--bgcolor"],
-        } as SnapdomOptions;
 
-        // Get the blob for the callback
+        // Provide the blob to the callback
         if (onExport) {
-          const blob = await result.toBlob(options);
           onExport(blob, filename);
         }
 
         // Download the file
-        await result.download(options);
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.download = filename;
+        link.href = url;
+        link.click();
+        URL.revokeObjectURL(url);
       } catch (error) {
         console.error("Failed to export mind map:", error);
       }
