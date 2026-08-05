@@ -53,7 +53,12 @@ export function ViewContent({
                 : 'h-[calc(100vh-230px)] min-h-[450px] md:h-[calc(100vh-200px)] md:min-h-[500px] lg:h-[calc(100vh-280px)] lg:min-h-[600px]'
             }`}
           >
-            <MindMap data={mapData} className="h-full w-full" readonly />
+            <MindMap
+              data={mapData}
+              className="h-full w-full"
+              readonly
+              markdown={md2html}
+            />
           </div>
         </CardContent>
       </Card>
