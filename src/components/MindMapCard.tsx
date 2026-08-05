@@ -60,7 +60,6 @@ export default function MindMapCard({
             direction={2}
             fit={true}
             contextMenu={false}
-            nodeMenu={false}
             keypress={false}
             readonly={true}
             className="h-full w-full"
