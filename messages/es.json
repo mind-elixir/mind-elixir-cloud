@@ -146,7 +146,13 @@
     "socialMedia": "Redes sociales",
     "followOn": "Seguir en {platform}",
     "notFound": "Mapa mental no encontrado",
-    "checkLink": "Verifique si el enlace es correcto"
+    "checkLink": "Verifique si el enlace es correcto",
+    "openInApp": "Abrir en la app",
+    "openAppSuccess": "Abierto en la app Mind Elixir",
+    "openAppError": "Error al abrir, asegúrese de tener instalada la app Mind Elixir",
+    "downloadImage": "Descargar imagen",
+    "downloadImageSuccess": "Imagen descargada",
+    "downloadImageError": "Error al descargar la imagen"
   },
   "list": {
     "loginRequired": "Inicio de sesión requerido",

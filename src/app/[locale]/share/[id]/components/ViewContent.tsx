@@ -1,12 +1,22 @@
 'use client'
 
-import { Brain, List } from 'lucide-react'
+import { useRef, useState } from 'react'
+import {
+  Brain,
+  List,
+  ExternalLink,
+  Download,
+  Loader2,
+} from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Outliner } from 'react-outliner-neo'
 import type { MindElixirData, Options } from 'mind-elixir'
+import { toast } from 'sonner'
+import { launchMindElixir } from '@mind-elixir/open-desktop'
+import { downloadImage } from '@mind-elixir/export-mindmap'
 
 // 确保MindElixirReact组件完全在客户端渲染
-import { MindMap } from '@/components/ui/mindmap'
+import { MindMap, type MindMapRef } from '@/components/ui/mindmap'
 import { useTranslations } from 'next-intl'
 import { md2html } from '@/utils/md2html'
 
@@ -26,6 +36,41 @@ export function ViewContent({
   options,
 }: ViewContentProps) {
   const t = useTranslations('share')
+  const mindMapRef = useRef<MindMapRef | null>(null)
+  const [isOpeningInApp, setIsOpeningInApp] = useState(false)
+  const [isDownloading, setIsDownloading] = useState(false)
+
+  // 在 Mind Elixir 应用中打开思维导图
+  const handleOpenInApp = async () => {
+    if (isOpeningInApp) return
+    setIsOpeningInApp(true)
+    try {
+      await launchMindElixir(mapData)
+      toast.success(t('openAppSuccess'))
+    } catch (error) {
+      console.error('Failed to open in Mind Elixir app:', error)
+      toast.error(t('openAppError'))
+    } finally {
+      setIsOpeningInApp(false)
+    }
+  }
+
+  // 导出思维导图为图片并下载
+  const handleDownloadImage = async () => {
+    const instance = mindMapRef.current?.instance
+    if (!instance || isDownloading) return
+    setIsDownloading(true)
+    try {
+      await downloadImage(instance, 'png')
+      toast.success(t('downloadImageSuccess'))
+    } catch (error) {
+      console.error('Failed to download mind map image:', error)
+      toast.error(t('downloadImageError'))
+    } finally {
+      setIsDownloading(false)
+    }
+  }
+
   return (
     <div className="flex flex-col gap-3 lg:gap-4">
       {/* 思维导图视图 */}
@@ -47,18 +92,48 @@ export function ViewContent({
         )}
         <CardContent className="p-0">
           <div
-            className={`${
+            className={`relative ${
               viewMode === 'split'
                 ? 'h-[calc(100vh-450px)] min-h-[350px] md:h-[calc(100vh-420px)] md:min-h-[400px] lg:h-[calc(100vh-380px)] lg:min-h-[500px]'
                 : 'h-[calc(100vh-230px)] min-h-[450px] md:h-[calc(100vh-200px)] md:min-h-[500px] lg:h-[calc(100vh-280px)] lg:min-h-[600px]'
             }`}
           >
             <MindMap
+              ref={mindMapRef}
               data={mapData}
               className="h-full w-full"
               readonly
               markdown={md2html}
             />
+            {/* 在应用打开 / 下载图片 */}
+            <div className="absolute right-3 top-3 z-10 flex flex-col gap-1">
+              <button
+                onClick={handleOpenInApp}
+                disabled={isOpeningInApp}
+                className="size-8 rounded-md bg-background/95 backdrop-blur-md border border-border/50 shadow-lg flex items-center justify-center hover:bg-accent transition-colors"
+                aria-label={t('openInApp')}
+                title={t('openInApp')}
+              >
+                {isOpeningInApp ? (
+                  <Loader2 className="size-4 animate-spin" />
+                ) : (
+                  <ExternalLink className="size-4" />
+                )}
+              </button>
+              <button
+                onClick={handleDownloadImage}
+                disabled={isDownloading}
+                className="size-8 rounded-md bg-background/95 backdrop-blur-md border border-border/50 shadow-lg flex items-center justify-center hover:bg-accent transition-colors"
+                aria-label={t('downloadImage')}
+                title={t('downloadImage')}
+              >
+                {isDownloading ? (
+                  <Loader2 className="size-4 animate-spin" />
+                ) : (
+                  <Download className="size-4" />
+                )}
+              </button>
+            </div>
           </div>
         </CardContent>
       </Card>

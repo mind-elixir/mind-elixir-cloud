@@ -146,7 +146,13 @@
     "socialMedia": "Social Media",
     "followOn": "Follow on {platform}",
     "notFound": "Mind map not found",
-    "checkLink": "Please check if the link is correct"
+    "checkLink": "Please check if the link is correct",
+    "openInApp": "Open in App",
+    "openAppSuccess": "Opened in Mind Elixir App",
+    "openAppError": "Failed to open, please make sure Mind Elixir App is installed",
+    "downloadImage": "Download Image",
+    "downloadImageSuccess": "Image downloaded",
+    "downloadImageError": "Failed to download image"
   },
   "list": {
     "loginRequired": "Login Required",

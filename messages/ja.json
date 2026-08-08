@@ -146,7 +146,13 @@
     "socialMedia": "ソーシャルメディア",
     "followOn": "{platform}でフォロー",
     "notFound": "マインドマップが見つかりません",
-    "checkLink": "リンクが正しいかご確認ください"
+    "checkLink": "リンクが正しいかご確認ください",
+    "openInApp": "アプリで開く",
+    "openAppSuccess": "Mind Elixir アプリで開きました",
+    "openAppError": "開けませんでした。Mind Elixir アプリがインストールされているかご確認ください",
+    "downloadImage": "画像をダウンロード",
+    "downloadImageSuccess": "画像をダウンロードしました",
+    "downloadImageError": "画像のダウンロードに失敗しました"
   },
   "list": {
     "loginRequired": "ログインが必要です",

@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { useTranslations } from 'next-intl'
 import { useSearchParams } from 'next/navigation'
 import { Info } from 'lucide-react'
-import { openAppWithFallback } from '@mind-elixir/open-desktop'
 import { Badge } from '@/components/ui/badge'
 
 export default function AppLoginPage() {
@@ -36,12 +35,7 @@ export default function AppLoginPage() {
         const url = 'mind-elixir://login?token=' + token
         setAppLink(url)
 
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-        if (isMobile) {
-          window.location.href = url
-        } else {
-          openAppWithFallback(url)
-        }
+        window.location.href = url
 
         updateProgress(100, t('loginSuccess'))
 

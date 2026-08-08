@@ -146,7 +146,13 @@
     "socialMedia": "社交媒体",
     "followOn": "在 {platform} 上关注",
     "notFound": "思维导图未找到",
-    "checkLink": "请检查链接是否正确"
+    "checkLink": "请检查链接是否正确",
+    "openInApp": "在应用中打开",
+    "openAppSuccess": "已在 Mind Elixir 应用中打开",
+    "openAppError": "打开失败，请确认已安装 Mind Elixir 应用",
+    "downloadImage": "下载图片",
+    "downloadImageSuccess": "图片下载成功",
+    "downloadImageError": "图片下载失败"
   },
   "list": {
     "loginRequired": "需要登录",
